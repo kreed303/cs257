@@ -1,0 +1,30 @@
+Katelyn Reed & Sam Reiter
+Project Outline for CS257
+
+We have a library of mp3 files of our favorite music (hence we don’t have a link). We will put the metadata into a CSV with one row for each song. Each row will contain a string or int value denoting title, number, artist, album, release year, genre, length, BPM. When we actually create this CSV we will put it into our directories as well. 
+
+User Stories:
+
+User Story #1: I am a passionate fan of a specific musical artist and want to be able to listen to different subsets of their music that fit different vibes.
+
+Implementation: We will implement this with our tag system where each song can be assigned custom tags so that an artist's library can be filtered by a sub-category.
+
+User Story #2: I am a casual music listener who just wants to use this app to just listen to my own playlists.
+
+Implementation: The user will be able to create playlists just the same way spotify has it. On the backend, the playlists will be stored as lists of songs. 
+
+User Story #3: I am a runner and have been told that having music that is the same beat as my running cadence is a good thing, so I would like the ability to filter my music library by bpm. 
+
+Implementation: We will implement a filter that can detect the bpm of a new song and  add this information to our metadata so the user can filter songs in a certain bpm range (We will make the app able to sort and filter by all the metadata, this is just one example).
+
+User Story #4: I am a music user who likes to have a customizable music player, and would like to be able to implement more and new functionality.
+
+Implementation: We will make our app lightweight and not complex so that another user who has CS experience can come in and make their own new functionality. 
+
+User Story #5: I am a music fan who likes to listen to certain genres and vibes of music at different points, but I don't want to have to make a bunch of individual playlists based on my mood. I want to be able to shuffle a subset of songs from a larger playlist or albums of songs I like.
+
+Implementation: We will have the ability to assign custom tags (and edit them later) to songs that are added to playlists, and then the ability to shuffle one or multiple tags from songs in a specific playlist
+
+User Story #6: I am a music listener who wants to play music from local copies I have on my computer.
+
+Implementation: The app will function as a standard MP3 player, with the ability to sort files by song title, artist, album, or playlist as normal. The tagging system will be optional.
