@@ -7,26 +7,26 @@
 
 import argparse
 import os
+import csv
 
 
 def main():
     args = getParsedArgs()
     print(args)
     directory = os.getcwd()
-    CSV = os.path.join(directory, '../songs.csv')
+    CSV = os.path.join(directory, '../data/songs.csv')
 
     print(CSV)
-    with open(CSV, "r") as songs:
-        songList = songs.readlines()
+    with open(CSV) as songs:
+        songList = csv.reader(songs)
 
-    if args.genre not in ("Rock", "Dance", "Pop", "World"):
-        print("There are no songs in the library of that genre.")
-        print("The options are Dance, Pop, Rock, and World music")
-    else:    
-        for song in songList:
-            data = song.split(",")
-            if (data[9] == (args.genre)):
-                print(f"Song: {data[4].strip()}, Artist: {data[5].strip()}, Album: {data[1].strip()}")    
+        if args.genre not in ("Rock", "Dance", "Pop", "World"):
+            print("There are no songs in the library of that genre.")
+            print("The options are Dance, Pop, Rock, and World music")
+        else:    
+            for song in songList:
+                if (song[9] == (args.genre)):
+                    print(f"Song: {song[4].strip()}, Artist: {song[5].strip()}, Album: {song[1].strip()}")    
 
 
 def getParsedArgs():
