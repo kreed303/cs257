@@ -21,6 +21,7 @@ def main():
 
     if args.genre not in ("Rock", "Dance", "Pop", "World"):
         print("There are no songs in the library of that genre.")
+        print("The options are Dance, Pop, Rock, and World music")
     else:    
         for song in songList:
             data = song.split(",")
