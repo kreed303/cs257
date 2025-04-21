@@ -27,10 +27,7 @@ def getGenre(genre):
 
         for song in songsList:
             if song[9] == genre:
-                songDict = {}
-                songDict = {"title": song[4].strip()} # Make a dictionary?
-                # , "artist": {song[5].strip()}, "album": {song[1].strip()}}
-
+                songDict = {"title": song[4].strip()}
                 genreSongs.append(songDict)
 
     return json.dumps(genreSongs, ensure_ascii=False)
