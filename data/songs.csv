@@ -1,4 +1,4 @@
-,album,composer,length,title,artist,album artist,organization,tracknumber, genre,date
+,album,composer,length,title,artist,albumartist,organization,tracknumber,genre,date
 0,The Definitive Collection Disc 2,Benny Andersson/Björn Ulvaeus,259933,Angeleyes,ABBA,ABBA,Um3,2,Rock,2001
 1,The Definitive Collection Disc 2,Benny Andersson/Björn Ulvaeus,296373,The Winner Takes It All,ABBA,ABBA,Um3,5,Rock,2001
 2,The Definitive Collection Disc 2,Benny Andersson/Björn Ulvaeus,253360,Super Trouper,ABBA,ABBA,Um3,6,Rock,2001
@@ -69,29 +69,60 @@
 67,There Goes Rhymin' Simon [Bonus Tracks],Paul Simon,215400,Kodachrome,Paul Simon,Paul Simon,WEA International,1,Rock,2004
 68,There Goes Rhymin' Simon [Bonus Tracks],Paul Simon,224320,Was a Sunny Day,Paul Simon,Paul Simon,WEA International,7,Rock,2004
 69,There Goes Rhymin' Simon [Bonus Tracks],Paul Simon,167626,Learn How to Fall,Paul Simon,Paul Simon,WEA International,8,Rock,2004
-70,So Beautiful or So What,Paul Simon,242160,Love Is Eternal Sacred Light,Paul Simon,Paul Simon,Universal,6,Pop,2011
-71,So Beautiful or So What,Paul Simon,229906,Questions for the Angels,Paul Simon,Paul Simon,Universal,8,Pop,2011
-72,So Beautiful or So What,Paul Simon,249480,Love and Hard Times,Paul Simon,Paul Simon,Universal,5,Pop,2011
-73,So Beautiful or So What,Paul Simon,246720,Getting Ready for Christmas Day,Paul Simon,Paul Simon,Universal,1,Pop,2011
-74,So Beautiful or So What,Paul Simon,229720,Rewrite,Paul Simon,Paul Simon,Universal,4,Pop,2011
-75,So Beautiful or So What,Paul Simon,258160,Love & Blessings,Paul Simon,Paul Simon,Universal,9,Pop,2011
-76,So Beautiful or So What,Paul Simon,96573,Amulet,Paul Simon,Paul Simon,Universal,7,Pop,2011
-77,So Beautiful or So What,Paul Simon,248560,So Beautiful or So What,Paul Simon,Paul Simon,Universal,10,Pop,2011
-78,So Beautiful or So What,Paul Simon,272320,Dazzling Blue,Paul Simon,Paul Simon,Universal,3,Pop,2011
-79,So Beautiful or So What,Paul Simon,220173,The Afterlife,Paul Simon,Paul Simon,Universal,2,Pop,2011
-80,Cordial,Traditional,221626,Aimé,La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,6,World,2001
-81,Cordial,Jean Frechette/Traditional,175293,Chant de La Luette (The Worbler's Song),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,14,World,2001
-82,Cordial,Jean Frechette/Michel Bordeleau/Traditional,191026,Dans Paris Y'a T'Une Brune (The Brunette from Paris),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,1,World,2001
-83,Cordial,Jean Frechette/Traditional/Yves Lambert,184666,Ma Paillasse (My Straw Mat),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,13,World,2001
-84,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,273706,Le Démon Sort de l'Enfer (The Devil Comes out of Hell),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,3,World,2001
-85,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,341066,Reel de Baie St-Paul (Baie St-Paul's Reel),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,15,World,2001
-86,Cordial,Jean Frechette/Traditional/Yves Lambert,224400,Lune de Miel (Honeymoon),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,7,World,2001
-87,Cordial,"Fernando Soucy/Gauthier, Paul Marcel",154533,Viens-Tu Prendre une Bière? (Come Have a Beer!),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,12,World,2001
-88,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,232493,A Bas Les Rideaux (Out with the Lies),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,10,World,2001
-89,Cordial,Claude Champagne/Guy Pelletier/La Bottine Souriante,442426,"Et Boucle La Bottine (And ""Loop"" La Bottine)",La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,16,World,2001
-90,Cordial,André Brunet,190506,Suède Inn,La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,8,World,2001
-91,Cordial,Donald Messer,137106,Les Noces d'Or (Golden Wedding Reel),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,11,World,2001
-92,Cordial,Jean Frechette/Pierre Belisle/Traditional,244133,La Grandeuse (The Grumbling Woman),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,2,World,2001
-93,Cordial,Jean Frechette/Michel Bordeleau/Traditional,156800,J'Ai Fait une Maîtresse (I Got Me a Mistress),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,9,World,2001
-94,Cordial,Jean-Paul Filion,163240,En P'tit Boggie (Giddy Up),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,5,World,2001
-95,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,210960,Set à Ubert (Ubert's Set),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,4,World,2001
+70,Graceland,Paul Simon,198426,All Around The World Or The Myth Of Fingerprints,Paul Simon,Paul Simon,-,11,Contemporary Folk,1986
+71,Graceland,Paul Simon,150546,Homeless (Demo),Paul Simon,Paul Simon,-,12,Contemporary Folk,1986
+72,Graceland,Paul Simon,281413,Diamonds On The Soles Of Her Shoes (Alternate Versioin),Paul Simon,Paul Simon,-,13,Contemporary Folk,1986
+73,Graceland,Paul Simon,172813,That Was Your Mother,Paul Simon,Paul Simon,-,10,Contemporary Folk,1986
+74,Graceland,Paul Simon,259360,"Crazy Love, Vol. II",Paul Simon,Paul Simon,-,9,Contemporary Folk,1986
+75,Graceland,Paul Simon,578960,"The Story Of ""Graceland""",Paul Simon,Paul Simon,-,15,Contemporary Folk,1986
+76,Graceland,Paul Simon;Jonhjon Mkhalali;Lulu Masilela,164826,Gumboots,Paul Simon,Paul Simon,-,4,Contemporary Folk,1986
+77,Graceland,Paul Simon,217160,Under African Skies,Paul Simon,Paul Simon,-,7,Contemporary Folk,1986
+78,Graceland,"Paul Simon, Joseph Shabalala",228413,Homeless,Paul Simon,Paul Simon,-,8,Contemporary Folk,1986
+79,Graceland,Paul Simon,291200,Graceland,Paul Simon,Paul Simon,-,2,Contemporary Folk,1986
+80,Graceland,"Paul Simon, Joseph Shabalala",351346,Diamonds On The Soles Of Her Shoes,Paul Simon,Paul Simon,-,5,Contemporary Folk,1986
+81,Graceland,Paul Simon,198560,All Around The World Or The Myths Of Fingerprints (Early Version),Paul Simon,Paul Simon,-,14,Contemporary Folk,1986
+82,Graceland,Paul Simon,280586,You Can Call Me Al,Paul Simon,Paul Simon,-,6,Contemporary Folk,1986
+83,Graceland,"Paul Simon, General M.D. Shirinda",193373,I Know What I Know,Paul Simon,Paul Simon,-,3,Contemporary Folk,1986
+84,Graceland,-,239693,The Boy in the Bubble,Paul Simon,Paul Simon,-,1,Contemporary Folk,1986
+85,So Beautiful or So What,Paul Simon,242160,Love Is Eternal Sacred Light,Paul Simon,Paul Simon,Universal,6,Pop,2011
+86,So Beautiful or So What,Paul Simon,229906,Questions for the Angels,Paul Simon,Paul Simon,Universal,8,Pop,2011
+87,So Beautiful or So What,Paul Simon,249480,Love and Hard Times,Paul Simon,Paul Simon,Universal,5,Pop,2011
+88,So Beautiful or So What,Paul Simon,246720,Getting Ready for Christmas Day,Paul Simon,Paul Simon,Universal,1,Pop,2011
+89,So Beautiful or So What,Paul Simon,229720,Rewrite,Paul Simon,Paul Simon,Universal,4,Pop,2011
+90,So Beautiful or So What,Paul Simon,258160,Love & Blessings,Paul Simon,Paul Simon,Universal,9,Pop,2011
+91,So Beautiful or So What,Paul Simon,96573,Amulet,Paul Simon,Paul Simon,Universal,7,Pop,2011
+92,So Beautiful or So What,Paul Simon,248560,So Beautiful or So What,Paul Simon,Paul Simon,Universal,10,Pop,2011
+93,So Beautiful or So What,Paul Simon,272320,Dazzling Blue,Paul Simon,Paul Simon,Universal,3,Pop,2011
+94,So Beautiful or So What,Paul Simon,220173,The Afterlife,Paul Simon,Paul Simon,Universal,2,Pop,2011
+95,Cordial,Traditional,221626,Aimé,La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,6,World,2001
+96,Cordial,Jean Frechette/Traditional,175293,Chant de La Luette (The Worbler's Song),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,14,World,2001
+97,Cordial,Jean Frechette/Michel Bordeleau/Traditional,191026,Dans Paris Y'a T'Une Brune (The Brunette from Paris),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,1,World,2001
+98,Cordial,Jean Frechette/Traditional/Yves Lambert,184666,Ma Paillasse (My Straw Mat),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,13,World,2001
+99,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,273706,Le Démon Sort de l'Enfer (The Devil Comes out of Hell),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,3,World,2001
+100,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,341066,Reel de Baie St-Paul (Baie St-Paul's Reel),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,15,World,2001
+101,Cordial,Jean Frechette/Traditional/Yves Lambert,224400,Lune de Miel (Honeymoon),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,7,World,2001
+102,Cordial,"Fernando Soucy/Gauthier, Paul Marcel",154533,Viens-Tu Prendre une Bière? (Come Have a Beer!),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,12,World,2001
+103,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,232493,A Bas Les Rideaux (Out with the Lies),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,10,World,2001
+104,Cordial,Claude Champagne/Guy Pelletier/La Bottine Souriante,442426,"Et Boucle La Bottine (And ""Loop"" La Bottine)",La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,16,World,2001
+105,Cordial,André Brunet,190506,Suède Inn,La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,8,World,2001
+106,Cordial,Donald Messer,137106,Les Noces d'Or (Golden Wedding Reel),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,11,World,2001
+107,Cordial,Jean Frechette/Pierre Belisle/Traditional,244133,La Grandeuse (The Grumbling Woman),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,2,World,2001
+108,Cordial,Jean Frechette/Michel Bordeleau/Traditional,156800,J'Ai Fait une Maîtresse (I Got Me a Mistress),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,9,World,2001
+109,Cordial,Jean-Paul Filion,163240,En P'tit Boggie (Giddy Up),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,5,World,2001
+110,Cordial,Jean Frechette/Michel Bordeleau/Pierre Belisle/Regent Archambault/Traditional/Yves Lambert,210960,Set à Ubert (Ubert's Set),La Bottine Souriante,La Bottine Souriante,Les Productions Mille-Pattes,4,World,2001
+111,En Spectacle,-,236573,À Travers La Vitre,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,12,World,2006
+112,En Spectacle,-,264773,Le Voyage de Basile,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,5,World,2006
+113,En Spectacle,-,273866,Un Coup Madame,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,9,World,2006
+114,En Spectacle,-,231200,Sur La Route (La Tapinie),La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,2,World,2006
+115,En Spectacle,-,301626,Le Lanlire (La Poule à Colin),La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,11,World,2006
+116,En Spectacle,-,255066,La Chanson de l'Ivrogne,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,13,World,2006
+117,En Spectacle,-,329600,Chapeau,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,6,World,2006
+118,En Spectacle,-,113200,Virginie Adieu,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,7,World,2006
+119,En Spectacle,-,247400,Ch'pas Capable (La Montagne du Loup),La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,4,World,2006
+120,En Spectacle,-,231000,Galoppe et Quadrille,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,10,World,2006
+121,En Spectacle,-,266160,La Cuisinière,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,14,World,2006
+122,En Spectacle,-,95893,Son P'tit Bidoulidou,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,16,World,2006
+123,En Spectacle,-,303693,Suite de La Sauvagesse,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,3,World,2006
+124,En Spectacle,-,438800,La Grand Côte,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,15,World,2006
+125,En Spectacle,-,489600,Ouverture,La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,1,World,2006
+126,En Spectacle,-,187333,Le Rêve Musiçal (Le Rêve du Quéteux Tremblay),La Bottine Souriante,La Bottine Souriante,Les Productions Milles-Pattes,8,World,2006
