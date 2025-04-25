@@ -11,7 +11,9 @@ import csv
 
 app = flask.Flask(__name__)
 
-DATABASE = os.path.join('/home/kreed303/SoftwareDesign-CS257/cs257/data/songs.csv')
+DATABASE = os.path.join(str(os.getcwd()), '../data/songs.csv')
+
+
 
 @app.route("/")
 def home():
