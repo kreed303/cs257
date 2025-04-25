@@ -21,7 +21,7 @@ def home():
 def getGenre(genre):
     genre = genre.capitalize()
     genreSongs = []
-
+    
     with open(DATABASE) as songsDB:
         songsList = csv.reader(songsDB)
 
