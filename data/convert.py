@@ -24,7 +24,7 @@ def albumsCSV():
     albums.to_csv("albums.csv", index = False)
 
 
-def artistAlbumCSV():
+def artistsAlbumsCSV():
     metaData = pd.read_csv("metaData.csv")
     artists = pd.read_csv("artists.csv", dtype = {'artistID' : 'int32', 'artist':'string'})
     albums = pd.read_csv("albums.csv", dtype={"albumID" : "int32","date":"int32", "album":"string"})
@@ -39,7 +39,7 @@ def artistAlbumCSV():
         except:
             artistAlbum = pd.DataFrame([newRow], index = ["artistID", "albumID"])
     artistAlbum.columns = ["artistID", "albumID"]
-    artistAlbum.to_csv("artistAlbum.csv", index = False)
+    artistAlbum.to_csv("artistsAlbums.csv", index = False)
 
 def songCSV(inputFile):
     # DATABASE = os.path.join(os.getcwd(), '/data/songs.csv')
@@ -102,5 +102,5 @@ def songCSV(inputFile):
 
 # artistsCSV()
 # albumsCSV()
-artistAlbumCSV()
+# artistsAlbumsCSV()
 

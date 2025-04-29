@@ -41,9 +41,8 @@ def artistsSongsCSV(metaDataCSV, artistsCSV, songsCSV):
     # newDF = pd.DataFrame([artistIDS[artists], songIDS[songs]], index = ["artistID", "songID"]).T
     # newDF.to_csv("artistsSongs.csv", index=False)
 
-def artistsSongsCSV(inputFile):
-    # DATABASE = os.path.join(os.getcwd(), '/data/songs.csv')
 
+def CSVs(inputFile):
     songs = {}
     artists = {}
     albums = {}
@@ -51,11 +50,9 @@ def artistsSongsCSV(inputFile):
     artistsAlbums = []
     artistsSongs = []
 
-    playlists = {}
-    tags = {}
-
     with open(inputFile) as f:
         reader = csv.reader(f)
+        next(reader)
         for songRow in reader:
             songName = songRow[4]
             albumName = songRow[1]
@@ -70,27 +67,56 @@ def artistsSongsCSV(inputFile):
             
             # Write stuff to create dictionary entries based on keys
             if songKey not in songs:
-                songs[songKey] = {"songID": len(songs),
+                songs[songKey] = {"songID": len(songs) + 1,
                                   "songName": songName,
                                   "trackNumber": trackNumber,
-                                  "songLength": songLength}
+                                  "songLength": songLength,
+                                  "songBPM": 0}
                 
             if artistKey not in artists:
-                artists[artistKey] = {"artistID": len(artists),
+                artists[artistKey] = {"artistID": len(artists) + 1,
                                       "artistName": artistName}
                 
             if albumKey not in albums:
-                albums[albumKey] = {"albumID": len(albums),
-                                      "albumName": albumName}
+                albums[albumKey] = {"albumID": len(albums) + 1,
+                                    "albumName": albumName,
+                                    "albumYear": albumYear}
                 
             albumsSongs.append((albums[albumKey]["albumID"], songs[songKey]["songID"]))
-            artistsAlbums.append((artists[artistKey]["artistID"], albums[albumKey]["albumID"]))
             artistsSongs.append((artists[artistKey]["artistID"], songs[songKey]["songID"]))
+            if ((artists[artistKey]["artistID"], albums[albumKey]["albumID"]) not in artistsAlbums):
+                artistsAlbums.append((artists[artistKey]["artistID"], albums[albumKey]["albumID"]))
+    
+    with open("songs.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(("songID", "songName", "trackNumber", "songLength", "songBPM"))
+        for songKey in songs:
+            song = songs[songKey]
+            row = (song["songID"], song["songName"], 
+                   song["trackNumber"], song["songLength"], song["songBPM"])
+            writer.writerow(row)
+
+    with open("albums.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(("albumID", "albumName", "albumYear"))
+        for albumKey in albums:
+            album = albums[albumKey]
+            row = (album["albumID"], album["albumName"], album["albumYear"])
+            writer.writerow(row)   
+
+    with open("artists.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(("artistID", "artistName"))
+        for artistKey in artists:
+            artist = artists[artistKey]
+            row = (artist["artistID"], artist["artistName"])
+            writer.writerow(row)   
+
 
     with open("artistsSongs.csv", "w") as f:
         writer = csv.writer(f)
         writer.writerow(("artistID", "songID"))
-        for songKey, artistKey in artistsSongs:
+        for artistKey, songKey in artistsSongs:
             writer.writerow((artistKey, songKey))
 
     with open("albumsSongs.csv", "w") as f:
@@ -99,8 +125,11 @@ def artistsSongsCSV(inputFile):
         for albumKey, songKey in albumsSongs:
             writer.writerow((albumKey, songKey))
 
+    with open("artistsAlbums.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(("artistID", "albumID"))
+        for artistKey, albumKey in artistsAlbums:
+            writer.writerow((artistKey, albumKey))
 
-# songsCSV(sys.argv[1])
-# artistsSongsCSV(sys.argv[1], sys.argv[2], sys.argv[3])
 
-artistsSongsCSV(sys.argv[1])
+CSVs(sys.argv[1])
