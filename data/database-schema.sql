@@ -1,6 +1,9 @@
 --Music App Database Design--
 --Katelyn Reed & Sam Reiter--
 
+
+
+
 --Basic tables based on current CSV data--
 CREATE TABLE songs (
     songID integer NOT NULL,
@@ -36,6 +39,10 @@ CREATE TABLE artistsSongs (
     songID integer NOT NULL
 );
 
+-- template for copying CSV -- 
+COPY artistssongs(artistID, songID)
+FROM '/Users/sam/Documents/academic/carleton/computerScience/257SoftwareDesign/katelynCs257/data/artistssongs.csv'
+WITH (FORMAT csv, HEADER);
 
 --Tables we'd like to create to be modified by user inputted data--
 CREATE TABLE playlists (
@@ -72,3 +79,4 @@ CREATE TABLE tagsPlaylists (
     tagID integer NOT NULL,
     playlistID integer NOT NULL
 );
+
