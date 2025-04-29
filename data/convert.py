@@ -29,7 +29,7 @@ def artistAlbumCSV():
     artistAlbum = pd.DataFrame(index = ["artistID", "albumID"])
     for _, row in metaData[["artist","album"]].drop_duplicates().iterrows():
         pdb.set_trace()
-        artists[row["artist"]]["artistID"]
+        artists[artists["artist"] == row["artist"]]["artistID"]
     pdb.set_trace()
 
 def songCSV(inputFile):
@@ -91,6 +91,6 @@ def songCSV(inputFile):
     print(f'Usage: {sys.argv[0]} original_csv_file', file=sys.stderr)
     exit()
 
-albumsCSV()
+# artistsCSV()
 artistAlbumCSV()
 
