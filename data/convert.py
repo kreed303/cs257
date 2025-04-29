@@ -6,10 +6,11 @@ import pdb
 
 def artistsCSV():
     metaData = pd.read_csv("metaData.csv")
-    artists = list(metaData["artist"].unique())
-    artistID = [i for i in range(len(artists))]
-    newDF = pd.DataFrame([artistID, artists], index = ["artistID", "artist"]).T
-    newDF.to_csv("artists.csv", index=False)
+    artists = metaData[["artist"]].drop_duplicates()
+    artists["artistID"] = [i for i in range(len(artists))]
+    artists = artists.iloc[:, [1, 0]]
+    artists = artists.astype({'artistID' : 'int32', 'artist':'string'})
+    artists.to_csv("artists.csv", index = False)
     
     # pdb.set_trace()
 
@@ -19,18 +20,26 @@ def albumsCSV():
     albums = metaData[["album", "date"]].drop_duplicates()
     albums["albumID"] = [i for i in range(len(albums))]
     albums = albums.iloc[:, [2, 0, 1]]
+    albums = albums.astype({"albumID" : "int32","date":"int32", "album":"string"})
     albums.to_csv("albums.csv", index = False)
 
 
 def artistAlbumCSV():
     metaData = pd.read_csv("metaData.csv")
-    artists = pd.read_csv("artists.csv")
-    albums = pd.read_csv("albums.csv")
+    artists = pd.read_csv("artists.csv", dtype = {'artistID' : 'int32', 'artist':'string'})
+    albums = pd.read_csv("albums.csv", dtype={"albumID" : "int32","date":"int32", "album":"string"})
     artistAlbum = pd.DataFrame(index = ["artistID", "albumID"])
     for _, row in metaData[["artist","album"]].drop_duplicates().iterrows():
-        pdb.set_trace()
-        artists[artists["artist"] == row["artist"]]["artistID"]
-    pdb.set_trace()
+        # pdb.set_trace()
+        artistID = artists[artists["artist"] == row["artist"]]["artistID"].reset_index(drop = True)[0]
+        albumID = albums[albums["album"] == row["album"]]["albumID"].reset_index(drop = True)[0]
+        newRow = [artistID, albumID]
+        try:
+            artistAlbum.loc[len(artistAlbum)] = newRow
+        except:
+            artistAlbum = pd.DataFrame([newRow], index = ["artistID", "albumID"])
+    artistAlbum.columns = ["artistID", "albumID"]
+    artistAlbum.to_csv("artistAlbum.csv", index = False)
 
 def songCSV(inputFile):
     # DATABASE = os.path.join(os.getcwd(), '/data/songs.csv')
@@ -92,5 +101,6 @@ def songCSV(inputFile):
     exit()
 
 # artistsCSV()
+# albumsCSV()
 artistAlbumCSV()
 
