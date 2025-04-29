@@ -4,16 +4,35 @@ import os
 import pandas as pd
 import pdb
 
-def artistCSV(inputfile):
-    metaData = pd.read_csv(inputfile)
+def artistsCSV():
+    metaData = pd.read_csv("metaData.csv")
     artists = list(metaData["artist"].unique())
-    artistIndex = [i for i in range(len(artists))]
-    newDF = pd.DataFrame([artistIndex, artists], index = ["artistIndex", "arist"]).T
+    artistID = [i for i in range(len(artists))]
+    newDF = pd.DataFrame([artistID, artists], index = ["artistID", "artist"]).T
     newDF.to_csv("artists.csv", index=False)
     
     # pdb.set_trace()
 
-def albumCSV(inputFile):
+def albumsCSV():
+    metaData = pd.read_csv("metaData.csv")
+    # pdb.set_trace()
+    albums = metaData[["album", "date"]].drop_duplicates()
+    albums["albumID"] = [i for i in range(len(albums))]
+    albums = albums.iloc[:, [2, 0, 1]]
+    albums.to_csv("albums.csv", index = False)
+
+
+def artistAlbumCSV():
+    metaData = pd.read_csv("metaData.csv")
+    artists = pd.read_csv("artists.csv")
+    albums = pd.read_csv("albums.csv")
+    artistAlbum = pd.DataFrame(index = ["artistID", "albumID"])
+    for _, row in metaData[["artist","album"]].drop_duplicates().iterrows():
+        pdb.set_trace()
+        artists[row["artist"]]["artistID"]
+    pdb.set_trace()
+
+def songCSV(inputFile):
     # DATABASE = os.path.join(os.getcwd(), '/data/songs.csv')
 
     songs = {}
@@ -68,11 +87,10 @@ def albumCSV(inputFile):
             writer.writerow(row)
 
 
-# From Jeff's csv2tables.py file
-if len(sys.argv) != 2:
+
     print(f'Usage: {sys.argv[0]} original_csv_file', file=sys.stderr)
     exit()
 
-
-samConvert(sys.argv[1])
+albumsCSV()
+artistAlbumCSV()
 
