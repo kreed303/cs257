@@ -2,8 +2,18 @@ import sys
 import csv
 import os
 import pandas as pd
+import pdb
 
-def main(inputFile):
+def artistCSV(inputfile):
+    metaData = pd.read_csv(inputfile)
+    artists = list(metaData["artist"].unique())
+    artistIndex = [i for i in range(len(artists))]
+    newDF = pd.DataFrame([artistIndex, artists], index = ["artistIndex", "arist"]).T
+    newDF.to_csv("artists.csv", index=False)
+    
+    # pdb.set_trace()
+
+def albumCSV(inputFile):
     # DATABASE = os.path.join(os.getcwd(), '/data/songs.csv')
 
     songs = {}
@@ -64,5 +74,5 @@ if len(sys.argv) != 2:
     exit()
 
 
-main(sys.argv[1])
+samConvert(sys.argv[1])
 
