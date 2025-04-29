@@ -1,15 +1,12 @@
 --Music App Database Design--
 --Katelyn Reed & Sam Reiter--
 
-
-
-
 --Basic tables based on current CSV data--
 CREATE TABLE songs (
     songID integer NOT NULL,
     songName TEXT,
     trackNumber integer,
-    songLength integer
+    songLength integer,
     songBPM integer
 );
 

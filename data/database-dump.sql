@@ -2,13 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.4
--- Dumped by pg_dump version 17.4
+-- Dumped from database version 13.20
+-- Dumped by pg_dump version 13.20
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -22,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: albums; Type: TABLE; Schema: public; Owner: sam
+-- Name: albums; Type: TABLE; Schema: public; Owner: reedk2
 --
 
 CREATE TABLE public.albums (
@@ -32,10 +31,10 @@ CREATE TABLE public.albums (
 );
 
 
-ALTER TABLE public.albums OWNER TO sam;
+ALTER TABLE public.albums OWNER TO reedk2;
 
 --
--- Name: albumssongs; Type: TABLE; Schema: public; Owner: sam
+-- Name: albumssongs; Type: TABLE; Schema: public; Owner: reedk2
 --
 
 CREATE TABLE public.albumssongs (
@@ -44,10 +43,10 @@ CREATE TABLE public.albumssongs (
 );
 
 
-ALTER TABLE public.albumssongs OWNER TO sam;
+ALTER TABLE public.albumssongs OWNER TO reedk2;
 
 --
--- Name: artists; Type: TABLE; Schema: public; Owner: sam
+-- Name: artists; Type: TABLE; Schema: public; Owner: reedk2
 --
 
 CREATE TABLE public.artists (
@@ -56,10 +55,10 @@ CREATE TABLE public.artists (
 );
 
 
-ALTER TABLE public.artists OWNER TO sam;
+ALTER TABLE public.artists OWNER TO reedk2;
 
 --
--- Name: artistsalbums; Type: TABLE; Schema: public; Owner: sam
+-- Name: artistsalbums; Type: TABLE; Schema: public; Owner: reedk2
 --
 
 CREATE TABLE public.artistsalbums (
@@ -68,10 +67,10 @@ CREATE TABLE public.artistsalbums (
 );
 
 
-ALTER TABLE public.artistsalbums OWNER TO sam;
+ALTER TABLE public.artistsalbums OWNER TO reedk2;
 
 --
--- Name: artistssongs; Type: TABLE; Schema: public; Owner: sam
+-- Name: artistssongs; Type: TABLE; Schema: public; Owner: reedk2
 --
 
 CREATE TABLE public.artistssongs (
@@ -80,10 +79,10 @@ CREATE TABLE public.artistssongs (
 );
 
 
-ALTER TABLE public.artistssongs OWNER TO sam;
+ALTER TABLE public.artistssongs OWNER TO reedk2;
 
 --
--- Name: songs; Type: TABLE; Schema: public; Owner: sam
+-- Name: songs; Type: TABLE; Schema: public; Owner: reedk2
 --
 
 CREATE TABLE public.songs (
@@ -95,26 +94,26 @@ CREATE TABLE public.songs (
 );
 
 
-ALTER TABLE public.songs OWNER TO sam;
+ALTER TABLE public.songs OWNER TO reedk2;
 
 --
--- Data for Name: albums; Type: TABLE DATA; Schema: public; Owner: sam
+-- Data for Name: albums; Type: TABLE DATA; Schema: public; Owner: reedk2
 --
 
 COPY public.albums (albumid, albumname, albumyear) FROM stdin;
-0	Gold - Greatest Hits	1993
-1	The Definitive Collection Disc 1	2001
-2	The Definitive Collection Disc 2	2001
-3	Cordial	2001
-4	En Spectacle	2006
-5	So Beautiful or So What	2011
-6	Graceland	1986
-7	There Goes Rhymin' Simon [Bonus Tracks]	2004
+1	Gold - Greatest Hits	1993
+2	The Definitive Collection Disc 1	2001
+3	The Definitive Collection Disc 2	2001
+4	Cordial	2001
+5	En Spectacle	2006
+6	So Beautiful or So What	2011
+7	Graceland	1986
+8	There Goes Rhymin' Simon [Bonus Tracks]	2004
 \.
 
 
 --
--- Data for Name: albumssongs; Type: TABLE DATA; Schema: public; Owner: sam
+-- Data for Name: albumssongs; Type: TABLE DATA; Schema: public; Owner: reedk2
 --
 
 COPY public.albumssongs (albumid, songid) FROM stdin;
@@ -249,21 +248,37 @@ COPY public.albumssongs (albumid, songid) FROM stdin;
 
 
 --
--- Data for Name: artists; Type: TABLE DATA; Schema: public; Owner: sam
+-- Data for Name: artists; Type: TABLE DATA; Schema: public; Owner: reedk2
 --
 
 COPY public.artists (artistid, artistname) FROM stdin;
-0	ABBA
-1	La Bottine Souriante
-2	Paul Simon
+1	ABBA
+2	La Bottine Souriante
+3	Paul Simon
 \.
 
 
 --
--- Data for Name: artistsalbums; Type: TABLE DATA; Schema: public; Owner: sam
+-- Data for Name: artistsalbums; Type: TABLE DATA; Schema: public; Owner: reedk2
 --
 
 COPY public.artistsalbums (artistid, albumid) FROM stdin;
+1	1
+1	2
+1	3
+2	4
+2	5
+3	6
+3	7
+3	8
+\.
+
+
+--
+-- Data for Name: artistssongs; Type: TABLE DATA; Schema: public; Owner: reedk2
+--
+
+COPY public.artistssongs (artistid, songid) FROM stdin;
 1	1
 1	2
 1	3
@@ -391,294 +406,141 @@ COPY public.artistsalbums (artistid, albumid) FROM stdin;
 3	125
 3	126
 3	127
-0	0
-0	0
-0	1
-0	2
-1	3
-1	4
-2	5
-2	6
-2	7
-0	0
-0	0
-0	1
-0	2
-1	3
-1	4
-2	5
-2	6
-2	7
 \.
 
 
 --
--- Data for Name: artistssongs; Type: TABLE DATA; Schema: public; Owner: sam
---
-
-COPY public.artistssongs (artistid, songid) FROM stdin;
-0	1
-0	2
-0	3
-0	4
-0	5
-0	6
-0	7
-0	8
-0	9
-0	10
-0	11
-0	12
-0	13
-0	14
-0	15
-0	16
-0	17
-0	18
-0	19
-0	20
-0	21
-0	22
-0	23
-0	24
-0	25
-0	26
-0	27
-0	28
-0	29
-0	30
-0	31
-0	32
-0	33
-0	34
-0	35
-0	36
-0	37
-0	38
-0	39
-0	40
-0	41
-0	42
-0	43
-0	44
-0	45
-0	46
-0	47
-0	48
-0	49
-0	50
-0	51
-0	52
-0	53
-0	54
-0	55
-0	56
-1	57
-1	58
-1	59
-1	60
-1	61
-1	62
-1	63
-1	64
-1	65
-1	66
-1	67
-1	68
-1	69
-1	70
-1	71
-1	72
-1	73
-1	74
-1	75
-1	76
-1	77
-1	78
-1	79
-1	80
-1	81
-1	82
-1	83
-1	84
-1	85
-1	86
-1	87
-1	88
-2	89
-2	90
-2	91
-2	92
-2	93
-2	94
-2	95
-2	96
-2	97
-2	98
-2	99
-2	100
-2	101
-2	102
-2	103
-2	104
-2	105
-2	106
-2	107
-2	108
-2	109
-2	110
-2	111
-2	112
-2	113
-2	114
-2	115
-2	116
-2	117
-2	118
-2	119
-2	120
-2	121
-2	122
-2	123
-2	124
-2	125
-2	126
-2	127
-\.
-
-
---
--- Data for Name: songs; Type: TABLE DATA; Schema: public; Owner: sam
+-- Data for Name: songs; Type: TABLE DATA; Schema: public; Owner: reedk2
 --
 
 COPY public.songs (songid, songname, tracknumber, songlength, songbpm) FROM stdin;
-0	Take a Chance on Me	3	244466	0
-1	I Have a Dream	7	284066	0
-2	S.O.S.	10	201440	0
-3	Knowing Me, Knowing You	2	242240	0
-4	Super Trouper	6	254266	0
-5	Mamma Mia	4	213493	0
-6	The Name of the Game	17	240000	0
-7	The Winner Takes It All	8	295533	0
-8	Does Your Mother Know	15	195266	0
-9	Dancing Queen	1	232200	0
-10	Waterloo	19	162960	0
-11	Gimme! Gimme! Gimme! (A Man After Midnight)	14	288800	0
-12	Chiquitita	11	326266	0
-13	Voulez-Vous	13	262466	0
-14	One of Us	16	238040	0
-15	Lay All Your Love on Me	5	274333	0
-16	Money, Money, Money	9	188333	0
-17	Fernando	12	253626	0
-18	Thank You for the Music	18	231493	0
-19	Does Your Mother Know	20	193480	0
-20	Take a Chance on Me	16	245666	0
-21	So Long	7	185693	0
-22	S.O.S.	9	200493	0
-23	Love Isn't Easy (But It Sure Is Hard Enough)	4	173933	0
-24	Mamma Mia	10	212200	0
-25	Knowing Me, Knowing You	14	241733	0
-26	Dancing Queen	12	231666	0
-27	Ring Ring	3	184693	0
-28	Chiquitita	19	324573	0
-29	Eagle	17	267333	0
-30	People Need Love	1	165066	0
-31	Fernando	11	254000	0
-32	Waterloo	5	167000	0
-33	Summer Night City	18	215893	0
-34	Honey, Honey	6	175533	0
-35	The Name of the Game	15	292240	0
-36	Money, Money, Money	13	185800	0
-37	He Is Your Brother	2	198440	0
-38	I Do, I Do, I Do, I Do, I Do	8	196946	0
-39	One of Us	9	236640	0
-40	On and on and On	7	222506	0
-41	The Visitors (Crackin' Up)	12	346626	0
-42	Voulez-Vous	1	308373	0
-43	Super Trouper	6	253360	0
-44	Head Over Heels	11	227640	0
-45	Lay All Your Love on Me	8	274626	0
-46	I Have a Dream	4	282760	0
-47	The Day Before You Came	13	351266	0
-48	The Winner Takes It All	5	296373	0
-49	Ring Ring [1974 Remix]	16	190400	0
-50	Voulez-Vous [Extended Remix]	17	367880	0
-51	When All Is Said and Done	10	197760	0
-52	Under Attack	14	227866	0
-53	Angeleyes	2	259933	0
-54	Gimme! Gimme! Gimme! (A Man After Midnight)	3	290600	0
-55	Thank You for the Music	15	231773	0
-56	Ma Paillasse (My Straw Mat)	13	184666	0
-57	En P'tit Boggie (Giddy Up)	5	163240	0
-58	Suède Inn	8	190506	0
-59	Lune de Miel (Honeymoon)	7	224400	0
-60	Et Boucle La Bottine (And "Loop" La Bottine)	16	442426	0
-61	Reel de Baie St-Paul (Baie St-Paul's Reel)	15	341066	0
-62	Set à Ubert (Ubert's Set)	4	210960	0
-63	Aimé	6	221626	0
-64	Chant de La Luette (The Worbler's Song)	14	175293	0
-65	Les Noces d'Or (Golden Wedding Reel)	11	137106	0
-66	Le Démon Sort de l'Enfer (The Devil Comes out of Hell)	3	273706	0
-67	Dans Paris Y'a T'Une Brune (The Brunette from Paris)	1	191026	0
-68	La Grandeuse (The Grumbling Woman)	2	244133	0
-69	A Bas Les Rideaux (Out with the Lies)	10	232493	0
-70	Viens-Tu Prendre une Bière? (Come Have a Beer!)	12	154533	0
-71	J'Ai Fait une Maîtresse (I Got Me a Mistress)	9	156800	0
-72	Le Lanlire (La Poule à Colin)	11	301626	0
-73	La Grand Côte	15	438800	0
-74	Sur La Route (La Tapinie)	2	231200	0
-75	À Travers La Vitre	12	236573	0
-76	Suite de La Sauvagesse	3	303693	0
-77	Le Voyage de Basile	5	264773	0
-78	Le Rêve Musiçal (Le Rêve du Quéteux Tremblay)	8	187333	0
-79	La Chanson de l'Ivrogne	13	255066	0
-80	Ouverture	1	489600	0
-81	Chapeau	6	329600	0
-82	Galoppe et Quadrille	10	231000	0
-83	Son P'tit Bidoulidou	16	95893	0
-84	Virginie Adieu	7	113200	0
-85	La Cuisinière	14	266160	0
-86	Ch'pas Capable (La Montagne du Loup)	4	247400	0
-87	Un Coup Madame	9	273866	0
-88	Rewrite	4	229720	0
-89	The Afterlife	2	220173	0
-90	Amulet	7	96573	0
-91	Getting Ready for Christmas Day	1	246720	0
-92	Dazzling Blue	3	272320	0
-93	Questions for the Angels	8	229906	0
-94	Love Is Eternal Sacred Light	6	242160	0
-95	So Beautiful or So What	10	248560	0
-96	Love and Hard Times	5	249480	0
-97	Love & Blessings	9	258160	0
-98	All Around The World Or The Myths Of Fingerprints (Early Version)	14	198560	0
-99	Diamonds On The Soles Of Her Shoes (Alternate Versioin)	13	281413	0
-100	The Story Of "Graceland"	15	578960	0
-101	Graceland	2	291200	0
-102	Homeless	8	228413	0
-103	Diamonds On The Soles Of Her Shoes	5	351346	0
-104	Crazy Love, Vol. II	9	259360	0
-105	Under African Skies	7	217160	0
-106	You Can Call Me Al	6	280586	0
-107	Homeless (Demo)	12	150546	0
-108	All Around The World Or The Myth Of Fingerprints	11	198426	0
-109	Gumboots	4	164826	0
-110	I Know What I Know	3	193373	0
-111	The Boy in the Bubble	1	239693	0
-112	That Was Your Mother	10	172813	0
-113	Was a Sunny Day	7	224320	0
-114	Loves Me Like a Rock	10	220426	0
-115	Tenderness	2	175506	0
-116	One Man's Ceiling Is Another Man's Floor	5	228146	0
-117	St. Judy's Comet	9	201640	0
-118	Loves Me Like a Rock [Acoustic Demo][#][*]	14	204680	0
-119	American Tune	6	227120	0
-120	American Tune [Unfinished Demo][#][*]	13	243173	0
-121	Take Me to the Mardi Gras [Acoustic Demo][#][*]	12	151106	0
-122	Take Me to the Mardi Gras	3	210853	0
-123	Learn How to Fall	8	167626	0
-124	Something So Right	4	276826	0
-125	Kodachrome	1	215400	0
-126	Let Me Live in Your City [Work-In-Progress][#][*]	11	261973	0
+1	Take a Chance on Me	3	244466	0
+2	I Have a Dream	7	284066	0
+3	S.O.S.	10	201440	0
+4	Knowing Me, Knowing You	2	242240	0
+5	Super Trouper	6	254266	0
+6	Mamma Mia	4	213493	0
+7	The Name of the Game	17	240000	0
+8	The Winner Takes It All	8	295533	0
+9	Does Your Mother Know	15	195266	0
+10	Dancing Queen	1	232200	0
+11	Waterloo	19	162960	0
+12	Gimme! Gimme! Gimme! (A Man After Midnight)	14	288800	0
+13	Chiquitita	11	326266	0
+14	Voulez-Vous	13	262466	0
+15	One of Us	16	238040	0
+16	Lay All Your Love on Me	5	274333	0
+17	Money, Money, Money	9	188333	0
+18	Fernando	12	253626	0
+19	Thank You for the Music	18	231493	0
+20	Does Your Mother Know	20	193480	0
+21	Take a Chance on Me	16	245666	0
+22	So Long	7	185693	0
+23	S.O.S.	9	200493	0
+24	Love Isn't Easy (But It Sure Is Hard Enough)	4	173933	0
+25	Mamma Mia	10	212200	0
+26	Knowing Me, Knowing You	14	241733	0
+27	Dancing Queen	12	231666	0
+28	Ring Ring	3	184693	0
+29	Chiquitita	19	324573	0
+30	Eagle	17	267333	0
+31	People Need Love	1	165066	0
+32	Fernando	11	254000	0
+33	Waterloo	5	167000	0
+34	Summer Night City	18	215893	0
+35	Honey, Honey	6	175533	0
+36	The Name of the Game	15	292240	0
+37	Money, Money, Money	13	185800	0
+38	He Is Your Brother	2	198440	0
+39	I Do, I Do, I Do, I Do, I Do	8	196946	0
+40	One of Us	9	236640	0
+41	On and on and On	7	222506	0
+42	The Visitors (Crackin' Up)	12	346626	0
+43	Voulez-Vous	1	308373	0
+44	Super Trouper	6	253360	0
+45	Head Over Heels	11	227640	0
+46	Lay All Your Love on Me	8	274626	0
+47	I Have a Dream	4	282760	0
+48	The Day Before You Came	13	351266	0
+49	The Winner Takes It All	5	296373	0
+50	Ring Ring [1974 Remix]	16	190400	0
+51	Voulez-Vous [Extended Remix]	17	367880	0
+52	When All Is Said and Done	10	197760	0
+53	Under Attack	14	227866	0
+54	Angeleyes	2	259933	0
+55	Gimme! Gimme! Gimme! (A Man After Midnight)	3	290600	0
+56	Thank You for the Music	15	231773	0
+57	Ma Paillasse (My Straw Mat)	13	184666	0
+58	En P'tit Boggie (Giddy Up)	5	163240	0
+59	Suède Inn	8	190506	0
+60	Lune de Miel (Honeymoon)	7	224400	0
+61	Et Boucle La Bottine (And "Loop" La Bottine)	16	442426	0
+62	Reel de Baie St-Paul (Baie St-Paul's Reel)	15	341066	0
+63	Set à Ubert (Ubert's Set)	4	210960	0
+64	Aimé	6	221626	0
+65	Chant de La Luette (The Worbler's Song)	14	175293	0
+66	Les Noces d'Or (Golden Wedding Reel)	11	137106	0
+67	Le Démon Sort de l'Enfer (The Devil Comes out of Hell)	3	273706	0
+68	Dans Paris Y'a T'Une Brune (The Brunette from Paris)	1	191026	0
+69	La Grandeuse (The Grumbling Woman)	2	244133	0
+70	A Bas Les Rideaux (Out with the Lies)	10	232493	0
+71	Viens-Tu Prendre une Bière? (Come Have a Beer!)	12	154533	0
+72	J'Ai Fait une Maîtresse (I Got Me a Mistress)	9	156800	0
+73	Le Lanlire (La Poule à Colin)	11	301626	0
+74	La Grand Côte	15	438800	0
+75	Sur La Route (La Tapinie)	2	231200	0
+76	À Travers La Vitre	12	236573	0
+77	Suite de La Sauvagesse	3	303693	0
+78	Le Voyage de Basile	5	264773	0
+79	Le Rêve Musiçal (Le Rêve du Quéteux Tremblay)	8	187333	0
+80	La Chanson de l'Ivrogne	13	255066	0
+81	Ouverture	1	489600	0
+82	Chapeau	6	329600	0
+83	Galoppe et Quadrille	10	231000	0
+84	Son P'tit Bidoulidou	16	95893	0
+85	Virginie Adieu	7	113200	0
+86	La Cuisinière	14	266160	0
+87	Ch'pas Capable (La Montagne du Loup)	4	247400	0
+88	Un Coup Madame	9	273866	0
+89	Rewrite	4	229720	0
+90	The Afterlife	2	220173	0
+91	Amulet	7	96573	0
+92	Getting Ready for Christmas Day	1	246720	0
+93	Dazzling Blue	3	272320	0
+94	Questions for the Angels	8	229906	0
+95	Love Is Eternal Sacred Light	6	242160	0
+96	So Beautiful or So What	10	248560	0
+97	Love and Hard Times	5	249480	0
+98	Love & Blessings	9	258160	0
+99	All Around The World Or The Myths Of Fingerprints (Early Version)	14	198560	0
+100	Diamonds On The Soles Of Her Shoes (Alternate Versioin)	13	281413	0
+101	The Story Of "Graceland"	15	578960	0
+102	Graceland	2	291200	0
+103	Homeless	8	228413	0
+104	Diamonds On The Soles Of Her Shoes	5	351346	0
+105	Crazy Love, Vol. II	9	259360	0
+106	Under African Skies	7	217160	0
+107	You Can Call Me Al	6	280586	0
+108	Homeless (Demo)	12	150546	0
+109	All Around The World Or The Myth Of Fingerprints	11	198426	0
+110	Gumboots	4	164826	0
+111	I Know What I Know	3	193373	0
+112	The Boy in the Bubble	1	239693	0
+113	That Was Your Mother	10	172813	0
+114	Was a Sunny Day	7	224320	0
+115	Loves Me Like a Rock	10	220426	0
+116	Tenderness	2	175506	0
+117	One Man's Ceiling Is Another Man's Floor	5	228146	0
+118	St. Judy's Comet	9	201640	0
+119	Loves Me Like a Rock [Acoustic Demo][#][*]	14	204680	0
+120	American Tune	6	227120	0
+121	American Tune [Unfinished Demo][#][*]	13	243173	0
+122	Take Me to the Mardi Gras [Acoustic Demo][#][*]	12	151106	0
+123	Take Me to the Mardi Gras	3	210853	0
+124	Learn How to Fall	8	167626	0
+125	Something So Right	4	276826	0
+126	Kodachrome	1	215400	0
+127	Let Me Live in Your City [Work-In-Progress][#][*]	11	261973	0
 \.
 
 
