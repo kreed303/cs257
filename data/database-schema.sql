@@ -6,7 +6,7 @@ CREATE TABLE songs (
     songID integer NOT NULL,
     songName TEXT,
     trackNumber integer,
-    songLength integer,
+    songLength integer
     songBPM integer
 );
 
