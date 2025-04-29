@@ -17,12 +17,13 @@ RESPONSE: A JSON list containing a dictionary representing
 each playlist. Each dictionary contains a playlist name and ID.
 
 EXAMPLE: /playlists
-[{{“tagname”: “playlists”, “tagID” = 110}: [{“playlist”: 
-“Favorite Songs”, “playlistID”: 010110}, {“playlist”: “Dancing 
-songs”, “playlistID”: 0110110} {“playlist”: “Band”, “playlistID”: 000101}]}]
+[{“playlist”: “Favorite Songs”, “playlistID”: 010110}, 
+{“playlist”: “Dancing songs”, “playlistID”: 0110110},
+{“playlist”: “Band”, “playlistID”: 000101}]
 
  
-REQUEST: /api/1.0/playlists/<playlist>?play=play&shuffle=shuffle&tags=tags
+REQUEST: /api/1.0/playlists/<playlist>?play=play&shuffle=shuffle
+&tags=tags&contains=contains
 GET parameters: 
 - playlist (Required) - return only the playlist with the name provided 
 (case insensitive).
@@ -34,6 +35,10 @@ the list of songs on the playlist in a randomized order
 on the playlist with the specified tag. If no tags are specified, then 
 returns all songs. Any number of tags can be specified from a 
 searchable database of tags.
+- contains (Optional, default = ""): tells the computer to include songs 
+that are contained within another "music structure" (album, artist, or playlist)
+which has been tagged with the specified tag. By default will only return 
+songs with the specified tag
 
 RESPONSE:
 A JSON list of dictionaries of all the songs in the playlist in order 
@@ -69,7 +74,8 @@ EXAMPLE: /artists
 Souriante”, “artistID” = 0100},{“artistName”: “Paul Simon”, “artistID” = 1101}]
 
 
-REQUEST: /api/1.0/artists/<artist>?play=play&shuffle=shuffle&tags=tags
+REQUEST: /api/1.0/artists/<artist>?play=play&shuffle=shuffle
+&tags=tags&contains=contains
 GET parameters:
 - artist (Required): the name of the artists selected from the list of 
 artists in the /artists endpoint
@@ -81,6 +87,10 @@ of songs by the artist in a randomized order (based on the tracknumbers)
 - tags (Optional, default = ""): tells the computer to only return songs on 
 the album with the specified tag. If no tags are specified, then returns 
 all songs. Any number of tags can be specified from a searchable database of tags.
+- contains (Optional, default = ""): tells the computer to include songs 
+that are contained within another "music structure" (album, artist, or playlist)
+which has been tagged with the specified tag. By default will only return 
+songs with the specified tag
 
 RESPONSE: A JSON list that contains one dictionary which contains one list of
 alphabetized albums by the specified artist (in dictionary form), and a dictionary
@@ -97,7 +107,8 @@ EXAMPLE: /Paul%20Simon?shuffle=true
 "songs": [list of all Paul Simon songs in random order]}]
 
 
-REQUEST: /api/1.0/artists/<artist>/<album>?play=play&shuffle=shuffle&tags=tags
+REQUEST: /api/1.0/artists/<artist>/<album>?play=play&shuffle=shuffle
+&tags=tags&contains=contains
 GET parameters:
 - artist (Required): the name of the artists selected from the list of artists 
 in the /artists endpoint
@@ -110,6 +121,10 @@ songs on the album in a randomized order (based on the Tracknumbers)
 - tags (Optional, default = ""): tells the computer to only return songs on the 
 album with the specified tag. If no tags are specified, then returns all songs. 
 Any number of tags can be specified from a searchable database of tags.
+- contains (Optional, default = ""): tells the computer to include songs 
+that are contained within another "music structure" (album, artist, or playlist)
+which has been tagged with the specified tag. By default will only return 
+songs with the specified tag
 
 RESPONSE: A JSON list that contains one dictionary which contains a list of songs 
 on the specified album by the specified artist. If play = true, then return all 
@@ -139,7 +154,7 @@ So What", "albumID": 10101}, {"albumName": "The Definitive Collection Disc 1",
 "albumID": 1011001}]
 
 
-REQUEST: /api/1.0/albums/<album>?play=play&shuffle=shuffle&tags=tags
+REQUEST: /api/1.0/albums/<album>?play=play&shuffle=shuffle&tags=tags&contains=contains
 GET parameters: 
 - album (Required): the name of the album selected from the list of albums 
 in the /albums endpoint
@@ -151,6 +166,10 @@ songs on the album in a randomized order (based on the Tracknumbers)
 - tags (Optional, default = ""): tells the computer to only return songs on the 
 album with the specified tag. If no tags are specified, then returns all songs. 
 Any number of tags can be specified from a searchable database of tags.
+- contains (Optional, default = ""): tells the computer to include songs 
+that are contained within another "music structure" (album, artist, or playlist)
+which has been tagged with the specified tag. By default will only return 
+songs with the specified tag
 
 RESPONSE: 
 A JSON list that contains a dictionary for each song in the specified album. 
