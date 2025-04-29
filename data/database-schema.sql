@@ -21,17 +21,17 @@ CREATE TABLE albums (
     albumYear integer
 );
 
-CREATE TABLE albums_songs (
+CREATE TABLE albumsSongs (
     albumID integer NOT NULL,
     songID integer NOT NULL
 );
 
-CREATE TABLE artists_albums (
+CREATE TABLE artistsAlbums (
     artistID integer NOT NULL,
     albumID integer NOT NULL
 );
 
-CREATE TABLE artists_songs (
+CREATE TABLE artistsSongs (
     artistID integer NOT NULL,
     songID integer NOT NULL
 );
@@ -48,27 +48,27 @@ CREATE TABLE tags (
     tagName TEXT,
 );
 
-CREATE TABLE playlists_songs (
+CREATE TABLE playlistsSongs (
     playlistID integer NOT NULL,
     songID integer NOT NULL
 );
 
-CREATE TABLE tags_songs (
+CREATE TABLE tagsSongs (
     tagID integer NOT NULL,
     songID integer NOT NULL
 );
 
-CREATE TABLE tags_artists (
+CREATE TABLE tagsArtists (
     tagID integer NOT NULL,
     artistID integer NOT NULL
 );
 
-CREATE TABLE tags_albums (
+CREATE TABLE tagsAlbums (
     tagID integer NOT NULL,
     albumID integer NOT NULL
 );
 
-CREATE TABLE tags_playlists (
+CREATE TABLE tagsPlaylists (
     tagID integer NOT NULL,
     playlistID integer NOT NULL
 );
