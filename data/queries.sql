@@ -11,6 +11,12 @@ WHERE songID IN (
   )
 );
 
+SELECT songName
+FROM songs, albumssongs, albums
+WHERE albums.albumName = 'Cordial'
+AND albumssongs.albumID = albums.albumID
+AND albumssongs.songID = songs.songID;
+
 -- Returns list of all albums by Paul Simon--
 SELECT albumName
 FROM albums
@@ -51,3 +57,14 @@ WHERE songID IN (
     )
   )
 );
+
+-- adding a new song to song --
+INSERT INTO songs (songid, songname, tracknumber, songlength, songbpm) 
+values ((SELECT count(*) from songs) + 1, 'tempSong', '1', '123123123', '0' );
+
+-- delete last songs from songs -- 
+
+DELETE FROM songs WHERE songID = (SELECT count(*) from songs);
+
+SELECT * FROM songs WHERE  songName = 'The Winner Takes It All
+' OR trackNumber = '5' ;
