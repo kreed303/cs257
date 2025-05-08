@@ -1,16 +1,150 @@
 API Endpoints
 Katelyn Reed & Sam Reiter
 
-REQUEST: /api/1.0
+
+
+REQUEST: /
 GET parameters: None
+
 RESPONSE:
-A list containing a list of all pages that are constructed, 
-so they can begin to navigate the tree of options. 
+A welcome message 
 EXAMPLE: /
-[{“pages”: [“Playlists”, “Artists”, “Albums”, “Songs”, “Tags”, “Filter”]}]
+"Hi Welcome to Sam and Katelyn's makeshift music extravaganza!"
 
 
-REQUEST: /api/1.0/playlists
+REQUEST: /help
+GET parameters: none
+
+Response: A message explaining all of the endpoints (this page!)
+
+
+
+---PAGES RELATED TO ARTISTS---
+
+REQUEST: /1.0/artists
+GET parameters: None
+
+RESPONSE: A JSON list containing a dictionary representing each artist. 
+Each dictionary contains the artist name and ID.
+
+EXAMPLE: /1.0/artists
+[{“artistName”: “ABBA”, “artistID” = 0001}, {“artistName”: “La Bottine 
+Souriante”, “artistID” = 0100},{“artistName”: “Paul Simon”, “artistID” = 1101}]
+
+
+REQUEST: /1.0/artists/<artistName>
+GET parameters:
+- artist (Required): the name of the artists selected from the list of 
+artists in the /artists endpoint
+
+RESPONSE: A json list that contains a dictionary for each album by that artist.
+Each dictionary contains the fields album ID, album name, and album year.
+
+EXAMPLE: /1.0/artists/La%20Bottine%20Souriante
+[{"albumID": 10010, "albumName": "Corial", "albumYear": 2001}, 
+{"albumID": 11011, "albumName": "En Spectacle", "albumYear": 1996}]
+
+
+REQUEST: /1.0/artists/<artistName>/songs?shuffle=shuffle
+GET parameters:
+- artist (Required): the name of the artists selected from the list of 
+artists in the /artists endpoint
+- shuffle (Optional, default = false): tells the database to return the list
+of songs by the artist in a randomized order (based on the tracknumbers)
+
+RESPONSE: A JSON list that contains one dictionary for each song by the specified artist.
+If shuffle = true then return this list in a randomized order.
+
+EXAMPLE: /1.0/artists/Paul%20Simon?shuffle=false
+
+[{song1 by Paul Simon}, {song2 by Paul Simon}, ...]
+
+
+REQUEST: /1.0/artists/<artistName>/<albumName>?shuffle=shuffle
+GET parameters:
+- artist (Required): the name of the artists selected from the list of artists 
+in the /1.0/artists endpoint
+- album (required): the name of the specified album by the specified artist from
+the list of albums on the /1.0/artists/<artist> page
+- shuffle (Optional, default = false): tells the database to return the list of 
+songs on the album in a randomized order (based on the Tracknumbers)
+
+RESPONSE: A JSON list that contains one dictionary which contains a list of songs 
+on the specified album by the specified artist. If play = true, then return all 
+songs in order by tracknumber. If shuffle = true then return this list in a randomized order. 
+If tags are specified, then only return the songs with those tags (still respecting the 
+play/ shuffle orders specified)
+
+EXAMPLE: /1.0/Paul%20Simon/Kodachrome?
+[{“song1 ID”: 0100101, "album": "There Goes Rhymin' Simon [Bonus Tracks]", "length": 
+"215400", "title": "Kodachrome", "artist": "Paul Simon", "tracknumber": "1", 
+"date": "2004"}, … (rest of songs on the album in order)]
+
+
+
+---PAGES RELATED TO ALBUMS---
+
+REQUEST: /1.0/albums
+GET parameters: None
+
+RESPONSE: A JSON list containing a dictionary representing each album. 
+Each dictionary contains the album name and ID.
+
+EXAMPLE: /albums
+[{"albumName": "Cordial", "albumID": 01}, {"albumName": "En Spectacle", 
+"albumID": 0101} {"albumName": "Gold - Greatest Hits", "albumID": 011001}, 
+{"albumName": "Graceland", "albumID": 011001}, {"albumName": "So Beautiful or 
+So What", "albumID": 10101}, {"albumName": "The Definitive Collection Disc 1", 
+"albumID": 10101001}, {"albumName": "The Definitive Collection Disc 2", "albumID"
+: 1011001}, {"albumName": "There Goes Rhymin' Simon [Bonus Tracks]"", 
+"albumID": 1011001}]
+
+
+REQUEST: /1.0/albums/<albumName>?shuffle=shuffle
+REDIRECTS TO: /1.0/artists/<artist>/<album>?shuffle=shuffle
+GET parameters: 
+- album (Required): the name of the album selected from the list of albums 
+in the /albums endpoint
+- shuffle (Optional, default = false):  tells the database to return the list of 
+songs on the album in a randomized order (based on the Tracknumbers)
+
+RESPONSE: 
+A JSON list that contains a dictionary for each song in the specified album. 
+If shuffle = true then returns the songs in a randomized order.
+The URL redirects based on the album artist that is stored as a parameter
+to the album object (accessible through IDs).
+
+EXAMPLE: /1.0/albums/The%20Definitive%20Collection%20Disc%202?shuffle=true
+[{“songID”: 01110,  "album": "The Definitive Collection Disc 2", 
+"length": "259933", "title": "Angeleyes", "artist": "ABBA", "tracknumber": 
+"2", "date": "2001"}, … (rest of songs on album in random order)]
+
+
+
+---PAGES RELATED TO SONGS---
+
+REQUEST: /1.0/songs
+GET parameters: None
+
+RESPONSE: A JSON list containing a dictionary representing each song. 
+Each dictionary contains entries for the song ID, title, track mumber, 
+length, and BPM.
+
+EXAMPLE: /1.0/songs
+[{song1 with parameters}, {song2 with parameters}, ...]
+
+
+
+*********************************FUTURE ENDPOINTS*********************************
+These are endpoints that we have not yet implemented as they are a stretch goal
+for our API, but we want to implement when we work on this project for ourselves.
+They are not considered part of the project for the purposes of the class but we 
+wanted to leave them in for documentation purposes.
+
+
+---PLAYLISTS---
+
+REQUEST: /1.0/playlists
 GET parameters: None
 
 RESPONSE: A JSON list containing a dictionary representing 
@@ -22,13 +156,10 @@ EXAMPLE: /playlists
 {“playlist”: “Band”, “playlistID”: 000101}]
 
  
-REQUEST: /api/1.0/playlists/<playlist>?play=play&shuffle=shuffle
-&tags=tags&contains=contains
+REQUEST: /1.0/playlists/<playlist>?shuffle=shuffle&tags=tags&contains=contains
 GET parameters: 
 - playlist (Required) - return only the playlist with the name provided 
 (case insensitive).
-- play (Optional, default = true): tells the database to return the
- list of songs on the playlist in order of the playlist
 - shuffle (Optional, default = false):  tells the database to return 
 the list of songs on the playlist in a randomized order
 - tags (Optional, default = ""): tells the computer to only return songs 
@@ -53,7 +184,7 @@ about the song. Each dictionary will have the following fields:
 - Tracknumber - (INTEGER) the number of the song in the album
 - Date - (INTEGER) the year that the album was released
 
-EXAMPLE: /playlists?playlist=playlist1
+EXAMPLE: /1.0/playlists/playlist1
 [{“song1 ID”: 0100101, "album": "There Goes Rhymin' Simon [Bonus Tracks]",
  "length": "215400", "title": "Kodachrome", "artist": "Paul Simon", 
  "tracknumber": "1", "date": "2004"},
@@ -63,129 +194,23 @@ EXAMPLE: /playlists?playlist=playlist1
 "tracknumber": "2", "date": "2001"}]
 
 
-REQUEST: /api/1.0/artists
-GET parameters: None
 
-RESPONSE: A JSON list containing a dictionary representing each artist. 
-Each dictionary contains the artist name and ID.
+---TAGS---
 
-EXAMPLE: /artists
-[{“artistName”: “ABBA”, “artistID” = 0001}, {“artistName”: “La Bottine 
-Souriante”, “artistID” = 0100},{“artistName”: “Paul Simon”, “artistID” = 1101}]
+REQUEST: /1.0/tags
+GET Parameters: none
 
+RESPONSE:
+A JSON list that contains 1 dictionary for each tag in the library. The dictionary
+contains a tag ID and a tag name.
 
-REQUEST: /api/1.0/artists/<artist>?play=play&shuffle=shuffle
-&tags=tags&contains=contains
-GET parameters:
-- artist (Required): the name of the artists selected from the list of 
-artists in the /artists endpoint
-- play (Optional, default = true): tells the database to return the list of 
-songs by the artist in album order then numerical order (based on the set 
-album order determined by tracknumbers)
-- shuffle (Optional, default = false):  tells the database to return the list
-of songs by the artist in a randomized order (based on the tracknumbers)
-- tags (Optional, default = ""): tells the computer to only return songs on 
-the album with the specified tag. If no tags are specified, then returns 
-all songs. Any number of tags can be specified from a searchable database of tags.
-- contains (Optional, default = ""): tells the computer to include songs 
-that are contained within another "music structure" (album, artist, or playlist)
-which has been tagged with the specified tag. By default will only return 
-songs with the specified tag
-
-RESPONSE: A JSON list that contains one dictionary which contains one list of
-alphabetized albums by the specified artist (in dictionary form), and a dictionary
-that contains a list of all songs by the specified artist (also in dictionary form).
-If play = true, then return all songs in order by album then tracknumber. If 
-shuffle = true then return this list in a randomized order. If tags are specified, 
-then only return the songs with those tags (still respecting the play/ shuffle 
-orders specified)
-
-EXAMPLE: /Paul%20Simon?shuffle=true
-[{"albumsByArtist": [{"albumName": "Graceland", "albumID": 011010}, 
-{"albumName": "So Beautiful or So What", "albumID": 01110}, 
-{"albumName": "There Goes Rhymin' Simon [Bonus Tracks]", "albumID": 011100}], 
-"songs": [list of all Paul Simon songs in random order]}]
+EXAMPLE: /tags
+[{'tagID': 101, 'tagName': "hype"}, {'tagID': 11011, 'tagName': 'chill'} ]
 
 
-REQUEST: /api/1.0/artists/<artist>/<album>?play=play&shuffle=shuffle
-&tags=tags&contains=contains
-GET parameters:
-- artist (Required): the name of the artists selected from the list of artists 
-in the /artists endpoint
-- album (required): the name of the specified album by the specified artist from
-the list of albums on the /artists/<artist> page
-play (Optional, default = true): tells the database to return the list of songs 
-on the album in numerical order (based on the set album order determined by Tracknumbers)
-- shuffle (Optional, default = false):  tells the database to return the list of 
-songs on the album in a randomized order (based on the Tracknumbers)
-- tags (Optional, default = ""): tells the computer to only return songs on the 
-album with the specified tag. If no tags are specified, then returns all songs. 
-Any number of tags can be specified from a searchable database of tags.
-- contains (Optional, default = ""): tells the computer to include songs 
-that are contained within another "music structure" (album, artist, or playlist)
-which has been tagged with the specified tag. By default will only return 
-songs with the specified tag
-
-RESPONSE: A JSON list that contains one dictionary which contains a list of songs 
-on the specified album by the specified artist. If play = true, then return all 
-songs in order by tracknumber. If shuffle = true then return this list in a randomized order. 
-If tags are specified, then only return the songs with those tags (still respecting the 
-play/ shuffle orders specified)
-
-EXAMPLE: /Paul%20Simon/Kodachrome?play=true
-[{“song1 ID”: 0100101, "album": "There Goes Rhymin' Simon [Bonus Tracks]", "length": 
-"215400", "title": "Kodachrome", "artist": "Paul Simon", "tracknumber": "1", 
-"date": "2004"}, … (rest of songs on the album in order)]
-
-
-REQUEST: /api/1.0/albums
-GET parameters: None
-
-RESPONSE: A JSON list containing a dictionary representing each album. 
-Each dictionary contains the album name and ID.
-
-EXAMPLE: /albums
-[{"albumName": "Cordial", "albumID": 01}, {"albumName": "En Spectacle", 
-"albumID": 0101} {"albumName": "Gold - Greatest Hits", "albumID": 011001}, 
-{"albumName": "Graceland", "albumID": 011001}, {"albumName": "So Beautiful or 
-So What", "albumID": 10101}, {"albumName": "The Definitive Collection Disc 1", 
-"albumID": 10101001}, {"albumName": "The Definitive Collection Disc 2", "albumID"
-: 1011001}, {"albumName": "There Goes Rhymin' Simon [Bonus Tracks]"", 
-"albumID": 1011001}]
-
-
-REQUEST: /api/1.0/albums/<album>?play=play&shuffle=shuffle&tags=tags&contains=contains
-GET parameters: 
-- album (Required): the name of the album selected from the list of albums 
-in the /albums endpoint
-- play (Optional, default = true): tells the database to return the list of 
-songs on the album in numerical order (based on the set album order determined
-by Tracknumbers)
-- shuffle (Optional, default = false):  tells the database to return the list of 
-songs on the album in a randomized order (based on the Tracknumbers)
-- tags (Optional, default = ""): tells the computer to only return songs on the 
-album with the specified tag. If no tags are specified, then returns all songs. 
-Any number of tags can be specified from a searchable database of tags.
-- contains (Optional, default = ""): tells the computer to include songs 
-that are contained within another "music structure" (album, artist, or playlist)
-which has been tagged with the specified tag. By default will only return 
-songs with the specified tag
-
-RESPONSE: 
-A JSON list that contains a dictionary for each song in the specified album. 
-The database filters this list to include only the songs that contain the 
-specified tag(s) parameter (optional addition). If play = true then returns the songs 
-in numerical order, if shuffle = true then returns the songs in a randomized order.
-
-EXAMPLE: /albums/The%20Definitive%20Collection%20Disc%202?shuffle=true
-[{“song 5ID”: 01110,  "album": "The Definitive Collection Disc 2", 
-"length": "259933", "title": "Angeleyes", "artist": "ABBA", "tracknumber": 
-"2", "date": "2001"}, … (rest of songs on album in random order)]
-
-
-REQUEST: /api/1.0/tags?tags=tags
+REQUEST: /1.0/tags?tags=tags
 GET Parameters: 
-tags (Optional, default = ""): tells the computer to only return the tags with 
+- tags (Optional, default = ""): tells the computer to only return the tags with 
 the specified tag. If no tags are specified, then returns all tags. Any number of 
 tags can be specified from a searchable database of tags.
 
@@ -200,6 +225,3 @@ EXAMPLE: /tags?tags=vibes,artists
 {“tagName”: “sleep”, “tagID” = 01011}], "artists-0011101":  
 [{“tagName”: “Paul Simon”, “tagID” = 1010}, {“tagName”: “ABBA”, “tagID” = 1001}” 
 …, {“tagName”: “La Bottine Souriante”, “tagID” = 1111}]}]
-
-EXAMPLE: /tags
-[{“allTags”:[a list of all the tags]}]
