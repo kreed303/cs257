@@ -36,11 +36,6 @@ CREATE TABLE artistsSongs (
     songID integer NOT NULL
 );
 
--- template for copying CSV -- 
-COPY artistssongs(artistID, songID)
-FROM '/Users/sam/Documents/academic/carleton/computerScience/257SoftwareDesign/katelynCs257/data/artistssongs.csv'
-WITH (FORMAT csv, HEADER);
-
 --Tables we'd like to create to be modified by user inputted data--
 CREATE TABLE playlists (
     playlistID integer NOT NULL,
