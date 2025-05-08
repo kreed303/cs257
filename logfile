@@ -119,3 +119,7 @@
 2025-05-08 14:27:34.442 CDT [16892] STATEMENT:  SELECT songname FROM songs WHERE songID = 'Take a Chance on Me'
 2025-05-08 14:27:40.229 CDT [5856] LOG:  checkpoint starting: time
 2025-05-08 14:27:40.333 CDT [5856] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.001 s, total=0.106 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=2749 kB; lsn=0/19B3210, redo lsn=0/19B31B8
+2025-05-08 15:20:05.687 CDT [30335] ERROR:  invalid input syntax for type integer: "ABBA" at character 47
+2025-05-08 15:20:05.687 CDT [30335] STATEMENT:  SELECT artistID FROM artists WHERE artistID = 'ABBA'
+2025-05-08 16:13:05.342 CDT [5856] LOG:  checkpoint starting: time
+2025-05-08 16:13:06.684 CDT [5856] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.335 s, sync=0.001 s, total=1.343 s; sync files=8, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=2475 kB; lsn=0/19B37B0, redo lsn=0/19B3758

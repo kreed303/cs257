@@ -118,7 +118,7 @@ def addSongToPlaylistFromNames(playlistName, songName):
     print(f"songName {songName}, playlistName {playlistName}")
 
 
-def createSong(songName, trackNumber, artistName = None, artistsID = None, SongLength = 0, songBPM = 0, albumName = None, albumID = None):
+def createSong(songName, trackNumber, artistName = None, artistID = None, SongLength = 0, songBPM = 0, albumName = None, albumID = None):
     '''
     create playlist method where playlistID is the length of playlists table + 1
     prints error if the playlist already exists 
@@ -186,3 +186,4 @@ def createSong(songName, trackNumber, artistName = None, artistsID = None, SongL
 print(_getSongID("Take a Chance on Me"))
 
 
+createSong("yay", "1" , artistName= "ABBA")
