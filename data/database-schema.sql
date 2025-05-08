@@ -49,7 +49,8 @@ CREATE TABLE tags (
 
 CREATE TABLE playlistsSongs (
     playlistID integer NOT NULL,
-    songID integer NOT NULL
+    songID integer NOT NULL,
+    playlistOrder integer NOT NULL
 );
 
 CREATE TABLE tagsSongs (

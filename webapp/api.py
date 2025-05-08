@@ -2,6 +2,28 @@
 # Katelyn Reed & Sam Reiter
 
 
+'''
+GET:
+home 
+artists 
+artist -> all albums
+*artist -> songs from an album TAG LOGIC
+albums
+*album -> all songs TAG LOGIC
+tags
+*tag -> all songs
+*tag -> all artists
+*tag -> all albums
+*tag -> all playlists
+playlists
+*playlist - all songs
+
+CREATE:
+playlist
+tag
+tag entries?
+'''
+
 import os
 import argparse
 import flask # type: ignore
@@ -13,11 +35,10 @@ import config
 import pdb
 import random
 
-from itertools import groupby
-from collections import defaultdict
+from helperFunctions import *
 
 
-app = flask.Flask(__name__)
+# app = flask.Flask(__name__)
 
 # @app.route('api/1.0')
 def home():
@@ -37,7 +58,7 @@ def home():
     return json.dumps(tables) 
 
 
-@app.route('/api/1.0/artists')
+# @app.route('/api/1.0/artists')
 def getArtists():
     conn = getConnection()
     curs = conn.cursor()
@@ -56,8 +77,8 @@ def getArtists():
     return json.dumps(artists)
 
 
-@app.route('/api/1.0/artists/<artist>?shuffle=shuffle')
-def getSongsFromArtist(artist, shuffle=False):
+# @app.route('/api/1.0/artists/<artist>?shuffle=shuffle&tags=tags&contains=contains')
+def getSongsFromArtist(artist, shuffle=False, tags = '', contains = ''):
     conn = getConnection()
     curs = conn.cursor()
     query = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
@@ -69,18 +90,45 @@ def getSongsFromArtist(artist, shuffle=False):
             ORDER BY artists.artistid DESC, artistsalbums.albumid DESC;'''
     curs.execute(query, (artist, ))
     songs = []
+
     for row in curs:
-        songDict = {'songID': row[0], 'songName': row[1], 
-                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4]}
-        songs.append(songDict)
+        songs.append({'songID': row[0], 'songName': row[1], 
+                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4]})
+    
     if shuffle:
         random.shuffle(songs)
+    else: 
+        songs = sorted(songs, key=lambda x: (x['trackNumber']))
+
+    # ADD LOGIC ABOUT TAGS AND CONTAINS
+    
     curs.close()
     conn.close()
 
     return json.dumps(songs)
 
+# ADD THIS API (just returns albums of a particular artist, not songs)
+# @app.route('/api/1.0/artists/<artist>?')
+def getAlbumsFromArtist(artist):
+    conn = getConnection()
+    curs = conn.cursor()
 
+    query = '''SELECT albums.albumid, albums.albumname, albums.albumyear
+            FROM albums
+            JOIN artistsalbums ON artistsalbums.albumid = albums.albumid
+            JOIN artists ON artists.artistid = artistsalbums.artistid
+            WHERE LOWER(artists.artistname) = LOWER(%s);'''
+
+    curs.execute(query, (artist,))
+    albumsTuples = curs.fetchall()
+    albums = []
+
+    for i in albumsTuples:
+            albums.append({'albumID': i[0], 'albumName': i[1], 'albumYear': i[2]})
+    albums = sorted(albums, key=lambda x: (x['albumName']))
+
+    return json.dumps(albums)
+    
 # @app.route('api/1.0/albums')
 def getAlbums():
     conn = getConnection()
@@ -96,47 +144,117 @@ def getAlbums():
     conn.close()
     curs.close()
 
-    print(albums)
-    # return json.dumps(albums)
+    # print(albums)
+    return json.dumps(albums)
 
 # @app.route('/api/1.0/albums/<album>?shuffle=shuffle&tags=tags&contains=contains')
 def getSongsFromAlbum(album, shuffle=False, tags = "", contains = ""):
     conn = getConnection()
     curs = conn.cursor()
+    tagsList = tags.split()
+    containsList = contains.split()
 
     query = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
             songs.songlength, songs.songbpm FROM songs
             JOIN albumssongs ON albumssongs.songid = songs.songid
             JOIN albums ON albums.albumid = albumssongs.albumid
             WHERE LOWER(albums.albumName) = LOWER(%s)'''
-    
+
+    # Figure out logic for how to isolate songs based on tags
+    if (tags):
+        query = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
+                songs.songlength, songs.songbpm FROM songs
+                JOIN albumssongs ON albumssongs.songid = songs.songid
+                JOIN albums ON albums.albumid = albumssongs.albumid
+                WHERE LOWER(albums.albumName) = LOWER(%s)'''
+
     curs.execute(query, (album,))
     songsTuples = curs.fetchall()
 
+    # Turn into list of dictionaries
     songs = []
     for i in songsTuples:
         songs.append({'songID': i[0], 'songName': i[1], 'trackNumber': i[2], 
                       'songLength': i[3], 'songBPM': i[4]})
         
+    # Order or shuffle list
     if shuffle:
         random.shuffle(songs)
+    else: 
+        songs = sorted(songs, key=lambda x: (x['trackNumber']))
 
     conn.close()
     curs.close()
-   
+
+    print(songs)
     # return json.dumps(songs)
 
+# @app.route('/api/1.0/tags')
+def getTags():
+    conn = getConnection()
+    curs = conn.cursor()
 
-# Helper function to create psycopg2 connection object
-def getConnection():
-    try:
-        return psycopg2.connect(database=config.database,
-                                user=config.user,
-                                password=config.password)
-    except Exception as e:
-        print(e, file=sys.stderr)
-        exit()
+    curs.execute("SELECT * FROM tags;")
+    tagsTuples = curs.fetchall()
+    tags = []
+
+    for i in tagsTuples:
+        tags.append({'tagID': i[0], 'tagName': i[1]})
+        
+    conn.close()
+    curs.close()
+
+    # print(tags)
+    return json.dumps(tags)
+
+# @app.route('/api/1.0/playlists')
+def getPlaylists():
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("SELECT * FROM playlists;")
+    playlistsTuples = curs.fetchall()
+    playlists = []
+
+    for i in playlistsTuples:
+        playlists.append({'playlistID': i[0], 'playlistName': i[1]})
+        
+    conn.close()
+    curs.close()
+
+    # print(playlists)
+    return json.dumps(playlists)
+
+
+# @app.route('/api/1.0/playlists/<playlist>?shuffle=shuffle&tags=tags&contains=contains')
+def getSongsfromPlaylist(playlist, shuffle = False, tags = "", contains = ""):
+    conn = getConnection()
+    curs = conn.cursor()
+    tagsList = tags.split()
+    containsList = contains.split()
+
+    query = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
+            songs.songlength, songs.songbpm FROM songs
+            JOIN playlistssongs ON playlistssongs.songid = songs.songid
+            JOIN playlists ON playlists.playlistid = playlistssongs.playlist.id
+            WHERE LOWER(playlists.playlistname) = LOWER(%s);'''
     
+    curs.execute(query, (playlist,))
+    songsTuples = curs.fetchall()
+
+    # Turn into list of dictionaries
+    songs = []
+    for i in songsTuples:
+        songs.append({'songID': i[0], 'songName': i[1], 'trackNumber': i[2], 
+                      'songLength': i[3], 'songBPM': i[4]})
+        
+    # Order or shuffle list
+    if shuffle:
+        random.shuffle(songs)
+    else: 
+        songs = sorted(songs, key=lambda x: (x['playlistOrder']))
+
+    return json.dumps(songs)
 
 
 # From Jeff's API code
@@ -146,3 +264,6 @@ def getConnection():
 #     parser.add_argument('port', type=int, help='the port on which this application is listening')
 #     arguments = parser.parse_args()
 #     app.run(host=arguments.host, port=arguments.port, debug=True)
+
+
+# getSongsFromAlbum('Cordial', True)
