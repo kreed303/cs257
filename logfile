@@ -1,0 +1,121 @@
+2025-05-07 19:57:03.922 CDT [5854] LOG:  starting PostgreSQL 17.4 on x86_64-apple-darwin13.4.0, compiled by clang version 14.0.6, 64-bit
+2025-05-07 19:57:03.926 CDT [5854] LOG:  listening on IPv6 address "::1", port 5432
+2025-05-07 19:57:03.926 CDT [5854] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-05-07 19:57:03.927 CDT [5854] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-05-07 19:57:03.934 CDT [5859] LOG:  database system was shut down at 2025-05-07 19:56:58 CDT
+2025-05-07 19:57:03.943 CDT [5854] LOG:  database system is ready to accept connections
+2025-05-07 19:58:03.708 CDT [6018] FATAL:  role "your_username" does not exist
+2025-05-07 20:01:34.422 CDT [6625] ERROR:  table "songs" does not exist
+2025-05-07 20:01:34.422 CDT [6625] STATEMENT:  DROP TABLE public.songs;
+2025-05-07 20:01:34.423 CDT [6625] ERROR:  table "artistssongs" does not exist
+2025-05-07 20:01:34.423 CDT [6625] STATEMENT:  DROP TABLE public.artistssongs;
+2025-05-07 20:01:34.423 CDT [6625] ERROR:  table "artistsalbums" does not exist
+2025-05-07 20:01:34.423 CDT [6625] STATEMENT:  DROP TABLE public.artistsalbums;
+2025-05-07 20:01:34.423 CDT [6625] ERROR:  table "artists" does not exist
+2025-05-07 20:01:34.423 CDT [6625] STATEMENT:  DROP TABLE public.artists;
+2025-05-07 20:01:34.423 CDT [6625] ERROR:  table "albumssongs" does not exist
+2025-05-07 20:01:34.423 CDT [6625] STATEMENT:  DROP TABLE public.albumssongs;
+2025-05-07 20:01:34.423 CDT [6625] ERROR:  table "albums" does not exist
+2025-05-07 20:01:34.423 CDT [6625] STATEMENT:  DROP TABLE public.albums;
+2025-05-07 20:02:03.938 CDT [5856] LOG:  checkpoint starting: time
+2025-05-07 20:03:43.355 CDT [5856] LOG:  checkpoint complete: wrote 986 buffers (6.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=99.406 s, sync=0.008 s, total=99.417 s; sync files=323, longest=0.001 s, average=0.001 s; distance=4638 kB, estimate=4638 kB; lsn=0/198DD60, redo lsn=0/19896A8
+2025-05-07 20:05:47.141 CDT [7451] FATAL:  database "musicApp" does not exist
+2025-05-07 20:25:57.643 CDT [6705] ERROR:  syntax error at or near "GET" at character 1
+2025-05-07 20:25:57.643 CDT [6705] STATEMENT:  GET * FROM songs
+	Join artistssongs ON songs.id = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.asdfj
+	;
+2025-05-07 20:26:10.987 CDT [6705] ERROR:  syntax error at or near "GET" at character 1
+2025-05-07 20:26:10.987 CDT [6705] STATEMENT:  GET * FROM artists;
+2025-05-07 20:27:18.066 CDT [6705] ERROR:  column songs.id does not exist at character 42
+2025-05-07 20:27:18.066 CDT [6705] STATEMENT:  SELECT * FROM songs
+	Join artistssongs ON songs.id = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:27:53.245 CDT [6705] ERROR:  missing FROM-clause entry for table "artistsongs" at character 57
+2025-05-07 20:27:53.245 CDT [6705] STATEMENT:  SELECT * FROM songs
+	Join artistssongs ON songs.songid = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:28:20.122 CDT [6705] ERROR:  relation "artistsongs" does not exist at character 22
+2025-05-07 20:28:20.122 CDT [6705] STATEMENT:  SELECT * FROM songs, artistsongs, artists
+	Join artistssongs ON songs.songid = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:28:28.347 CDT [6705] ERROR:  invalid reference to FROM-clause entry for table "songs" at character 65
+2025-05-07 20:28:28.347 CDT [6705] DETAIL:  There is an entry for table "songs", but it cannot be referenced from this part of the query.
+2025-05-07 20:28:28.347 CDT [6705] STATEMENT:  SELECT * FROM songs, artistssongs, artists
+	Join artistssongs ON songs.songid = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:29:23.539 CDT [6705] ERROR:  missing FROM-clause entry for table "artistsongs" at character 57
+2025-05-07 20:29:23.539 CDT [6705] STATEMENT:  SELECT * FROM songs
+	Join artistssongs ON songs.songid = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:29:25.978 CDT [6705] ERROR:  missing FROM-clause entry for table "artistsongs" at character 57
+2025-05-07 20:29:25.978 CDT [6705] STATEMENT:  SELECT * FROM songs
+	Join artistssongs ON songs.songid = artistsongs.songID
+	JOIN artists ON artistsongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:29:50.643 CDT [6705] ERROR:  missing FROM-clause entry for table "artistsongs" at character 57
+2025-05-07 20:29:50.643 CDT [6705] STATEMENT:  SELECT * FROM songs
+	Join artistssongs ON songs.songid = artistsongs.songID
+	JOIN artists ON artistssongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:30:09.291 CDT [6705] ERROR:  invalid reference to FROM-clause entry for table "songs" at character 65
+2025-05-07 20:30:09.291 CDT [6705] DETAIL:  There is an entry for table "songs", but it cannot be referenced from this part of the query.
+2025-05-07 20:30:09.291 CDT [6705] STATEMENT:  SELECT * FROM songs, artistssongs, artists
+	Join artistssongs ON songs.songid = artistssongs.songID
+	JOIN artists ON artistssongs.artistID = artists.ID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:31:12.034 CDT [6705] ERROR:  invalid reference to FROM-clause entry for table "songs" at character 88
+2025-05-07 20:31:12.034 CDT [6705] DETAIL:  There is an entry for table "songs", but it cannot be referenced from this part of the query.
+2025-05-07 20:31:12.034 CDT [6705] STATEMENT:  SELECT * FROM songs, artistssongs, artists
+	JOIN artistssongs ON  artistssongs.songID = songs.songid
+	JOIN artists ON artists.ID = artistssongs.artistID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:31:48.700 CDT [6705] ERROR:  column artists.id does not exist at character 93
+2025-05-07 20:31:48.700 CDT [6705] STATEMENT:  SELECT * FROM songs
+	JOIN artistssongs ON artistssongs.songID = songs.songid
+	JOIN artists ON artists.ID = artistssongs.artistID
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:32:41.723 CDT [12040] FATAL:  database "temp.sql" does not exist
+2025-05-07 20:33:24.329 CDT [6705] ERROR:  column reference "songid" is ambiguous at character 8
+2025-05-07 20:33:24.329 CDT [6705] STATEMENT:  SELECT songid, songname, tracknumber, songlength, songbpm FROM songs
+	JOIN artistssongs ON artistssongs.songid = songs.songid
+	JOIN artists ON artists.artistid = artistssongs.artistid
+	WHERE artists.artistname = 'ABBA';
+2025-05-07 20:45:36.968 CDT [6705] ERROR:  syntax error at or near "artistsalbums" at character 342
+2025-05-07 20:45:36.968 CDT [6705] STATEMENT:  SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm FROM songs
+	JOIN artistssongs ON artistssongs.songid = songs.songid
+	JOIN artists ON artists.artistid = artistssongs.artistid
+	JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
+	WHERE artists.artistname = 'ABBA'
+	ORDER BY artists.artistid DESC artistsalbums.albumid DESC;
+2025-05-08 13:50:34.083 CDT [6705] ERROR:  syntax error at or near ")" at character 82
+2025-05-08 13:50:34.083 CDT [6705] STATEMENT:  CREATE TABLE playlists (
+	    playlistID integer NOT NULL,
+	    playlistName TEXT,
+	);
+2025-05-08 13:52:40.710 CDT [5856] LOG:  checkpoint starting: time
+2025-05-08 13:52:43.671 CDT [5856] LOG:  checkpoint complete: wrote 30 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.951 s, sync=0.004 s, total=2.961 s; sync files=35, longest=0.001 s, average=0.001 s; distance=164 kB, estimate=4191 kB; lsn=0/19B29E8, redo lsn=0/19B2990
+2025-05-08 14:02:40.673 CDT [5856] LOG:  checkpoint starting: time
+2025-05-08 14:02:40.889 CDT [5856] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.206 s, sync=0.002 s, total=0.216 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=3771 kB; lsn=0/19B2B98, redo lsn=0/19B2B40
+2025-05-08 14:13:08.120 CDT [13094] ERROR:  syntax error at or near "testPlaylist2" at character 73
+2025-05-08 14:13:08.120 CDT [13094] STATEMENT:  INSERT INTO playlists (playlistid, playlistname)
+	        VALUES ('2', ''testPlaylist2'');
+2025-05-08 14:13:30.033 CDT [13275] ERROR:  syntax error at or near "testPlaylist2" at character 73
+2025-05-08 14:13:30.033 CDT [13275] STATEMENT:  INSERT INTO playlists (playlistid, playlistname)
+	        VALUES ('2', ''testPlaylist2'')
+2025-05-08 14:17:40.904 CDT [5856] LOG:  checkpoint starting: time
+2025-05-08 14:17:41.117 CDT [5856] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.206 s, sync=0.001 s, total=0.214 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=3394 kB; lsn=0/19B2E68, redo lsn=0/19B2E10
+2025-05-08 14:22:40.120 CDT [5856] LOG:  checkpoint starting: time
+2025-05-08 14:22:40.227 CDT [5856] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.001 s, total=0.108 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=3055 kB; lsn=0/19B3010, redo lsn=0/19B2FB8
+2025-05-08 14:24:42.060 CDT [6705] ERROR:  relation "songid" does not exist at character 22
+2025-05-08 14:24:42.060 CDT [6705] STATEMENT:  SELECT songname FROM songid WHERE songID = 4;
+2025-05-08 14:27:34.442 CDT [16892] ERROR:  invalid input syntax for type integer: "Take a Chance on Me" at character 43
+2025-05-08 14:27:34.442 CDT [16892] STATEMENT:  SELECT songname FROM songs WHERE songID = 'Take a Chance on Me'
+2025-05-08 14:27:40.229 CDT [5856] LOG:  checkpoint starting: time
+2025-05-08 14:27:40.333 CDT [5856] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.001 s, total=0.106 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=2749 kB; lsn=0/19B3210, redo lsn=0/19B31B8

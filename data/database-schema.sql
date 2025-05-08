@@ -39,12 +39,12 @@ CREATE TABLE artistsSongs (
 --Tables we'd like to create to be modified by user inputted data--
 CREATE TABLE playlists (
     playlistID integer NOT NULL,
-    playlistName TEXT,
+    playlistName TEXT
 );
 
 CREATE TABLE tags (
     tagID integer NOT NULL,
-    tagName TEXT,
+    tagName TEXT
 );
 
 CREATE TABLE playlistsSongs (
