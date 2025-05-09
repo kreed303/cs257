@@ -90,7 +90,6 @@ def getArtists():
     # formatting return list
     artists = []
     for artist in tables:
-        print(artist)
         artistDict = {'artistID': artist[0], 'artistName': artist[1]}  
         artists.append(artistDict)
 
@@ -131,15 +130,19 @@ def getSongsFromArtist(artistName, shuffle=None):
             JOIN artistssongs ON artistssongs.songid = songs.songid
             JOIN artists ON artists.artistid = artistssongs.artistid
             JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
-            WHERE LOWER(artists.artistname) = LOWER(%s)
-            ORDER BY artists.artistid DESC, artistsalbums.albumid DESC;'''
+            JOIN albums ON albums.albumid = artistsalbums.albumid
+            WHERE LOWER(artists.artistname) = LOWER('AbbA')'''
+    
+    # ORDER BY artists.artistid DESC, artistsalbums.albumid DESC,
+            # songs.tracknumber;
     curs.execute(query, (artistName, ))
+    songsTuples = curs.fetchall()
     songs = []
 
-    for row in curs:
+    for row in songsTuples:
         songs.append({'songID': row[0], 'songName': row[1], 
                     'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4]})
-    
+
     if shuffle:
         random.shuffle(songs)
     else: 
