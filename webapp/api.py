@@ -125,16 +125,19 @@ def getSongsFromArtist(artistName, shuffle=None):
     shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
     conn = getConnection()
     curs = conn.cursor()
-    query = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
+
+    query = ''' SELECT songs.songid, songs.songname, songs.tracknumber, 
             songs.songlength, songs.songbpm FROM songs
             JOIN artistssongs ON artistssongs.songid = songs.songid
             JOIN artists ON artists.artistid = artistssongs.artistid
             JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
             JOIN albums ON albums.albumid = artistsalbums.albumid
-            WHERE LOWER(artists.artistname) = LOWER('AbbA')'''
+            JOIN albumssongs ON albumssongs.albumid=albums.albumid 
+            AND albumssongs.songid=songs.songid
+            WHERE LOWER(artists.artistname) = LOWER(%s)
+            ORDER BY albums.albumname,
+            songs.tracknumber;'''
     
-    # ORDER BY artists.artistid DESC, artistsalbums.albumid DESC,
-            # songs.tracknumber;
     curs.execute(query, (artistName, ))
     songsTuples = curs.fetchall()
     songs = []
@@ -145,10 +148,8 @@ def getSongsFromArtist(artistName, shuffle=None):
 
     if shuffle:
         random.shuffle(songs)
-    else: 
-        songs = sorted(songs, key=lambda x: (x['trackNumber']))
-
-    # ADD LOGIC ABOUT TAGS AND CONTAINS
+    # else: 
+    #     songs = sorted(songs, key=lambda x: (x['trackNumber']))
     
     curs.close()
     conn.close()
