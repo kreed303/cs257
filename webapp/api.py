@@ -2,28 +2,6 @@
 # Katelyn Reed & Sam Reiter
 
 
-'''
-GET:
-home 
-artists 
-artist -> all albums
-artist -> songs from an albumName TAG LOGIC
-albums
-albumName -> all songs TAG LOGIC
-tags
-*tag -> all songs
-*tag -> all artists
-*tag -> all albums
-*tag -> all playlists
-playlists
-playlist - all songs
-
-CREATE:
-playlist
-tag
-tag entries?
-'''
-
 import os
 import argparse
 import flask # type: ignore
@@ -48,20 +26,9 @@ def home():
     output: a simple message saying hi!
     
     '''
-    # conn = getConnection()
-    # curs = conn.cursor()
 
-    # curs.execute("SELECT tablename FROM pg_tables " \
-    #             "WHERE tableowner = 'reedk2';")
-    # tables = curs.fetchall()
-    
-    # conn.close()
-    # curs.close()
-
-    # print(json.dumps(tables))
-
-    # Returns list of single element lists with names of tables
-    return "Hi Welcome to Sam and Katelyn's makeshift music extravaganza! Navigate to '/help' to learn more"
+    return '''Hi Welcome to Sam and Katelyn's makeshift music extravaganza!
+            Navigate to '/help' to learn more'''
 
 @app.route('/help')
 def help():
@@ -200,7 +167,6 @@ def getAlbums():
     conn.close()
     curs.close()
 
-    # print(albums)
     return json.dumps(albums)
 
 @app.route('/1.0/albums/<albumName>')
@@ -211,6 +177,7 @@ def getSongsFromAlbum(albumName, shuffle=None):
     RETURN: all names of songs and their associated information in a specific album
     '''
     shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
+    
     # Get data from database
     conn = getConnection()
     curs = conn.cursor()
@@ -239,7 +206,6 @@ def getSongsFromAlbum(albumName, shuffle=None):
     conn.close()
     curs.close()
 
-    # print(songs)
     return json.dumps(songs)
 
 #
@@ -272,7 +238,7 @@ def getSongs(shuffle=None):
     if shuffle:
         random.shuffle(songs)
     else: 
-        songs = sorted(songs, key=lambda x: (x['trackNumber']))
+        songs = sorted(songs, key=lambda x: (x['songName']))
     
     curs.close()
     conn.close()
