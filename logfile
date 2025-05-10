@@ -123,3 +123,16 @@
 2025-05-08 15:20:05.687 CDT [30335] STATEMENT:  SELECT artistID FROM artists WHERE artistID = 'ABBA'
 2025-05-08 16:13:05.342 CDT [5856] LOG:  checkpoint starting: time
 2025-05-08 16:13:06.684 CDT [5856] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.335 s, sync=0.001 s, total=1.343 s; sync files=8, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=2475 kB; lsn=0/19B37B0, redo lsn=0/19B3758
+2025-05-09 09:13:04.418 CDT [1579] ERROR:  syntax error at or near "'playlists'" at character 28
+2025-05-09 09:13:04.418 CDT [1579] STATEMENT:  SELECT 'playlistName' FROM 'playlists' WHERE 'playlistID' = 1
+2025-05-09 09:29:28.936 CDT [6662] ERROR:  column "playlistName" does not exist at character 8
+2025-05-09 09:29:28.936 CDT [6662] HINT:  Perhaps you meant to reference the column "playlists.playlistname".
+2025-05-09 09:29:28.936 CDT [6662] STATEMENT:  SELECT "playlistName" FROM "playlists" WHERE "playlistID" = 1
+2025-05-09 10:48:51.728 CDT [7303] ERROR:  column "playlistName" does not exist at character 8
+2025-05-09 10:48:51.728 CDT [7303] HINT:  Perhaps you meant to reference the column "playlists.playlistname".
+2025-05-09 10:48:51.728 CDT [7303] STATEMENT:  SELECT "playlistName" FROM "playlists" WHERE "playlistID" = 1
+2025-05-10 12:59:18.189 CDT [14644] FATAL:  database "sam" does not exist
+2025-05-10 13:01:02.270 CDT [14839] ERROR:  table "tagsalbumsartists" does not exist
+2025-05-10 13:01:02.270 CDT [14839] STATEMENT:  DROP TABLE tagsalbumsartists;
+2025-05-10 13:01:56.432 CDT [5856] LOG:  checkpoint starting: time
+2025-05-10 13:01:57.362 CDT [5856] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.917 s, sync=0.002 s, total=0.930 s; sync files=8, longest=0.001 s, average=0.001 s; distance=64 kB, estimate=2233 kB; lsn=0/19C3870, redo lsn=0/19C37E0

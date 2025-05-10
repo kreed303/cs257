@@ -17,14 +17,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP TABLE public.tagssongs;
-DROP TABLE public.tagsplaylists;
-DROP TABLE public.tagsartists;
-DROP TABLE public.tagsalbums;
-DROP TABLE public.tags;
 DROP TABLE public.songs;
-DROP TABLE public.playlistssongs;
-DROP TABLE public.playlists;
 DROP TABLE public.artistssongs;
 DROP TABLE public.artistsalbums;
 DROP TABLE public.artists;
@@ -86,26 +79,6 @@ CREATE TABLE public.artistssongs (
 
 
 --
--- Name: playlists; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.playlists (
-    playlistid integer NOT NULL,
-    playlistname text
-);
-
-
---
--- Name: playlistssongs; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.playlistssongs (
-    playlistid integer NOT NULL,
-    songid integer NOT NULL
-);
-
-
---
 -- Name: songs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -115,56 +88,6 @@ CREATE TABLE public.songs (
     tracknumber integer,
     songlength integer,
     songbpm integer
-);
-
-
---
--- Name: tags; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tags (
-    tagid integer NOT NULL,
-    tagname text
-);
-
-
---
--- Name: tagsalbums; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tagsalbums (
-    tagid integer NOT NULL,
-    albumid integer NOT NULL
-);
-
-
---
--- Name: tagsartists; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tagsartists (
-    tagid integer NOT NULL,
-    artistid integer NOT NULL
-);
-
-
---
--- Name: tagsplaylists; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tagsplaylists (
-    tagid integer NOT NULL,
-    playlistid integer NOT NULL
-);
-
-
---
--- Name: tagssongs; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tagssongs (
-    tagid integer NOT NULL,
-    songid integer NOT NULL
 );
 
 
@@ -482,27 +405,6 @@ COPY public.artistssongs (artistid, songid) FROM stdin;
 
 
 --
--- Data for Name: playlists; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.playlists (playlistid, playlistname) FROM stdin;
-1	testPlaylist
-2	testPlaylist2
-3	testPlaylist3
-\.
-
-
---
--- Data for Name: playlistssongs; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.playlistssongs (playlistid, songid) FROM stdin;
-1	1
-1	1
-\.
-
-
---
 -- Data for Name: songs; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -634,46 +536,6 @@ COPY public.songs (songid, songname, tracknumber, songlength, songbpm) FROM stdi
 125	Something So Right	4	276826	0
 126	Kodachrome	1	215400	0
 127	Let Me Live in Your City [Work-In-Progress][#][*]	11	261973	0
-\.
-
-
---
--- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.tags (tagid, tagname) FROM stdin;
-\.
-
-
---
--- Data for Name: tagsalbums; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.tagsalbums (tagid, albumid) FROM stdin;
-\.
-
-
---
--- Data for Name: tagsartists; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.tagsartists (tagid, artistid) FROM stdin;
-\.
-
-
---
--- Data for Name: tagsplaylists; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.tagsplaylists (tagid, playlistid) FROM stdin;
-\.
-
-
---
--- Data for Name: tagssongs; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.tagssongs (tagid, songid) FROM stdin;
 \.
 
 

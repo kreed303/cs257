@@ -1,6 +1,7 @@
 import flask
 import os
 import psycopg2
+from psycopg2 import sql
 import config
 import sys
 import json
@@ -14,6 +15,21 @@ def getConnection():
     except Exception as e:
         print(e, file=sys.stderr)
         exit()
+
+def _get(key, input, request, table):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    query = sql.SQL('SELECT {request} FROM {table} WHERE {key} = %s').format(request = sql.Identifier(request), table = sql.Identifier(table), key = sql.Identifier(key))
+
+    curs.execute(query, (input, ))
+    returnValue = curs.fetchone()[0]
+
+    curs.close()
+    conn.close()
+
+    return(returnValue)
+
 
 def _getPlaylistName(playlistID):
     '''
