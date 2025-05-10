@@ -40,10 +40,10 @@
         Souriante”, “artistID” = 0100},{“artistName”: “Paul Simon”, “artistID” = 1101}]
         
         
-        REQUEST: /1.0/artists/<artistName>
+        REQUEST: /1.0/artists/&lt;artistName&gt;
         GET parameters:
         - artist (Required): the name of the artists selected from the list of 
-        artists in the /artists endpoint
+        artists in the /1.0/artists endpoint
         
         RESPONSE: A json list that contains a dictionary for each album by that artist.
         Each dictionary contains the fields album ID, album name, and album year.
@@ -53,7 +53,7 @@
         {"albumID": 11011, "albumName": "En Spectacle", "albumYear": 1996}]
         
         
-        REQUEST: /1.0/artists/<artistName>/songs?shuffle=shuffle
+        REQUEST: /1.0/artists/&lt;artistName&gt;/songs?shuffle=shuffle
         GET parameters:
         - artist (Required): the name of the artists selected from the list of 
         artists in the /artists endpoint
@@ -68,12 +68,12 @@
         [{song1 by Paul Simon}, {song2 by Paul Simon}, ...]
         
         
-        REQUEST: /1.0/artists/<artistName>/<albumName>?shuffle=shuffle
+        REQUEST: /1.0/artists/&lt;artistName&gt;/&lt;albumName&gt;?shuffle=shuffle
         GET parameters:
         - artist (Required): the name of the artists selected from the list of artists 
         in the /1.0/artists endpoint
         - album (required): the name of the specified album by the specified artist from
-        the list of albums on the /1.0/artists/<artist> page
+        the list of albums on the /1.0/artists/&lt;artist&gt; page
         - shuffle (Optional, default = false): tells the database to return the list of 
         songs on the album in a randomized order (based on the Tracknumbers)
         
@@ -108,8 +108,8 @@
         "albumID": 1011001}]
         
         
-        REQUEST: /1.0/albums/<albumName>?shuffle=shuffle
-        REDIRECTS TO: /1.0/artists/<artist>/<album>?shuffle=shuffle
+        REQUEST: /1.0/albums/&lt;albumName&gt;?shuffle=shuffle
+        REDIRECTS TO: /1.0/artists/&lt;artist&gt;/&lt;album&gt;?shuffle=shuffle
         GET parameters: 
         - album (Required): the name of the album selected from the list of albums 
         in the /albums endpoint
@@ -164,7 +164,7 @@
         {“playlist”: “Band”, “playlistID”: 000101}]
         
          
-        REQUEST: /1.0/playlists/<playlist>?shuffle=shuffle&tags=tags&contains=contains
+        REQUEST: /1.0/playlists/&lt;playlist&gt;?shuffle=shuffle&tags=tags&contains=contains
         GET parameters: 
         - playlist (Required) - return only the playlist with the name provided 
         (case insensitive).

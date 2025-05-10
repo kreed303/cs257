@@ -98,7 +98,6 @@ def getArtists():
 
     return json.dumps(artists)
 
-# ADD THIS API (just returns albums of a particular artistName, not songs)
 @app.route('/1.0/artists/<artistName>')
 def getAlbumsFromArtist(artistName):
     conn = getConnection()

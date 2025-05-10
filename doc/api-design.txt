@@ -35,7 +35,7 @@ Souriante”, “artistID” = 0100},{“artistName”: “Paul Simon”, “art
 REQUEST: /1.0/artists/<artistName>
 GET parameters:
 - artist (Required): the name of the artists selected from the list of 
-artists in the /artists endpoint
+artists in the /1.0/artists endpoint
 
 RESPONSE: A json list that contains a dictionary for each album by that artist.
 Each dictionary contains the fields album ID, album name, and album year.
