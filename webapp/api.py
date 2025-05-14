@@ -27,8 +27,7 @@ def home():
     
     '''
 
-    return '''Hi Welcome to Sam and Katelyn's makeshift music extravaganza!
-            Navigate to '/help' to learn more'''
+    return flask.render_template('index.html')
 
 @app.route('/help')
 def help():
