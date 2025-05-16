@@ -118,6 +118,10 @@ def addSongToPlaylistFromNames(playlistName, songName):
     print(f"songName {songName}, playlistName {playlistName}")
 
 
+def addSongToAlbum(songName, albumID, albumName):
+    assert (albumName != None) or (albumID != None):
+        pass
+
 def createSong(songName, trackNumber, artistName = None, artistID = None, SongLength = 0, songBPM = 0, albumName = None, albumID = None):
     '''
     create playlist method where playlistID is the length of playlists table + 1
@@ -125,7 +129,7 @@ def createSong(songName, trackNumber, artistName = None, artistID = None, SongLe
     input: playlist name
     return: none
     '''
-    assert (artistName != None) or (artistsID != None)
+    assert (artistName != None) or (artistID != None)
     conn = getConnection()
     curs = conn.cursor()
 
@@ -136,8 +140,8 @@ def createSong(songName, trackNumber, artistName = None, artistID = None, SongLe
     
 
     # Check if song exists
-    checkPlaylistName = 'SELECT count(*) FROM playlists WHERE playlistName = %s'
-    curs.execute(checkPlaylistName, (songName, ))
+    checkSongName = 'SELECT count(*) FROM songs WHERE songName = %s'
+    curs.execute(checkSongName, (songName, ))
     if curs.fetchone()[0] > 0:
         matchID = _getSongID(songName)
         # Check if song matches previous artist

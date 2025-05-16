@@ -7,21 +7,24 @@ function initialize() {
     }
 }
 
-function clickHelpButton() {
-    var url = '/help';
+function getAPIBaseURL() {
+    var baseURL = window.location.protocol
+                    + '//' + window.location.hostname
+                    + ':' + window.location.port;
+    return baseURL;
+}
 
-    fethch(url, {method: 'get'})
+function clickHelpButton() {
+    var url = 'http://localhost:5555/help';
+
+    fetch(url, {method: 'get'})
 
     .then((response) => response.json())
 
     .then(function(help) {
         var helpText = help;
-
         var element = document.getElementById('helpText');
-
-        if (helpText) {
-            element.innerHTML = helpText;
-        }
+        element.innerHTML = helpText;
     })
 
     .catch(function(error) {

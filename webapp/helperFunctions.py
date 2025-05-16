@@ -16,11 +16,11 @@ def getConnection():
         print(e, file=sys.stderr)
         exit()
 
-def _get(key, input, request, table):
+def _get(request, table, key, input):
     conn = getConnection()
     curs = conn.cursor()
 
-    query = sql.SQL('SELECT {request} FROM {table} WHERE {key} = %s').format(request = sql.Identifier(request), table = sql.Identifier(table), key = sql.Identifier(key))
+    query = sql.SQL("SELECT {request} FROM {table} WHERE {key} = %s").format(request = sql.Identifier(request.lower()), table = sql.Identifier(table.lower()), key = sql.Identifier(key.lower()))
 
     curs.execute(query, (input, ))
     returnValue = curs.fetchone()[0]
@@ -37,17 +37,7 @@ def _getPlaylistName(playlistID):
     input: playlistID
     return: playlistName
     '''
-    conn = getConnection()
-    curs = conn.cursor()
-
-    getPlaylistName = "SELECT playlistName FROM playlists WHERE playlistID = %s"
-    curs.execute(getPlaylistName, (playlistID, ))
-    playlistName = curs.fetchone()[0]
-
-    curs.close()
-    conn.close()
-
-    return(playlistName)
+    return _get("playlistName", "playlists", "playlistId", playlistID)
     
 def _getPlaylistID(playlistName):
     '''
@@ -55,17 +45,7 @@ def _getPlaylistID(playlistName):
     input: playlistID
     return: playlistName
     '''
-    conn = getConnection()
-    curs = conn.cursor()
-
-    getPlaylistID = "SELECT playlistName FROM playlists WHERE playlistID = %s"
-    curs.execute(getPlaylistID, (playlistName, ))
-    playlistID = curs.fetchone()[0]
-
-    curs.close()
-    conn.close()
-
-    return(playlistID)
+    return _get("playlistid", "playlists", "playlistname", playlistName)
 
 def _getSongID(songName):
     '''
@@ -73,17 +53,7 @@ def _getSongID(songName):
     input: songName 
     return: songID
     '''
-    conn = getConnection()
-    curs = conn.cursor()
-
-    getSongID = "SELECT songID FROM songs WHERE songName = %s"
-    curs.execute(getSongID, (songName, ))
-    songID = curs.fetchone()[0]
-
-    curs.close()
-    conn.close()
-
-    return(songID)
+    return _get("songid", "songs", "songname", songName)
 
 
 def _getSongName(songID):
@@ -92,17 +62,7 @@ def _getSongName(songID):
     input: songID
     return: songName
     '''
-    conn = getConnection()
-    curs = conn.cursor()
-
-    getSongName = "SELECT songname FROM songs WHERE songID = %s"
-    curs.execute(getSongName, (songID, ))
-    songName = curs.fetchone()[0]
-
-    curs.close()
-    conn.close()
-
-    return(songName)
+    return _get("songname", "songs", "songid", songID)
 
 def _getArtistID(artistName):
     '''
@@ -110,17 +70,7 @@ def _getArtistID(artistName):
     input: artistName
     return: artistID
     '''
-    conn = getConnection()
-    curs = conn.cursor()
-
-    getArtistID = "SELECT artistID FROM artists WHERE artistID = %s"
-    curs.execute(getArtistID, (artistName, ))
-    artistID = curs.fetchone()[0]
-
-    curs.close()
-    conn.close()
-
-    return(artistID)
+    return _get("artistId", "artists", "artistName", artistName)
 
 def _getAlbumID(albumName):
     '''
@@ -128,16 +78,6 @@ def _getAlbumID(albumName):
     input: albumName
     return: albumID
     '''
-    conn = getConnection()
-    curs = conn.cursor()
-
-    getAlbumID = "SELECT albumID FROM albums WHERE albumName = %s"
-    curs.execute(getAlbumID, (albumName, ))
-    albumID = curs.fetchone()[0]
-
-    curs.close()
-    conn.close()
-
-    return(albumID)
+    return _get("albumID", "albums", "albumName", albumName)
 
 

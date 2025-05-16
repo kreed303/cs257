@@ -136,3 +136,30 @@
 2025-05-10 13:01:02.270 CDT [14839] STATEMENT:  DROP TABLE tagsalbumsartists;
 2025-05-10 13:01:56.432 CDT [5856] LOG:  checkpoint starting: time
 2025-05-10 13:01:57.362 CDT [5856] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.917 s, sync=0.002 s, total=0.930 s; sync files=8, longest=0.001 s, average=0.001 s; distance=64 kB, estimate=2233 kB; lsn=0/19C3870, redo lsn=0/19C37E0
+2025-05-12 08:35:38.808 CDT [20040] ERROR:  relation "playlists" does not exist at character 28
+2025-05-12 08:35:38.808 CDT [20040] STATEMENT:  SELECT "playlistName" FROM "playlists" WHERE "playlistID" = 1
+2025-05-12 08:36:21.333 CDT [20227] ERROR:  relation "playlists" does not exist at character 28
+2025-05-12 08:36:21.333 CDT [20227] STATEMENT:  SELECT "playlistName" FROM "playlists" WHERE "playlistID" = 1
+2025-05-12 08:37:40.249 CDT [20747] ERROR:  column "albumName" does not exist at character 8
+2025-05-12 08:37:40.249 CDT [20747] HINT:  Perhaps you meant to reference the column "albums.albumname".
+2025-05-12 08:37:40.249 CDT [20747] STATEMENT:  SELECT "albumName" FROM "albums" WHERE "albumID" = 1
+2025-05-12 08:37:57.756 CDT [20880] ERROR:  column "albums.albumName" does not exist at character 8
+2025-05-12 08:37:57.756 CDT [20880] STATEMENT:  SELECT "albums.albumName" FROM "albums" WHERE "albumID" = 1
+2025-05-12 08:43:53.984 CDT [21228] ERROR:  relation "ablums" does not exist at character 32
+2025-05-12 08:43:53.984 CDT [21228] STATEMENT:  SELECT "albums.albumName" FROM "ablums" WHERE "albumID" = 1
+2025-05-12 08:44:24.972 CDT [21378] ERROR:  relation "ablums" does not exist at character 32
+2025-05-12 08:44:24.972 CDT [21378] STATEMENT:  SELECT "albums.albumName" FROM "ablums" WHERE "albumID" = 1
+2025-05-12 08:44:36.191 CDT [21509] ERROR:  column "albums.albumName" does not exist at character 8
+2025-05-12 08:44:36.191 CDT [21509] STATEMENT:  SELECT "albums.albumName" FROM "albums" WHERE "albumID" = 1
+2025-05-12 08:44:45.277 CDT [21638] ERROR:  column "albumName" does not exist at character 8
+2025-05-12 08:44:45.277 CDT [21638] HINT:  Perhaps you meant to reference the column "albums.albumname".
+2025-05-12 08:44:45.277 CDT [21638] STATEMENT:  SELECT "albumName" FROM "albums" WHERE "albumID" = 1
+2025-05-12 08:45:06.809 CDT [20697] ERROR:  column "albumName" does not exist at character 8
+2025-05-12 08:45:06.809 CDT [20697] HINT:  Perhaps you meant to reference the column "albums.albumname".
+2025-05-12 08:45:06.809 CDT [20697] STATEMENT:  SELECT "albumName" FROM "albums" WHERE "albumID" = 1;
+2025-05-12 08:49:26.208 CDT [22053] ERROR:  column "albums.albumname" does not exist at character 8
+2025-05-12 08:49:26.208 CDT [22053] STATEMENT:  SELECT "albums.albumname" FROM "albums" WHERE "albumid" = 1
+2025-05-12 09:01:31.886 CDT [22738] ERROR:  relation "playlists" does not exist at character 22
+2025-05-12 09:01:31.886 CDT [22738] STATEMENT:  SELECT count(*) FROM playlists WHERE playlistName = 'yay'
+2025-05-12 09:04:32.247 CDT [5856] LOG:  checkpoint starting: time
+2025-05-12 09:04:33.288 CDT [5856] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.024 s, sync=0.002 s, total=1.043 s; sync files=10, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=2011 kB; lsn=0/19C5030, redo lsn=0/19C4FD8

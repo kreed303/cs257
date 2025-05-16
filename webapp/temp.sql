@@ -18,3 +18,11 @@ VALUES ('1', 'testPlaylist');
 
 INSERT INTO playlistssongs (playlistid, songid)
 VALUES (1, 1);
+
+SELECT COUNT(*) FROM artists
+JOIN artistssongs ON artistssongs.artistid = artists.artistid
+WHERE songs.songid = %s;
+
+
+INSERT INTO artistssongs (artistid, songid)
+VALUES (%s, %s); 

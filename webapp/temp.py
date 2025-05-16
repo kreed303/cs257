@@ -1,3 +1,3 @@
 from helperFunctions import _get
 
-print(_get("playlistID", 1, 'playlistName', 'playlists'))
+print(_get('albumID', 1, 'albumName', 'albums'))
