@@ -27,7 +27,7 @@ def home():
     
     '''
 
-    return flask.render_template('index.html')
+    return flask.render_template('home.html')
 
 @app.route('/help')
 def help():
@@ -251,4 +251,4 @@ if __name__ == '__main__':
     parser.add_argument('host', help='the host on which this application is running')
     parser.add_argument('port', type=int, help='the port on which this application is listening')
     arguments = parser.parse_args()
-    app.run(host=arguments.host, port=arguments.port, debug=True)
+    app.run(ho
