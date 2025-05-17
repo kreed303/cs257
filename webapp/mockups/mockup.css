@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* defining color */
+    --blue4: rgb(0, 3, 164);
+    --blue3: rgb(32, 32, 186);
+    --blue2:  rgb(83, 83, 197);
+    --blue1: rgb(129, 129, 255);
+    --borderColor: rgb(0, 2, 98);
+    --textColor: black;
+    --hoverColor: rgb(234, 255, 0);
+}
+
+body {
+    background-color: var(--blue1); /* or any valid color */
+    color: var(--textColor)
+  }
+
+/* General Things */
+p {
+    color: var(--textColor);
+    font-family: Roboto;
+    font-size: 48pt;
+    font-stretch: semi-expanded;
+}
+
+div {
+    background-color: var(--blue3);
+}
+
+button {
+    color:darkorange;
+}
+
+a:hover{
+    color: var(--hoverColor);
+    }
+
+
+/* Page Headings */
+#musicPlayer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    width: 100%;
+    text-align: center;
+    background-color: var(--blue4);
+}
+
+#siteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    width: 100%;
+    background-color: var(--blue3);
+    border-bottom-color: var(--borderColor);
+    border-bottom-style: solid;
+    border-bottom-width: 5pt;
+    text-align: center;
+}
+
+
+/* The Menu */
+#menu {
+    height: 100vh;
+    width: 10%;
+    background-color: var(--blue2);
+    border-right-color: var(--borderColor);
+    border-right-style: solid;
+    border-right-width: 5pt;
+    font-size: 24pt;
+    float: left;
+}
+
+.menuItems {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 5vh;
+    font-size: 24pt;
+    margin: auto;
+    font-stretch: normal;
+    background-color: var(--blue1);
+    border-color: var(--borderColor);
+    border-style: solid;
+    border-width: 1pt;
+    margin: 2%;
+}
+
+/* The Page */
+#pageHeader {
+    height: 5%;
+    width: 90%;
+    background-color: var(--blue2);
+    border-bottom-color: var(--borderColor);
+    border-bottom-style: solid;
+    border-bottom-width: 5pt;
+    text-align: left;
+    float: right;
+}
+
+#pageContents{
+    height: 100%;
+    width: 90%;
+    background-color: var(--blue1);
+    float:right;
+}
+
+.playShuffleButtons {
+    display: inline;
+    float: center;
+}
+
+/* #listOfData {
+
+} */
+
+/* .data {
+
+} */
