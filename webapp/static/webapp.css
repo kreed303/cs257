@@ -33,7 +33,7 @@ div {
 }
 
 button {
-    color:darkorange;
+    color:var(--blue3);
 }
 
 a:hover{
@@ -115,7 +115,7 @@ a:hover{
 
 .playShuffleButtons {
     display: inline;
-    float: center;
+    text-align: center;
 }
 
 /* #listOfData {

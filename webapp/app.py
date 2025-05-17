@@ -26,7 +26,7 @@ def artists():
     return flask.render_template('artists.html')
 
 @app.route('/albums')
-def artists():
+def albums():
     '''
     Webage for displaying albums
     input: none
@@ -36,7 +36,7 @@ def artists():
     return flask.render_template('albums.html')
 
 @app.route('/songs')
-def artists():
+def songs():
     '''
     Webage for displaying songs
     input: none
