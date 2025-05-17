@@ -5,13 +5,18 @@
 }
 
 :root {
-    --blue1: rgb(62, 65, 255);
-    --blue2: rgb(131, 131, 250);
-    --blue3:  rgb(159, 159, 252);
+    /* defining color */
+    --blue4: rgb(29, 33, 255);
+    --blue3: rgb(95, 95, 255);
+    --blue2:  rgb(125, 125, 253);
+    --blue1: rgb(159, 159, 255);
+    --borderColor: rgb(0, 3, 199);
     --textColor: black;
     --hoverColor: red;
 }
 
+
+/* General Things */
 p {
     color: var(--textColor);
     font-family: cursive;
@@ -27,6 +32,12 @@ button {
     color:darkorange;
 }
 
+a:hover{
+    color: var(--hoverColor);
+    }
+
+
+/* Page Headings */
 #musicPlayer {
     height: 10%;
     width: 100%;
@@ -36,29 +47,20 @@ button {
 #siteHeader {
     height: 10%;
     width: 100%;
-    background-color: var(--blue1);
-    border-bottom-color: black;
+    background-color: var(--blue4);
+    border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
     border-bottom-width: 5pt;
     text-align: center;
 }
 
-#pageHeader {
-    height: 5%;
-    width: 90%;
-    background-color: var(--blue2);
-    border-bottom-color: black;
-    border-bottom-style: solid;
-    border-bottom-width: 5pt;
-    text-align: center;
-    float: right;
-}
 
+/* The Menu */
 #menu {
-    height: 100%;
+    height: 100vh;
     width: 10%;
-    background-color: var(--blue1);
-    border-right-color: black;
+    background-color: var(--blue2);
+    border-right-color: var(--borderColor);
     border-right-style: solid;
     border-right-width: 5pt;
     font-size: 12pt;
@@ -66,34 +68,52 @@ button {
 }
 
 .menuItems {
+    display: flex;
     width: 90%;
-    height: 10%;
+    height: 5vh;
     font-size: 12pt;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     font-stretch: normal;
-    background-color: var(--blue2);
-    border-color: black;
+    background-color: var(--blue1);
+    border-color: var(--borderColor);
     border-style: solid;
     border-width: 1pt;
     margin: 2%;
+}
+
+/* The Page */
+#pageHeader {
+    height: 5%;
+    width: 90%;
+    background-color: var(--blue3);
+    border-bottom-color: var(--borderColor);
+    border-bottom-style: solid;
+    border-bottom-width: 5pt;
+    text-align: center;
+    float: right;
 }
 
 #pageContents{
     height: 100%;
     width: 90%;
     background-color: var(--blue1);
-    border-right-color: black;
+    border-right-color: var(--borderColor);
     border-right-style: solid;
     border-right-width: 5pt;
     float:right;
 }
 
-
-
-a:hover{
-    color: var(--hoverColor);
-    }
-
 .playShuffleButtons {
     display: inline;
+    float: center;
 }
+
+/* #listOfData {
+
+} */
+
+/* .data {
+
+} */

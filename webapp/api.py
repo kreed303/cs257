@@ -29,6 +29,18 @@ def home():
 
     return flask.render_template('home.html')
 
+@app.route('/artists')
+def temp():
+    '''
+    This is the home page!!!
+
+    input: none
+    output: a simple message saying hi!
+    
+    '''
+
+    return flask.render_template('artists.html')
+
 @app.route('/help')
 def help():
     return flask.render_template('help.html')
