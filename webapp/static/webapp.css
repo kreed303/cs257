@@ -6,21 +6,25 @@
 
 :root {
     /* defining color */
-    --blue4: rgb(29, 33, 255);
-    --blue3: rgb(95, 95, 255);
-    --blue2:  rgb(125, 125, 253);
-    --blue1: rgb(159, 159, 255);
-    --borderColor: rgb(0, 3, 199);
+    --blue4: rgb(0, 3, 164);
+    --blue3: rgb(32, 32, 186);
+    --blue2:  rgb(83, 83, 197);
+    --blue1: rgb(129, 129, 255);
+    --borderColor: rgb(0, 2, 98);
     --textColor: black;
-    --hoverColor: red;
+    --hoverColor: rgb(234, 255, 0);
 }
 
+body {
+    background-color: var(--blue1); /* or any valid color */
+    color: var(--textColor)
+  }
 
 /* General Things */
 p {
     color: var(--textColor);
-    font-family: cursive;
-    font-size: 24pt;
+    font-family: Roboto;
+    font-size: 48pt;
     font-stretch: semi-expanded;
 }
 
@@ -39,15 +43,22 @@ a:hover{
 
 /* Page Headings */
 #musicPlayer {
-    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
     width: 100%;
     text-align: center;
+    background-color: var(--blue4);
 }
 
 #siteHeader {
-    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
     width: 100%;
-    background-color: var(--blue4);
+    background-color: var(--blue3);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
     border-bottom-width: 5pt;
@@ -63,17 +74,17 @@ a:hover{
     border-right-color: var(--borderColor);
     border-right-style: solid;
     border-right-width: 5pt;
-    font-size: 12pt;
+    font-size: 24pt;
     float: left;
 }
 
 .menuItems {
     display: flex;
-    width: 90%;
-    height: 5vh;
-    font-size: 12pt;
     align-items: center;
     justify-content: center;
+    width: 90%;
+    height: 5vh;
+    font-size: 24pt;
     margin: auto;
     font-stretch: normal;
     background-color: var(--blue1);
@@ -87,11 +98,11 @@ a:hover{
 #pageHeader {
     height: 5%;
     width: 90%;
-    background-color: var(--blue3);
+    background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
     border-bottom-width: 5pt;
-    text-align: center;
+    text-align: left;
     float: right;
 }
 
@@ -99,9 +110,6 @@ a:hover{
     height: 100%;
     width: 90%;
     background-color: var(--blue1);
-    border-right-color: var(--borderColor);
-    border-right-style: solid;
-    border-right-width: 5pt;
     float:right;
 }
 
