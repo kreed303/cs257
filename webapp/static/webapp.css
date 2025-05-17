@@ -30,6 +30,7 @@ button {
 #musicPlayer {
     height: 10%;
     width: 100%;
+    text-align: center;
 }
 
 #siteHeader {
@@ -39,15 +40,18 @@ button {
     border-bottom-color: black;
     border-bottom-style: solid;
     border-bottom-width: 5pt;
+    text-align: center;
 }
 
 #pageHeader {
     height: 5%;
-    width: 100%;
+    width: 90%;
     background-color: var(--blue2);
     border-bottom-color: black;
     border-bottom-style: solid;
     border-bottom-width: 5pt;
+    text-align: center;
+    float: right;
 }
 
 #menu {
@@ -89,3 +93,7 @@ button {
 a:hover{
     color: var(--hoverColor);
     }
+
+.playShuffleButtons {
+    display: inline;
+}
