@@ -9,6 +9,7 @@
     --blue2: rgb(131, 131, 250);
     --blue3:  rgb(159, 159, 252);
     --textColor: black;
+    --hoverColor: red;
 }
 
 p {
@@ -82,3 +83,9 @@ button {
     border-right-width: 5pt;
     float:right;
 }
+
+
+
+a:hover{
+    color: var(--hoverColor);
+    }
