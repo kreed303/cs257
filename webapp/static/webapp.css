@@ -6,4 +6,19 @@ p {
 }
 
 button {
-  
+    color:darkorange;
+}
+
+#menu {
+    height: 100%;
+    width: 10%;
+    background-color: aquamarine;
+}
+
+#menuItems {
+    width: 100%;
+    height: 100px;
+    font-size: 12pt;
+    font-stretch: normal;
+    background-color: blue;
+}

@@ -20,4 +20,24 @@ function getAPIBaseURL() {
 }
 
 function clickNewPage() {
-    return window.location.href = 'http://localhos
+    return window.location.href = 'http://localhost:5555/help';
+
+}
+
+function clickHelpButton() {
+    var url = 'http://localhost:5555/help';
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(help) {
+        var helpText = help;
+        var element = document.getElementById('helpText');
+        element.innerHTML = helpText;
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
+}
