@@ -11,22 +11,39 @@ def home():
 
     input: none
     output: a simple message saying hi!
-    
     '''
 
     return flask.render_template('home.html')
 
 @app.route('/artists')
-def temp():
+def artists():
     '''
-    This is the home page!!!
-
+    Webage for displaying artists
     input: none
-    output: a simple message saying hi!
-    
+    output: webpage for list of artists
     '''
 
     return flask.render_template('artists.html')
+
+@app.route('/albums')
+def artists():
+    '''
+    Webage for displaying albums
+    input: none
+    output: webpage for list of albums by a particular artist
+    '''
+
+    return flask.render_template('albums.html')
+
+@app.route('/songs')
+def artists():
+    '''
+    Webage for displaying songs
+    input: none
+    output: webpage for list of songs
+    '''
+
+    return flask.render_template('songs.html')
 
 @app.route('/help')
 def help():
