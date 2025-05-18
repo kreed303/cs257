@@ -6,7 +6,7 @@
 
 :root {
     /* defining color */
-    --blue4: rgb(0, 3, 164);
+    --blue4: rgb(164, 0, 93);
     --blue3: rgb(32, 32, 186);
     --blue2:  rgb(83, 83, 197);
     --blue1: rgb(129, 129, 255);
@@ -69,12 +69,12 @@ a:hover{
 /* The Menu */
 #menu {
     height: 100vh;
-    width: 10%;
+    width: 10vh;
     background-color: var(--blue2);
     border-right-color: var(--borderColor);
     border-right-style: solid;
     border-right-width: 5pt;
-    font-size: 24pt;
+    font-size: 100v;
     float: left;
 }
 
@@ -82,7 +82,7 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 10vh;
     height: 5vh;
     font-size: 24pt;
     margin: auto;
@@ -91,13 +91,13 @@ a:hover{
     border-color: var(--borderColor);
     border-style: solid;
     border-width: 1pt;
-    margin: 2%;
+    margin: 2vh;
 }
 
 /* The Page */
 #pageHeader {
-    height: 5%;
-    width: 90%;
+    height: 5vh;
+    width: 90vh;
     background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
@@ -107,8 +107,8 @@ a:hover{
 }
 
 #pageContents{
-    height: 100%;
-    width: 90%;
+    height: 100vh;
+    width: 90vh;
     background-color: var(--blue1);
     float:right;
 }
