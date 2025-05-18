@@ -118,6 +118,22 @@ a:hover{
     float: center;
 }
 
+#playButton {
+    color:black;
+    background-color: white;
+    border-color: white;
+}
+
+#shuffleButton {
+    color:black;
+    background-color: white;
+    border-color: white;
+}
+
+.musicData {
+    border: 2pt;
+}
+
 /* #listOfData {
 
 } */
