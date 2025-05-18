@@ -24,7 +24,7 @@ body {
 p {
     color: var(--textColor);
     font-family: Roboto;
-    font-size: 18vw;
+    font-size: 9vw;
     font-stretch: semi-expanded;
 }
 
