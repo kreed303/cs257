@@ -6,7 +6,7 @@
 
 :root {
     /* defining color */
-    --blue4: rgb(164, 0, 93);
+    --blue4: rgb(0, 3, 164);
     --blue3: rgb(32, 32, 186);
     --blue2:  rgb(83, 83, 197);
     --blue1: rgb(129, 129, 255);
@@ -21,10 +21,18 @@ body {
   }
 
 /* General Things */
+
+h1, h2, h3 {
+    color: var(--textColor);
+    font-family: Roboto;
+    font-size: 18pt;
+    font-stretch: semi-expanded;
+}
+
 p {
     color: var(--textColor);
     font-family: Roboto;
-    font-size: 48pt;
+    font-size: 12pt;
     font-stretch: semi-expanded;
 }
 
@@ -33,7 +41,7 @@ div {
 }
 
 button {
-    color:var(--blue3);
+    color:darkorange;
 }
 
 a:hover{
@@ -41,13 +49,14 @@ a:hover{
     }
 
 
+
 /* Page Headings */
 #musicPlayer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5vh;
-    width: 100%;
+    height: 45px;
+    width: 100vw;
     text-align: center;
     background-color: var(--blue4);
 }
@@ -56,12 +65,12 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5vh;
-    width: 100%;
+    height: 45px;
+    width: 100vw;
     background-color: var(--blue3);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
-    border-bottom-width: 5pt;
+    border-bottom-width: 5px;
     text-align: center;
 }
 
@@ -69,12 +78,11 @@ a:hover{
 /* The Menu */
 #menu {
     height: 100vh;
-    width: 10vh;
+    width: 100px;
     background-color: var(--blue2);
     border-right-color: var(--borderColor);
     border-right-style: solid;
-    border-right-width: 5pt;
-    font-size: 100v;
+    border-right-width: 5px;
     float: left;
 }
 
@@ -82,22 +90,19 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10vh;
-    height: 5vh;
-    font-size: 24pt;
-    margin: auto;
-    font-stretch: normal;
+    width: 85px;
+    height: 20px;
     background-color: var(--blue1);
     border-color: var(--borderColor);
     border-style: solid;
-    border-width: 1pt;
-    margin: 2vh;
+    border-width: 1px;
+    margin: 5px;
 }
 
 /* The Page */
 #pageHeader {
-    height: 5vh;
-    width: 90vh;
+    height: 45px;
+    width: calc(100vw - 100px);
     background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
@@ -108,14 +113,48 @@ a:hover{
 
 #pageContents{
     height: 100vh;
-    width: 90vh;
+    width: calc(100vw - 100pt);
     background-color: var(--blue1);
     float:right;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+#pageData {
+    background-color: var(--blue1);
 }
 
 .playShuffleButtons {
     display: inline;
-    text-align: center;
+    float: center;
+}
+
+#playButton {
+    color:black;
+    background-color: white;
+    border-color: white;
+}
+
+#shuffleButton {
+    color:black;
+    background-color: white;
+    border-color: white;
+}
+
+.musicDataTable {
+    border-collapse: collapse;
+    float: center;
+}
+
+.musicDataEntry {
+    border: 1px;
+    border-color: darkslategrey;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-collapse: collapse;
+    background-color: var(--blue1);
+    padding: 1px;
+    width: calc(100vw - 100pt);
 }
 
 /* #listOfData {

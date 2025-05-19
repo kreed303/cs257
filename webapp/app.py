@@ -23,7 +23,7 @@ def artists():
     output: webpage for list of artists
     '''
 
-    return flask.render_template('mockup1.html')
+    return flask.render_template('artists.html')
 
 @app.route('/albums')
 def albums():
@@ -33,7 +33,7 @@ def albums():
     output: webpage for list of albums by a particular artist
     '''
 
-    return flask.render_template('mockup2.html')
+    return flask.render_template('albums.html')
 
 @app.route('/songs')
 def songs():
@@ -43,7 +43,7 @@ def songs():
     output: webpage for list of songs
     '''
 
-    return flask.render_template('mockup3.html')
+    return flask.render_template('songs.html')
 
 @app.route('/help')
 def help():

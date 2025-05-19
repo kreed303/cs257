@@ -1,9 +1,12 @@
+<!-- ALBUMS -->
+
 <!DOCTYPE html>
 <head> 
     <meta charset="UTF-8">
         <title>Sam & Katelyn's Music Extravaganza</title>
         <link rel="stylesheet" type="text/css" 
-            href="/static/webapp.css" />
+            href="../static/webapp.css" />
+        <script src="static/webapp.js"></script>
 </head>
 <body>
     <div id="musicPlayer">
@@ -15,28 +18,14 @@
     </div>
 
     <div id="pageHeader">
-        <span id="">
-            <h1 id="">Artists</h1>
+        <span>
+            <!--Normally blank element to fill with header contents-->
+            <!--Like name of artist, name of album, etc.-->
+            <h1>Paul Simon</h1>
         </span>
     </div>
 
-    <div id="menu"> 
-        <p>Menu</p>
-        <div class="menuItems" id="homeNavButton">
-            <a href="">Home</a></div>
-        <div class="menuItems" id="playlistsNavButton">
-            <a href="">Playlists</a></div>
-        <div class="menuItems" id="artistsNavButton">
-            <a href="">Artists</a></div>
-        <div class="menuItems" id="albumsNavButton">
-            <a href="">Albums</a></div>
-        <div class="menuItems" id="songsNavButton">
-            <a href="">Songs</a></div>
-        <div class="menuItems" id="tagsNavButton">
-            <a href="">Tags</a></div>
-        <div class="menuItems" id="filterNavButton">
-            <a href="">Filter</a></div>
-    </div>
+    <div id="menu"></div>
 
     <div id="pageContents">
         <div class="playShuffleButtons">
@@ -47,6 +36,11 @@
             <!--Blank element to take data inputs-->
             <!--Individual data items will be div objects of class "data"-->
             <!--Will be created and modified by the JavaScript file-->
+            <table class="musicDataTable">
+                <tr><td class="musicDataEntry"><p>Graceland</p></td></tr>
+                <tr><td class="musicDataEntry"><p>So Beautiful or So What</p></td></tr>
+                <tr><td class="musicDataEntry"><p>There Goes Rhymin' Simon</p></td></tr>
+            </table>
         </div>
         
     </div>
