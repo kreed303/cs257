@@ -21,18 +21,10 @@ body {
   }
 
 /* General Things */
-
-h1, h2, h3 {
-    color: var(--textColor);
-    font-family: Roboto;
-    font-size: 18pt;
-    font-stretch: semi-expanded;
-}
-
 p {
     color: var(--textColor);
     font-family: Roboto;
-    font-size: 12pt;
+    font-size: 9vw;
     font-stretch: semi-expanded;
 }
 
@@ -49,15 +41,15 @@ a:hover{
     }
 
 
-
 /* Page Headings */
 #musicPlayer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
+    height: 5vh;
     width: 100vw;
     text-align: center;
+    font-size: 2.5vh;
     background-color: var(--blue4);
 }
 
@@ -65,12 +57,13 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
+    height: 5vh;
     width: 100vw;
+    font-size: 2.5vh;
     background-color: var(--blue3);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
-    border-bottom-width: 5px;
+    border-bottom-width: 5pt;
     text-align: center;
 }
 
@@ -78,11 +71,12 @@ a:hover{
 /* The Menu */
 #menu {
     height: 100vh;
-    width: 100px;
+    width: 10vw;
     background-color: var(--blue2);
     border-right-color: var(--borderColor);
     border-right-style: solid;
-    border-right-width: 5px;
+    border-right-width: 5pt;
+    font-size: 4vw;
     float: left;
 }
 
@@ -90,19 +84,22 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 85px;
-    height: 20px;
+    width: 8.5vw;
+    height: 5vh;
+    font-size: 1.5vw;
+    margin: auto;
+    font-stretch: normal;
     background-color: var(--blue1);
     border-color: var(--borderColor);
     border-style: solid;
-    border-width: 1px;
-    margin: 5px;
+    border-width: 1pt;
+    margin: 0.5vw;
 }
 
 /* The Page */
 #pageHeader {
-    height: 45px;
-    width: calc(100vw - 100px);
+    height: 5vh;
+    width: 90vw;
     background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
@@ -113,11 +110,11 @@ a:hover{
 
 #pageContents{
     height: 100vh;
-    width: calc(100vw - 100pt);
+    width: 90vw;
     background-color: var(--blue1);
     float:right;
-    padding-left: 5px;
-    padding-top: 5px;
+    padding-left: 1vw;
+    padding-top: 2vh;
 }
 
 #pageData {
@@ -154,7 +151,8 @@ a:hover{
     border-collapse: collapse;
     background-color: var(--blue1);
     padding: 1px;
-    width: calc(100vw - 100pt);
+    width: 80vw;
+    font-size: 1.5vw;
 }
 
 /* #listOfData {
