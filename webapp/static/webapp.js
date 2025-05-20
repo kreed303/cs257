@@ -18,16 +18,14 @@ function initialize() {
     }
 }
 
-function getAPIBaseURL() {
-    let baseURL = window.location.protocol
+export function getAPIBaseURL() {
+    var baseURL = window.location.protocol
                     + '//' + window.location.hostname
-                    + ':' + window.location.port
-                    + '/api';
+                    + ':' + window.location.port;
     return baseURL;
 }
 
 function doSomething(){
-    var change = document.getElementById("changeSomething");
 
     var URL = getAPIBaseURL() + '/api/1.0/songs'
     fetch(URL, {method: 'get'})
@@ -45,19 +43,14 @@ function doSomething(){
     });
 }
 
-function getAPIBaseURL() {
-    var baseURL = window.location.protocol
-                    + '//' + window.location.hostname
-                    + ':' + window.location.port;
-    return baseURL;
-}
+
 
 function clickNewPage() {
     return window.location.href = 'http://localhost:5555/help';
 
 }
 
-function createMenu() {
+export function createMenu() {
     var menu = document.getElementById('menu');
 
     if (!menu) {
