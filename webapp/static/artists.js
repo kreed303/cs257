@@ -13,14 +13,14 @@ function addArtistsTable () {
     fetch(URL, {method: 'get'})
 
     .then((response) => response.json())
-    
-    .then(function(response) {
-        var changeString = '';
-        for (var i = 0; i < response.length; i++)
-            changeString += '<tr><td class="musicDataEntry">' + response[i]['artistName']  + '</td></tr>'
 
-        var element = document.getElementsByClassName('musicDataTable');
-        element[0].innerHTML = changeString;
+    .then(function(response) {
+        var changeString = '<table class="musicDataTable">';
+        for (var i = 0; i < response.length; i++)
+            changeString += '<tr><td class="musicDataEntry">' + response[i]['artistName']  + '</td></tr>';
+        changeString += "</table>";
+        var element = document.getElementById('pageData');
+        element.innerHTML = changeString;
     })
 
     .catch(function(error) {
