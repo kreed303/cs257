@@ -30,17 +30,22 @@ def getMenuHTML():
     # x = f.read()
     return flask.render_template('menu.html')
 
-@api.route('1.0/displayArtists')
-def getArtistsHTML():
-    return flask.render_template('artists.html')
+# @api.route('1.0/displayArtists')
+# def getArtistsHTML():
+#     return flask.render_template('artists.html')
 
-@api.route('1.0/displayHome')
-def getHomeHTML():
-    return flask.render_template('home.html')
+# @api.route('1.0/displayHome')
+# def getHomeHTML():
+#     return flask.render_template('home.html')
 
-@api.route('1.0/displayHome')
-def getSongsHTML():
-    return flask.render_template('home.html')
+# @api.route('1.0/displaySongs')
+# def getSongsHTML():
+#     return flask.render_template('songs.html')
+
+# @api.route('1.0/displayAlbums')
+# def getAlbumsHTML():
+#     return flask.render_template('.html')
+
 
 # 
 # ---------------------
