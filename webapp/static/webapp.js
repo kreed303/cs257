@@ -21,13 +21,15 @@ function initialize() {
 export function getAPIBaseURL() {
     var baseURL = window.location.protocol
                     + '//' + window.location.hostname
-                    + ':' + window.location.port;
+                    + ':' + window.location.port
+                    + '/api';
+                    
     return baseURL;
 }
 
 function doSomething(){
 
-    var URL = getAPIBaseURL() + '/api/1.0/songs'
+    var URL = getAPIBaseURL() + '/1.0/songs'
     fetch(URL, {method: 'get'})
 
     .then((response) => response.json())
@@ -45,7 +47,7 @@ function doSomething(){
 
 
 
-function clickNewPage() {
+export function clickNewPage(link) {
     return window.location.href = 'http://localhost:5555/help';
 
 }
@@ -57,22 +59,14 @@ export function createMenu() {
         console.error('Could not find #menu');
         return;
     }
-    menu.innerHTML =
-    `Menu
-    <div class="menuItems" id="homeNavButton">
-        <a href="">Home</a></div>
-    <div class="menuItems" id="playlistsNavButton">
-        <a href="">Playlists</a></div>
-    <div class="menuItems" id="artistsNavButton">
-        <a href="">Artists</a></div>
-    <div class="menuItems" id="albumsNavButton">
-        <a href="">Albums</a></div>
-    <div class="menuItems" id="songsNavButton">
-        <a href="">Songs</a></div>
-    <div class="menuItems" id="tagsNavButton">
-        <a href="">Tags</a></div>
-    <div class="menuItems" id="filterNavButton">
-        <a href="">Filter</a></div>`;
+    var URL = getAPIBaseURL() + '/1.0/menuHTML'
+    fetch(URL, {method: 'get'})
+    .then(function(response) {
+        var element = document.getElementById('menu');
+        console.log(response)
+        element.innerHTML = response;
+        }
+    );
 }
 
 function clickHelpButton() {

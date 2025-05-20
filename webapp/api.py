@@ -141,7 +141,7 @@ def getSongsFromAlbumThroughArist(artistName, albumName, shuffle=None):
 # --------------------------
 # Stuff that has to do with albums
 # 
-@api.route('/api/1.0/albums')
+@api.route('/1.0/albums')
 def getAlbums():
     '''
     This allows the user to get a list of all available albums
