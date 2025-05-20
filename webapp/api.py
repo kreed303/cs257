@@ -15,12 +15,26 @@ import random
 
 from helperFunctions import *
 
+api = flask.Flask(__name__, static_folder='static', template_folder='templates')
 api = flask.Blueprint('api', __name__)
 
 # 
 # ---------------------
 # stuff that has to do with artists
 # 
+
+@api.route('/1.0/menuHTML')
+def getMenuHTML():
+    f = open("templates/menu.html", "r")
+    x = f.read()
+    # x = flask.render_template('menu.html')
+    print(x)
+    return x
+
+@api.route('1.0/displayArtists')
+def getArtistsHTML():
+    return flask.render_template('artists.html')
+
 
 @api.route('/1.0/artists')
 def getArtists():
