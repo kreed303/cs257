@@ -18,10 +18,18 @@ function initialize() {
     }
 }
 
+function getAPIBaseURL() {
+    let baseURL = window.location.protocol
+                    + '//' + window.location.hostname
+                    + ':' + window.location.port
+                    + '/api';
+    return baseURL;
+}
 
 function doSomething(){
     var change = document.getElementById("changeSomething");
-    var URL = 'http://localhost:5555/api/1.0/songs';
+
+    var URL = getAPIBaseURL() + '/api/1.0/songs'
     fetch(URL, {method: 'get'})
 
     .then((response) => response.json())
