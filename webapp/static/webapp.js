@@ -61,6 +61,7 @@ export function createMenu() {
     }
     var URL = getAPIBaseURL() + '/1.0/menuHTML'
     fetch(URL, {method: 'get'})
+    .then((response) => response.text())
     .then(function(response) {
         var element = document.getElementById('menu');
         console.log(response)

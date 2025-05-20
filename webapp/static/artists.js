@@ -13,7 +13,7 @@ function addArtistsTable () {
     fetch(URL, {method: 'get'})
 
     .then((response) => response.json())
-
+    
     .then(function(response) {
         var changeString = '';
         for (var i = 0; i < response.length; i++)
