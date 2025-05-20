@@ -122,6 +122,7 @@ a:hover{
     float:right;
     padding-left: 5px;
     padding-top: 5px;
+    overflow: none;
 }
 
 #pageData {
@@ -159,6 +160,7 @@ a:hover{
     background-color: var(--blue1);
     padding: 1px;
     width: calc(100vw - 100px);
+    overflow: none;
 }
 
 /* #listOfData {
