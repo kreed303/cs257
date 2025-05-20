@@ -13,6 +13,13 @@
     --borderColor: rgb(0, 2, 98);
     --textColor: black;
     --hoverColor: rgb(234, 255, 0);
+
+}
+
+h1,h2,h3{
+    color: var(--textColor);
+    font-family: Roboto;
+    font-size: 18pt;
 }
 
 body {
@@ -24,7 +31,7 @@ body {
 p {
     color: var(--textColor);
     font-family: Roboto;
-    font-size: 9vw;
+    font-size: 12pt;
     font-stretch: semi-expanded;
 }
 
@@ -33,7 +40,7 @@ div {
 }
 
 button {
-    color:darkorange;
+    color:var(--blue3);
 }
 
 a:hover{
@@ -46,7 +53,7 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5vh;
+    height: 45px;
     width: 100vw;
     text-align: center;
     font-size: 2.5vh;
@@ -57,13 +64,13 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5vh;
+    height: 45px;
     width: 100vw;
     font-size: 2.5vh;
     background-color: var(--blue3);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
-    border-bottom-width: 5pt;
+    border-bottom-width: 5px;
     text-align: center;
 }
 
@@ -71,12 +78,12 @@ a:hover{
 /* The Menu */
 #menu {
     height: 100vh;
-    width: 10vw;
+    width: 100px;
     background-color: var(--blue2);
     border-right-color: var(--borderColor);
     border-right-style: solid;
-    border-right-width: 5pt;
-    font-size: 4vw;
+    border-right-width: 5px;
+    font-size: 18pt;
     float: left;
 }
 
@@ -84,22 +91,22 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8.5vw;
-    height: 5vh;
-    font-size: 1.5vw;
+    width: 85px;
+    height: 20px;
     margin: auto;
     font-stretch: normal;
     background-color: var(--blue1);
     border-color: var(--borderColor);
     border-style: solid;
-    border-width: 1pt;
-    margin: 0.5vw;
+    border-width: 1px;
+    font-size: 12pt;
+    margin: 5px;
 }
 
 /* The Page */
 #pageHeader {
-    height: 5vh;
-    width: 90vw;
+    height: 45px;
+    width: calc(100vw - 100px);
     background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
@@ -110,11 +117,11 @@ a:hover{
 
 #pageContents{
     height: 100vh;
-    width: 90vw;
+    width: calc(100vw - 100px);
     background-color: var(--blue1);
     float:right;
-    padding-left: 1vw;
-    padding-top: 2vh;
+    padding-left: 5px;
+    padding-top: 5px;
 }
 
 #pageData {
@@ -151,8 +158,7 @@ a:hover{
     border-collapse: collapse;
     background-color: var(--blue1);
     padding: 1px;
-    width: 80vw;
-    font-size: 1.5vw;
+    width: calc(100vw - 100px);
 }
 
 /* #listOfData {
