@@ -11,6 +11,30 @@ function initialize() {
     if (element){
         element.onclick = clickNewPage;
     }
+
+    var element = document.getElementById('something');
+    if (element){
+         element.onclick = doSomething;
+    }
+}
+
+
+function doSomething(){
+    var change = document.getElementById("changeSomething");
+    var URL = 'http://localhost:5555/api/1.0/songs';
+    fetch(URL, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(change) {
+        var change = change;
+        var element = document.getElementById('changeSomething');
+        element.innerHTML = change;
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
 }
 
 function getAPIBaseURL() {

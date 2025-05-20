@@ -3,7 +3,10 @@
     <meta charset="UTF-8">
         <title>Sam & Katelyn's Music Extravaganza</title>
         <link rel="stylesheet" type="text/css" 
-            href="mockup.css" />
+            href="{{ url_for('static', filename='webapp.css') }}" />
+        <script type="text/javascript" 
+            src="{{ url_for('static', filename='webapp.js') }}" ></script>
+            
 </head>
 <body>
     <div id="musicPlayer">
@@ -25,4 +28,8 @@
     <div id="pageContents">
         <p>Click to the left to navigate to some sweet tunes :)</p>
     </div>
+    <button id="something">
+        Get Data
+    </button>
+    <p id="changeSomething"></p>
 </body>

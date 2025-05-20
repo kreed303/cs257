@@ -15,15 +15,14 @@ import random
 
 from helperFunctions import *
 
-app = flask.Flask(__name__, static_folder='static', template_folder='templates')
-
+api = flask.Blueprint('api', __name__)
 
 # 
 # ---------------------
 # stuff that has to do with artists
 # 
 
-@app.route('/1.0/artists')
+@api.route('/1.0/artists')
 def getArtists():
     '''
     This allows the user to get a list of all available artists
@@ -49,7 +48,7 @@ def getArtists():
 
     return json.dumps(artists)
 
-@app.route('/1.0/artists/<artistName>')
+@api.route('/1.0/artists/<artistName>')
 def getAlbumsFromArtist(artistName):
     '''
     This allows the user to get a list of all available albums from a specific artist
@@ -75,7 +74,7 @@ def getAlbumsFromArtist(artistName):
 
     return json.dumps(albums)
 
-@app.route('/1.0/artists/<artistName>/songs') 
+@api.route('/1.0/artists/<artistName>/songs') 
 def getSongsFromArtist(artistName, shuffle=None):
     '''
     This allows the user to get a list of all available songs by a specific artist
@@ -115,7 +114,7 @@ def getSongsFromArtist(artistName, shuffle=None):
 
     return json.dumps(songs)
 
-@app.route('/1.0/artists/<artistName>/<albumName>')
+@api.route('/1.0/artists/<artistName>/<albumName>')
 def getSongsFromAlbumThroughArist(artistName, albumName, shuffle=None):
     '''
     This allows the user to get a list of all available songs in a specific album by an artist
@@ -128,7 +127,7 @@ def getSongsFromAlbumThroughArist(artistName, albumName, shuffle=None):
 # --------------------------
 # Stuff that has to do with albums
 # 
-@app.route('/api/1.0/albums')
+@api.route('/api/1.0/albums')
 def getAlbums():
     '''
     This allows the user to get a list of all available albums
@@ -152,7 +151,7 @@ def getAlbums():
 
     return json.dumps(albums)
 
-@app.route('/1.0/albums/<albumName>')
+@api.route('/1.0/albums/<albumName>')
 def getSongsFromAlbum(albumName, shuffle=None):
     '''
     This allows the user to get a list of all available songs in a specific album
@@ -196,7 +195,7 @@ def getSongsFromAlbum(albumName, shuffle=None):
 # stuff that has to do with songs
 #
 
-@app.route('/1.0/songs')
+@api.route('/1.0/songs')
 def getSongs(shuffle=None):
     '''
     This allows the user to get a list of all available songs
@@ -229,16 +228,11 @@ def getSongs(shuffle=None):
     return json.dumps(songs)
 
 
-# Other useful functions
-@app.route('/1.0/menu')
-def getMenuHTML():
-    return json.dumps("menu.html")
-
 
 # From Jeff's API code
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser('A sample Flask application/API')
-    parser.add_argument('host', help='the host on which this application is running')
-    parser.add_argument('port', type=int, help='the port on which this application is listening')
-    arguments = parser.parse_args()
-    app.run(host=arguments.host, port=arguments.port, debug=True)
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser('A sample Flask application/API')
+#     parser.add_argument('host', help='the host on which this application is running')
+#     parser.add_argument('port', type=int, help='the port on which this application is listening')
+#     arguments = parser.parse_args()
+#     api.run(host=arguments.host, port=arguments.port, debug=True)
