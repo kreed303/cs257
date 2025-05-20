@@ -106,7 +106,7 @@ a:hover{
 /* The Page */
 #pageHeader {
     height: 45px;
-    width: calc(100vw - 100px);
+    width: calc(100% - 100px);
     background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
@@ -117,12 +117,11 @@ a:hover{
 
 #pageContents{
     height: 100vh;
-    width: calc(100vw - 100px);
+    width: calc(100% - 100px);
     background-color: var(--blue1);
     float:right;
     padding-left: 5px;
     padding-top: 5px;
-    overflow: none;
 }
 
 #pageData {
@@ -159,8 +158,7 @@ a:hover{
     border-collapse: collapse;
     background-color: var(--blue1);
     padding: 1px;
-    width: calc(100vw - 100px);
-    overflow: none;
+    width: calc(100% - 100px);
 }
 
 /* #listOfData {
