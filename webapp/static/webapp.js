@@ -1,23 +1,5 @@
 window.addEventListener("load", initialize);
 
-function initialize() {
-    createMenu();
-    var element = document.getElementById('helpButton');
-    if (element) {
-        element.onclick = clickHelpButton;
-    }
-
-    var element = document.getElementById('artistsPage');
-    if (element){
-        element.onclick = clickNewPage;
-    }
-
-    var element = document.getElementById('something');
-    if (element){
-         element.onclick = doSomething;
-    }
-}
-
 export function getAPIBaseURL() {
     var baseURL = window.location.protocol
                     + '//' + window.location.hostname
@@ -27,30 +9,8 @@ export function getAPIBaseURL() {
     return baseURL;
 }
 
-function doSomething(){
-
-    var URL = getAPIBaseURL() + '/1.0/songs'
-    fetch(URL, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(change) {
-        var change = change;
-        var element = document.getElementById('changeSomething');
-        element.innerHTML = change;
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
-}
 
 
-
-export function clickNewPage(link) {
-    return window.location.href = 'http://localhost:5555/help';
-
-}
 
 export function createMenu() {
     var menu = document.getElementById('menu');
@@ -70,20 +30,9 @@ export function createMenu() {
     );
 }
 
-function clickHelpButton() {
-    var url = 'http://localhost:5555/help';
+// not used yet
+// maybe will be helpful in the future.
+export function clickNewPage(link) {
+    return window.location.href = link;
 
-    fetch(url, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(help) {
-        var helpText = help;
-        var element = document.getElementById('helpText');
-        element.innerHTML = helpText;
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
 }
