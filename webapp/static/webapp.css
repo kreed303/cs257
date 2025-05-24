@@ -2,35 +2,53 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: auto;
 }
 
 :root {
     /* defining color */
-    --blue4: rgb(0, 3, 164);
+    /* Sam's Colors*/
+    /* --blue4: rgb(0, 3, 164);
     --blue3: rgb(32, 32, 186);
     --blue2:  rgb(83, 83, 197);
-    --blue1: rgb(129, 129, 255);
-    --borderColor: rgb(0, 2, 98);
-    --textColor: black;
-    --hoverColor: rgb(234, 255, 0);
+    --blue1: rgb(129, 129, 255); */
 
+    --blue1:#def1fb;
+    --blue2: #82BBED;
+    --blue3: #619bd1;
+    --blue4: #395488;
+
+    --borderColor: var(--blue4);
+    --textColor: black;
+    --hoverColor: rgb(92, 156, 87);
+
+    --menuWidth: 150px;
+    --siteHeaderHeight: 80px;
+    --musicPlayerHeight: 45px;
+    --pageHeaderHeight: 60px;
+    --lineBorder: 2px;
 }
 
-h1,h2,h3{
+/* h1,h2,h3{
     color: var(--textColor);
     font-family: Roboto;
     font-size: 18pt;
+} */
+
+h3 {
+    font-size: 14pt;
+    color: black;
 }
 
-#jeff{
-    color: red;
-    font-size: 18;
+h2 {
+    font-size: 30pt ;
 }
 
 body {
     background-color: var(--blue1); /* or any valid color */
-    color: var(--textColor)
-  }
+    color: var(--textColor);
+    overflow-x: auto;
+}
 
 /* General Things */
 p {
@@ -40,91 +58,119 @@ p {
     font-stretch: semi-expanded;
 }
 
-div {
+/* div {
     background-color: var(--blue3);
-}
-
-button {
-    color:var(--blue3);
-}
-
-a:hover{
-    color: var(--hoverColor);
-    }
-
+} */
 
 /* Page Headings */
 #musicPlayer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
-    width: 100vw;
+    height: var(--musicPlayerHeight);
+    width: 100%;
+
+    /* To control wrapping */
+    white-space: nowrap;
+
     text-align: center;
     font-size: 2.5vh;
-    background-color: var(--blue4);
+    background-color: var(--blue3);
+
+    border-bottom-color: var(--borderColor);
+    border-bottom-style: solid;
+    border-bottom-width: var(--lineBorder);
 }
 
 #siteHeader {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 45px;
-    width: 100vw;
-    font-size: 2.5vh;
-    background-color: var(--blue3);
+    justify-content: left;
+    height: var(--siteHeaderHeight);
+    width: 100%;
+
+    /* To control wrapping */
+    white-space: nowrap;    
+    font-size: 5vh;
+    background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
-    border-bottom-width: 5px;
-    text-align: center;
+    border-bottom-width: var(--lineBorder);
+    text-align: left;
+    padding: 7px;
 }
 
 
 /* The Menu */
 #menu {
-    height: 100vh;
-    width: 100px;
+    display: flex; /* allow flexbox stuff */
+    flex-direction: column;   /* Stack vertically */
+    align-items: center;      /* Center items horizontally */
+    justify-content: flex-start; /* align items at top of menu */
+    float: left;
+    overflow: hidden;
+    padding-top: 3px;
+
+    height: calc(100vh - var(--siteHeaderHeight) - var(--musicPlayerHeight)); 
+    width: var(--menuWidth);
+
     background-color: var(--blue2);
     border-right-color: var(--borderColor);
     border-right-style: solid;
-    border-right-width: 5px;
-    font-size: 18pt;
-    float: left;
+    border-right-width: var(--lineBorder);
 }
 
-.menuItems {
+.menuItems { /* Is actually an href item*/
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 85px;
-    height: 20px;
+
+    width: calc(var(--menuWidth) - 20px);
+    height: 30px;
     margin: auto;
+
     font-stretch: normal;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+    text-decoration: none;
+    color: var(--blue4);
+
     background-color: var(--blue1);
     border-color: var(--borderColor);
     border-style: solid;
     border-width: 1px;
-    font-size: 12pt;
-    margin: 5px;
+    margin: 5px;    
+}
+
+.menuItems:hover {
+    color: var(--blue1);
+    background-color: var(--blue4);
 }
 
 /* The Page */
 #pageHeader {
-    height: 45px;
-    width: calc(100% - 100px);
+    display: flex;
+    height: var(--pageHeaderHeight);
+    width: calc(100% - var(--menuWidth));
+
     background-color: var(--blue2);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
-    border-bottom-width: 5pt;
+    border-bottom-width: 2pt;
+
     text-align: left;
+    align-items: center;
     float: right;
+    padding: 7px;
+
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
 #pageContents{
-    height: 100vh;
-    width: calc(100% - 100px);
+    /* height: calc(100vh - var(--siteHeaderHeight) - var(--musicPlayerHeight)); */
+    width: calc(100% - var(--menuWidth));
     background-color: var(--blue1);
-    float:right;
+    float: right;
     padding-left: 5px;
     padding-top: 5px;
 }
@@ -134,7 +180,8 @@ a:hover{
 }
 
 .playShuffleButtons {
-    display: inline;
+    background-color: var(--blue1);
+    display: flex;
     float: center;
 }
 

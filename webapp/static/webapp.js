@@ -7,9 +7,6 @@ export function getAPIBaseURL() {
     return baseURL;
 }
 
-
-
-
 export function createMenu() {
     var menu = document.getElementById('menu');
 

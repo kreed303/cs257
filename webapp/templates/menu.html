@@ -1,19 +1,12 @@
 <!-- base.html -->
 <!--credit: chatGPT for the idea of an HTML "function"-->
 <div id="menu"> 
-    Menu
-    <div class="menuItems" id="homeNavButton">
-    <a href="{{ url_for('home') }}">Home</a></div>
-    <div class="menuItems" id="playlistsNavButton">
-    <a href="">Playlists</a></div>
-    <div class="menuItems" id="artistsNavButton"> <!---->
-    <a href="{{ url_for('artists') }}">Artists</a></div>
-    <div class="menuItems" id="albumsNavButton">
-    <a href="{{ url_for('albums') }}">Albums</a></div>
-    <div class="menuItems" id="songsNavButton">
-    <a href="{{ url_for('songs') }}">Songs</a></div>
-    <div class="menuItems" id="tagsNavButton">
-    <a href="">Tags</a></div>
-    <div class="menuItems" id="filterNavButton">
-    <a href="">Filter</a></div>
+    <!--Add the playlists, tags, and filter sections back in later-->
+    <a class="menuItems" id="homeNavButton" href="{{ url_for('home') }}">Home</a>
+    
+    <a class="menuItems" id="artistsNavButton" href="{{ url_for('artists') }}">Artists</a>
+
+    <a class="menuItems" id="albumsNavButton" href="{{ url_for('albums') }}">Albums</a>
+
+    <a class="menuItems" id="songsNavButton" href="{{ url_for('songs') }}">Songs</a>
 </div>
