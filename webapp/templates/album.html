@@ -1,0 +1,44 @@
+<!-- SPECIFIC ALBUM -->
+
+<!DOCTYPE html>
+<head> 
+    <meta charset="UTF-8">
+        <title>Sam & Katelyn's Music Extravaganza</title>
+        <link rel="stylesheet" type="text/css" 
+            href="{{ url_for('static', filename='webapp.css') }}" />
+        <script type="module"
+            src="{{ url_for('static', filename='album.js') }}" ></script>
+</head>
+
+<body>
+    <div id="musicPlayer">
+        <h3>--MUSIC PLAYER--</h3>
+    </div>
+
+    <div id="siteHeader">
+        <h2>Sam & Katelyn's Music Extravaganza</h2>
+    </div>
+
+    <div id="pageHeader">
+        <span>
+            <!--Normally blank element to fill with header contents-->
+            <!--Like name of artist, name of album, etc.-->
+            <h1 id="albumName">{{albumName}}</h1>
+            <hidden id="albumID">{{albumID}}</hidden>
+        </span>
+    </div>
+
+    <div id="menu"></div>
+
+    <div id="pageContents">
+        <div class="playShuffleButtons">
+            <button id="playButton">Play</button>
+            <button id="shuffleButton">Shuffle</button>
+        </div>
+        <div id="pageData">
+            <!--Blank element to take data inputs-->
+            <!--Individual data items will be div objects of class "data"-->
+            <!--Will be created and modified by the JavaScript file-->
+        </div>
+    </div>
+</body>
