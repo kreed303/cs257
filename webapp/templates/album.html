@@ -3,11 +3,14 @@
 <!DOCTYPE html>
 <head> 
     <meta charset="UTF-8">
-        <title>Sam & Katelyn's Music Extravaganza</title>
-        <link rel="stylesheet" type="text/css" 
-            href="{{ url_for('static', filename='webapp.css') }}" />
-        <script type="module"
-            src="{{ url_for('static', filename='album.js') }}" ></script>
+    <title>Sam & Katelyn's Music Extravaganza</title>
+    <link rel="stylesheet" type="text/css" 
+        href="{{ url_for('static', filename='webapp.css') }}" />
+    <script type="module"
+        src="{{ url_for('static', filename='album.js') }}" ></script>          
+    <script>
+        const albumID = "{{albumID}}";
+        </script>
 </head>
 
 <body>
@@ -20,11 +23,12 @@
     </div>
 
     <div id="pageHeader">
+
         <span>
             <!--Normally blank element to fill with header contents-->
             <!--Like name of artist, name of album, etc.-->
             <h1 id="albumName">{{albumName}}</h1>
-            <hidden id="albumID">{{albumID}}</hidden>
+            <!-- </ id="albumID">{{albumID}}</hidden> -->
         </span>
     </div>
 
