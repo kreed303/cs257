@@ -180,26 +180,35 @@ def getAlbums():
 
     return json.dumps(albums)
 
-@api.route('/1.0/albums/<albumName>')
-def getSongsFromAlbum(albumName, shuffle=None):
+@api.route('/1.0/album/<albumID>')
+def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
     '''
     This allows the user to get a list of all available songs in a specific album
     INPUT: albumName
     RETURN: all names of songs and their associated information in a specific album
     '''
+
+    albumName = flask.request.args.get('albumName', default = None)
+    # albumID = flask.request.args.get('albumId', default = None)
     shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
-    
+
+    assert albumID != None or albumName != None    
     # Get data from database
     conn = getConnection()
     curs = conn.cursor()
+
+    if albumID == None:
+        albumID = _getAlbumID(albumName)
+    if albumName != None:
+        albumName = albumName.lower()
 
     query = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
             songs.songlength, songs.songbpm FROM songs
             JOIN albumssongs ON albumssongs.songid = songs.songid
             JOIN albums ON albums.albumid = albumssongs.albumid
-            WHERE LOWER(albums.albumName) = LOWER(%s)'''
+            WHERE albums.albumid = %s'''
 
-    curs.execute(query, (albumName,))
+    curs.execute(query, (albumID,))
     songsTuples = curs.fetchall()
 
     # Turn into list of dictionaries

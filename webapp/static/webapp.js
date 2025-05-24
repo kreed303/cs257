@@ -1,5 +1,3 @@
-window.addEventListener("load", initialize);
-
 export function getAPIBaseURL() {
     var baseURL = window.location.protocol
                     + '//' + window.location.hostname

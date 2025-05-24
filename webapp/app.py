@@ -2,6 +2,8 @@ import argparse
 import flask
 import api
 
+from helperFunctions import _getAlbumName
+
 app = flask.Flask(__name__, static_folder='static', template_folder='templates')
 app.register_blueprint(api.api, url_prefix='/api')
 
@@ -35,6 +37,17 @@ def albums():
     '''
 
     return flask.render_template('albums.html')
+
+@app.route('/album/<albumID>')
+def album(albumID):
+    '''
+    Webage for displaying a specific album
+    input: album information dictionary
+    output: webpage for list of albums by a particular artist
+    '''
+    albumName = _getAlbumName(albumID)
+    return flask.render_template('album.html', albumID = albumID, albumName = albumName)
+
 
 @app.route('/songs')
 def songs():

@@ -72,6 +72,14 @@ def _getArtistID(artistName):
     '''
     return _get("artistId", "artists", "artistName", artistName)
 
+def _getAlbumName(albumID):
+    '''
+    Helper Function to return albumID 
+    input: albumName
+    return: albumID
+    '''
+    return _get("albumName", "albums", "albumID", albumID)
+
 def _getAlbumID(albumName):
     '''
     Helper Function to return albumID 
