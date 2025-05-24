@@ -19,7 +19,8 @@ function addSongsTable() {
 
         var songsHTML = '<table class="musicDataTable">';
         for (var i=0; i<songs.length; i++) {
-            songsHTML += '<tr class="musicDataEntry"><td>' + songs[i].songName + '</td></tr>';
+            var song = songs[i]
+            songsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
         }
 
         songsHTML += '</table>';

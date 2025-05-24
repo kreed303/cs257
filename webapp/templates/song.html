@@ -1,5 +1,3 @@
-<!-- SPECIFIC ALBUM -->
-
 <!DOCTYPE html>
 <head> 
     <meta charset="UTF-8">
@@ -7,9 +5,10 @@
     <link rel="stylesheet" type="text/css" 
         href="{{ url_for('static', filename='webapp.css') }}" />
     <script type="module"
-        src="{{ url_for('static', filename='album.js') }}" ></script>          
-    <script> const albumID = "{{albumID}}"; </script>
+        src="{{ url_for('static', filename='song.js') }}" ></script>          
+    <script> const songID = "{{songID}}"; </script>
 </head>
+
 
 <body>
     <div id="musicPlayer">
@@ -25,7 +24,7 @@
         <span>
             <!--Normally blank element to fill with header contents-->
             <!--Like name of artist, name of album, etc.-->
-            <h1 id="albumName">{{albumName}}</h1>
+            <h1 id="songName">{{songName}}</h1>
             <!-- </ id="albumID">{{albumID}}</hidden> -->
         </span>
     </div>
@@ -35,7 +34,6 @@
     <div id="pageContents">
         <div class="playShuffleButtons">
             <button id="playButton">Play</button>
-            <button id="shuffleButton">Shuffle</button>
         </div>
         <div id="pageData">
             <!--Blank element to take data inputs-->

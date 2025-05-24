@@ -180,7 +180,7 @@ def getAlbums():
 
     return json.dumps(albums)
 
-@api.route('/1.0/album/<albumID>')
+@api.route('/1.0/albums/<albumID>')
 def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
     '''
     This allows the user to get a list of all available songs in a specific album
@@ -246,7 +246,7 @@ def getSongs(shuffle=None):
     conn = getConnection()
     curs = conn.cursor()
     getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
-            songs.songlength, songs.songbpm FROM songs;
+            songs.songlength, songs.songbpm FROM songs
         '''
     curs.execute(getSongsQuery)
     songs = []
@@ -260,11 +260,24 @@ def getSongs(shuffle=None):
     else: 
         songs = sorted(songs, key=lambda x: (x['songName']))
     
-    curs.close()
-    conn.close()
+
 
     return json.dumps(songs)
 
+@api.route('/1.0/songs/<songID>')
+def getSong(songID):
+    conn = getConnection()
+    curs = conn.cursor()
+    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm FROM songs
+    WHERE songs.songid = %s'''
+    curs.execute(getSongsQuery, (songID, ))
+    song = curs.fetchone()
+    song = [{'songID': song[0], 'songName': song[1], 
+                'trackNumber': song[2], 'songLength': song[3], 'songBPM': song[4]}]
+    curs.close()
+    conn.close()
+
+    return json.dumps(song)
 
 
 # From Jeff's API code
