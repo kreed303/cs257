@@ -2,7 +2,7 @@ import argparse
 import flask
 import api
 
-from helperFunctions import _getAlbumName, _getSongName
+from helperFunctions import _getAlbumName, _getArtistName, _getSongName
 
 app = flask.Flask(__name__, static_folder='static', template_folder='templates')
 app.register_blueprint(api.api, url_prefix='/api')
@@ -27,6 +27,29 @@ def artists():
     '''
 
     return flask.render_template('artists.html')
+
+@app.route('/artists/<artistID>')
+def artist(artistID) :
+    '''
+    Webpage for displaying a single artist's music
+    input: artistID
+    output: a list of albums by the artist
+    '''
+    artistName = _getArtistName(artistID)
+    return flask.render_template('artist.html', artistID = artistID, artistName = artistName)
+
+@app.route('/artists/<artistID>/<albumID>')
+def albumThruArtist(artistID, albumID): 
+    '''
+    Webpage for displaying an album by a single artist's
+    input: artistID, albumID
+    output: a list of songs on the album by the artist
+    '''
+
+    artistName = _getArtistName(artistID)
+    albumName = _getAlbumName(albumID)
+    return flask.render_template('album.html', albumID = albumID, albumName = albumName)
+
 
 @app.route('/albums')
 def albums():
