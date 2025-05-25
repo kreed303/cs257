@@ -19,7 +19,7 @@ export function createMenu() {
     .then((response) => response.text())
     .then(function(response) {
         var element = document.getElementById('menu');
-        console.log(response)
+        // console.log(response)
         element.innerHTML = response;
         }
     );

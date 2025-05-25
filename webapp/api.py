@@ -77,8 +77,8 @@ def getArtists():
 
     return json.dumps(artists)
 
-@api.route('/1.0/artists/<artistName>')
-def getAlbumsFromArtist(artistName):
+@api.route('/1.0/artists/<artistID>')
+def getAlbumsFromArtist(artistID):
     '''
     This allows the user to get a list of all available albums from a specific artist
     INPUT: the name of the artist
@@ -91,8 +91,8 @@ def getAlbumsFromArtist(artistName):
             FROM albums
             JOIN artistsalbums ON artistsalbums.albumid = albums.albumid
             JOIN artists ON artists.artistid = artistsalbums.artistid
-            WHERE LOWER(artists.artistname) = LOWER(%s);'''
-    curs.execute(query, (artistName,))
+            WHERE artists.artistid = %s;'''
+    curs.execute(query, (artistID,))
     albumsTuples = curs.fetchall()
 
     # organize data
