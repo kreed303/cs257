@@ -22,7 +22,7 @@ function addArtistsTable () {
 
         for (var i=0; i<3; i++) {
             var artist = artists[i]
-            artistsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/songs/' + artist.artistID + '">' + artist.artistName + '</a></td></tr>';
+            artistsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/artists/' + artist.artistID + '">' + artist.artistName + '</a></td></tr>';
         }
         artistsHTML += "</table>";
         var element = document.getElementById('artists');
