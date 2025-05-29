@@ -15,6 +15,33 @@ def getConnection():
     except Exception as e:
         print(e, file=sys.stderr)
         exit()
+def parseQuery(query, args = None):
+    """
+    Query: query in SQL form
+    args: a tuple
+    """
+
+    conn = getConnection()
+    curs = conn.cursor()
+    
+    curs.execute(query, args)
+    results = curs.fetchone()
+    
+
+    curs.close()
+    conn.close()
+
+    jsonDict = dict()
+    columns = [desc[0] for desc in curs.description]
+    for i in range(len(columns)):
+        jsonDict[columns[i]] = results[i]
+    jsonObj = [jsonDict]
+    return jsonObj
+
+"""
+A bunch of Get queries to speed up that process 
+
+"""        
 
 def _get(request, table, key, input):
     conn = getConnection()

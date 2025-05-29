@@ -30,21 +30,6 @@ def getMenuHTML():
     # x = f.read()
     return flask.render_template('menu.html')
 
-# @api.route('1.0/displayArtists')
-# def getArtistsHTML():
-#     return flask.render_template('artists.html')
-
-# @api.route('1.0/displayHome')
-# def getHomeHTML():
-#     return flask.render_template('home.html')
-
-# @api.route('1.0/displaySongs')
-# def getSongsHTML():
-#     return flask.render_template('songs.html')
-
-# @api.route('1.0/displayAlbums')
-# def getAlbumsHTML():
-#     return flask.render_template('.html')
 
 
 # 
@@ -116,7 +101,7 @@ def getSongsFromArtist(artistId, shuffle=None):
     conn = getConnection()
     curs = conn.cursor()
     query = ''' SELECT songs.songid, songs.songname, songs.tracknumber, 
-            songs.songlength, songs.songbpm FROM songs
+            songs.songlength, songs.songbpm, albums.albumname FROM songs
             JOIN artistssongs ON artistssongs.songid = songs.songid
             JOIN artists ON artists.artistid = artistssongs.artistid
             JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
@@ -141,17 +126,6 @@ def getSongsFromArtist(artistId, shuffle=None):
     conn.close()
 
     return json.dumps(songs)
-
-
-
-@api.route('/1.0/artists/<artistName>/<albumName>')
-def getSongsFromAlbumThroughArist(artistName, albumName, shuffle=None):
-    '''
-    This allows the user to get a list of all available songs in a specific album by an artist
-    INPUT: the name of the artist and the album
-    RETURN: all names of songs and their associated information based on the provided data
-    '''
-    return getSongsFromAlbum(albumName, shuffle = shuffle)
 
 #
 # --------------------------
@@ -230,20 +204,12 @@ def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
 
 def getAlbumArtist(albumID):
 
-    conn = getConnection()
-    curs = conn.cursor()
-
     query = '''SELECT artists.artistname FROM artists
         JOIN artistsalbums ON artistsalbums.artistID = artists.artistID
         JOIN albums ON albums.albumID = artistsalbums.albumID
         WHERE albums.albumid = %s'''
     
-    curs.execute(query, (albumID,))
-    artistName = curs.fetchall()[0][0]
-
-    conn.close()
-    curs.close()
-
+    artistName = parseQuery(query, (albumID))
     return artistName
 
 #
@@ -287,25 +253,15 @@ def getSongs(shuffle=None):
 
 @api.route('/1.0/songs/<songID>')
 def getSong(songID):
-    conn = getConnection()
-    curs = conn.cursor()
-    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
+
+    Query = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
     JOIN albumssongs ON  albumssongs.songid = songs.songid 
     JOIN artistssongs ON songs.songid = artistssongs.songid
     JOIN albums ON albums.albumid = albumssongs.albumid
     JOIN artists ON artists.artistid = artistssongs.artistid
     WHERE songs.songid = %s'''
-    curs.execute(getSongsQuery, (songID, ))
-    song = curs.fetchone()
-    songDict = dict()
-    columns = [desc[0] for desc in curs.description]
-    for i in range(len(columns)):
-        songDict[columns[i]] = song[i]
-
-    curs.close()
-    conn.close()
-
-    return json.dumps([songDict])
+    
+    return json.dumps()
 
 
 # From Jeff's API code

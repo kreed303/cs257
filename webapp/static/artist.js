@@ -33,7 +33,7 @@ function addArtistAlbums() {
 
         var albumsHTML = '<table class="musicDataTable">'
         for (var i=0; i<albums.length; i++) {
-            albumsHTML += '<tr><td class="musicDataEntry"><a href="/artists/' + artistID + '/' + albums[i].albumID + '">' + albums[i].albumName + '</a></td></tr>';
+            albumsHTML += '<tr><td class="musicDataEntry"><a href="/albums/' + albums[i].albumID + '">' + albums[i].albumName + '</a></td></tr>';
         }
 
         albumsHTML += '</table>';
@@ -63,7 +63,10 @@ function addArtistSongs(shuffle) {
         var songsHTML = '<table class="musicDataTable">';
         for (var i=0; i<songs.length; i++) {
             var song = songs[i]
-            songsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
+            songsHTML += '<tr class="musicDataEntry">\
+            <td> <a href="/songs/' + song.songID + '">' + song.songName + '</a> </td>\
+            <td>' + song.albumName + '\
+            </tr>';
         }
 
         songsHTML += '</table>';
