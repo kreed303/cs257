@@ -2,12 +2,12 @@ import { createMenu, getAPIBaseURL } from './webapp.js';
 
 window.addEventListener("load", initialize);
 
+
 function initialize() {
-    
+    var shuffle = false;
     createMenu();
     addSongsTable(shuffle);
-
-    var shuffle = false;
+    
     var shuffleButton = document.getElementById('shuffleButton');
     if (shuffleButton) {
         shuffleButton.onclick = shuffleSongs;
@@ -37,12 +37,11 @@ function addSongsTable(shuffle) {
 
     .then(function(songs) {
         var songsList = document.getElementById('pageData');
-        console.log(songs)
 
         var songsHTML = '<table class="musicDataTable">';
         for (var i=0; i<songs.length; i++) {
             var song = songs[i]
-            songsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + song.songID + '">' + song.songName + '</a></td><td>' + song.artistName+ '</td><td>' + song.albumName+ '</td></tr>';
+            songsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
         }
 
         songsHTML += '</table>';

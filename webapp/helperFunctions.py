@@ -1,11 +1,8 @@
-import flask
-import os
 import psycopg2
 from psycopg2 import sql
 import config
 import sys
-import json
-import random
+import pdb
 
 def getConnection():
     try:
@@ -15,6 +12,7 @@ def getConnection():
     except Exception as e:
         print(e, file=sys.stderr)
         exit()
+        
 def parseQuery(query, args = None):
     """
     Query: query in SQL form
@@ -25,17 +23,17 @@ def parseQuery(query, args = None):
     curs = conn.cursor()
     
     curs.execute(query, args)
-    results = curs.fetchone()
-    
+
+    jsonObj = []
+    for row in curs:
+        jsonDict = dict()
+        columns = [desc[0] for desc in curs.description]
+        for i in range(len(columns)):
+            jsonDict[columns[i]] = row[i]
+        jsonObj.append(jsonDict)
 
     curs.close()
     conn.close()
-
-    jsonDict = dict()
-    columns = [desc[0] for desc in curs.description]
-    for i in range(len(columns)):
-        jsonDict[columns[i]] = results[i]
-    jsonObj = [jsonDict]
     return jsonObj
 
 """
@@ -124,3 +122,12 @@ def _getAlbumID(albumName):
     return _get("albumID", "albums", "albumName", albumName)
 
 
+if __name__ == "__main__":
+    query = '''SELECT 
+    songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
+    JOIN albumssongs ON  albumssongs.songid = songs.songid 
+    JOIN artistssongs ON songs.songid = artistssongs.songid
+    JOIN albums ON albums.albumid = albumssongs.albumid
+    JOIN artists ON artists.artistid = artistssongs.artistid'''
+    songs = parseQuery(query)
+    print(songs)

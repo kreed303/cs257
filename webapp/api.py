@@ -118,7 +118,7 @@ def getSongsFromArtist(artistId, shuffle=None):
     # organize data
     for row in songsTuples:
         songs.append({'songID': row[0], 'songName': row[1], 
-                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4]})
+                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4], 'albumName': row[5]})
     if shuffle:
         random.shuffle(songs)
 
@@ -204,12 +204,20 @@ def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
 
 def getAlbumArtist(albumID):
 
+    conn = getConnection()
+    curs = conn.cursor()
+
     query = '''SELECT artists.artistname FROM artists
         JOIN artistsalbums ON artistsalbums.artistID = artists.artistID
         JOIN albums ON albums.albumID = artistsalbums.albumID
         WHERE albums.albumid = %s'''
     
-    artistName = parseQuery(query, (albumID))
+    curs.execute(query, (albumID,))
+    artistName = curs.fetchall()[0][0]
+
+    conn.close()
+    curs.close()
+
     return artistName
 
 #
@@ -253,14 +261,25 @@ def getSongs(shuffle=None):
 
 @api.route('/1.0/songs/<songID>')
 def getSong(songID):
-
-    Query = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
+    conn = getConnection()
+    curs = conn.cursor()
+    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
     JOIN albumssongs ON  albumssongs.songid = songs.songid 
     JOIN artistssongs ON songs.songid = artistssongs.songid
     JOIN albums ON albums.albumid = albumssongs.albumid
     JOIN artists ON artists.artistid = artistssongs.artistid
     WHERE songs.songid = %s'''
-    
+    curs.execute(getSongsQuery, (songID, ))
+    song = curs.fetchone()
+    songDict = dict()
+    columns = [desc[0] for desc in curs.description]
+    for i in range(len(columns)):
+        songDict[columns[i]] = song[i]
+    songDict = [songDict]
+
+    curs.close()
+    conn.close()
+
     return json.dumps()
 
 
