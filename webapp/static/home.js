@@ -22,7 +22,7 @@ function addArtistsTable () {
 
         for (var i=0; i<3; i++) {
             var artist = artists[i]
-            artistsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + artist.artistID + '">' + artist.artistName + '</a></td></tr>';
+            artistsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/songs/' + artist.artistID + '">' + artist.artistName + '</a></td></tr>';
         }
         artistsHTML += "</table>";
         var element = document.getElementById('artists');
@@ -47,7 +47,7 @@ function addSongsTable() {
         var songsHTML = '<table class="musicDataTable">';
         for (var i=0; i<5; i++) {
             var song = songs[i]
-            songsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
+            songsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
         }
 
         songsHTML += '</table>';
@@ -73,7 +73,7 @@ function addAlbumsTable() {
         var albumsHTML = '<table class="musicDataTable">';
         for (var i=0; i<5; i++) {
             var album = albums[i];
-            albumsHTML += '<tr class="musicDataEntry"><td> <a href="/albums/' + album.albumID + '">'
+            albumsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink href="/albums/' + album.albumID + '">'
             + album.albumName + '</a></td></tr>';
         }
 

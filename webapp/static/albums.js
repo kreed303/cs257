@@ -20,7 +20,7 @@ function addAlbumsTable() {
         var albumsHTML = '<table class="musicDataTable">';
         for (var i=0; i<albums.length; i++) {
             var album = albums[i];
-            albumsHTML += '<tr class="musicDataEntry"><td> <a href="/albums/' + album.albumID + '">'
+            albumsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/albums/' + album.albumID + '">'
             + album.albumName + '</a></td></tr>';
         }
 
