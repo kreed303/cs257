@@ -1,5 +1,6 @@
 :root {
     /* defining color */
+    --blue0: #f3f8fa;
     --blue1:#def1fb;
     --blue2: #82BBED;
     --blue3: #619bd1;
@@ -15,7 +16,7 @@
     --siteHeaderHeight: 80px;
     --musicPlayerHeight: 45px;
     --pageHeaderHeight: 60px;
-    --lineBorder: 2px;
+    --lineBorder: 3px;
 }
 
 * {
@@ -26,7 +27,7 @@
 }
 
 body, button {
-    background-color: var(--blue1);
+    background-color: white;
     color: var(--textColor);
     overflow-x: auto;
     color: var(--textColor);
@@ -39,12 +40,17 @@ h1 {
 }
 
 h2 {
-    font-size: 20pt ;
+    font-size: 23pt ;
 }
 
 h3 {
     font-size: 14pt;
     color: black;
+}
+
+h4 {
+    font-size: 14pt;
+    padding: 4px;
 }
 
 
@@ -93,6 +99,7 @@ h3 {
     border-bottom-width: var(--lineBorder);
     text-align: left;
     padding: 7px;
+    padding-left: 20px;
 }
 
 
@@ -120,7 +127,7 @@ h3 {
     align-items: center;
     justify-content: center;
 
-    width: calc(var(--menuWidth) - 20px);
+    width: calc(var(--menuWidth) - 40px);
     height: 30px;
     margin: auto;
 
@@ -133,12 +140,16 @@ h3 {
     border-color: var(--borderColor);
     border-style: solid;
     border-width: 1px;
-    margin: 5px;    
+    margin: 5px;
+    
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .menuItems:hover {
     color: var(--blue1);
     background-color: var(--blue4);
+    cursor: pointer;
 }
 
 /* The Page */
@@ -147,15 +158,16 @@ h3 {
     height: var(--pageHeaderHeight);
     width: calc(100% - var(--menuWidth));
 
-    background-color: var(--blue2);
+    background-color: var(--blue1);
     border-bottom-color: var(--borderColor);
     border-bottom-style: solid;
-    border-bottom-width: 2pt;
+    border-bottom-width: 1pt;
 
     text-align: left;
     align-items: center;
     float: right;
     padding: 7px;
+    padding-left: 20px;
 
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
@@ -163,48 +175,87 @@ h3 {
 #pageContents{
     /* height: calc(100vh - var(--siteHeaderHeight) - var(--musicPlayerHeight)); */
     width: calc(100% - var(--menuWidth));
-    background-color: var(--blue1);
+    background-color: white;
     float: right;
     padding-left: 5px;
     padding-top: 5px;
+    padding-bottom: 10px; 
+
 }
 
 #pageData {
-    background-color: var(--blue1);
+    background-color: white;
+    padding: 10px;
 }
 
 .playShuffleButtons {
-    background-color: var(--blue1);
+    background-color: white;
     display: flex;
     float: center;
+
+    gap: 10px;
+    padding: 10px;
 }
 
-#playButton {
+#playButton, #shuffleButton {
     color:black;
     background-color: white;
     border-color: white;
-}
 
-#shuffleButton {
-    color:black;
+    /* border-radius: 3px; */
+    border-width: 1px;
+    border-color: darkslategray;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+
+    padding: 6px 12px;
+
+    font-size: 14pt;
+
     background-color: white;
-    border-color: white;
+    border-color: var(--borderColor);
 }
 
+#playButton:hover, #shuffleButton:hover {
+    cursor: pointer;
+    background-color: var(--blue4);
+    color: white;
+}
 .musicDataTable {
     border-collapse: collapse;
     float: center;
 }
 
-.musicDataEntry {
+.musicDataHeader {
+    font: 14pt;
+}
+
+.musicDataEntry { /* Actually href items: <td> items*/
+    width: calc(100% - 100px);
+
+    text-decoration: none;
+
     border: 1px;
     border-color: darkslategrey;
     border-bottom-style: solid;
     border-top-style: solid;
-    border-collapse: collapse;
+    background-color: var(--blue0);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+    border-collapse: separate; /* allows spacing between cells */
+    border-spacing: 10px 0;
+}
+
+.musicDataEntry:hover{
     background-color: var(--blue1);
-    padding: 1px;
-    width: calc(100% - 100px);
+    cursor: pointer;
+}
+
+.musicLink {
+    text-decoration: none;
+    color: black;
 }
 
 /* #listOfData {
