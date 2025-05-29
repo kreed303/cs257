@@ -34,15 +34,20 @@ body, button {
     font-size: 12pt;
 }
 
+h1 {
+    font-size: 25pt;
+}
+
+h2 {
+    font-size: 20pt ;
+}
 
 h3 {
     font-size: 14pt;
     color: black;
 }
 
-h2 {
-    font-size: 30pt ;
-}
+
 
 
 /* General Things */

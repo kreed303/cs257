@@ -69,7 +69,8 @@ def album(albumID):
     output: webpage for list of albums by a particular artist
     '''
     albumName = _getAlbumName(albumID)
-    return flask.render_template('album.html', albumID = albumID, albumName = albumName)
+    artistName = api.getAlbumArtist(albumID)
+    return flask.render_template('album.html', albumID = albumID, albumName = albumName, artistName = artistName)
 
 
 @app.route('/songs')

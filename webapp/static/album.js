@@ -3,20 +3,37 @@ import { createMenu, getAPIBaseURL } from './webapp.js';
 window.addEventListener("load", initialize);
 
 function initialize() {
+    
     createMenu();
     addAlbumSongs();
+
+
+    var shuffle = false;
+    var shuffleButton = document.getElementById('shuffleButton');
+    if (shuffleButton) {
+        shuffleButton.onclick = shuffleSongs;
+    }
+
+    var playButton = document.getElementById('playButton');
+    if (playButton) {
+        playButton.onclick = orderSongs;
+    }
+}
+
+function shuffleSongs(){
+    addAlbumSongs(true);
+}
+
+function orderSongs(){
+    addAlbumSongs(false);
 }
 
 
-// function addAlbumName() {
-//     const albumID = document.getElementById('albumID').textContent;
-//     var URL 
 
-// }
 
-function addAlbumSongs() {
+function addAlbumSongs(shuffle) {
     // const albumID = document.getElementById('albumID').textContent;
-    var URL = getAPIBaseURL() + '/1.0/albums/' + albumID;
+    var URL = getAPIBaseURL() + '/1.0/albums/' + albumID + '?shuffle=' + shuffle;
 
     fetch(URL, {method: 'get'})
     .then((response) => response.json())
