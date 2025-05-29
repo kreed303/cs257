@@ -280,7 +280,7 @@ def getSong(songID):
     curs.close()
     conn.close()
 
-    return json.dumps()
+    return json.dumps(songDict)
 
 
 # From Jeff's API code
