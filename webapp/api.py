@@ -103,45 +103,46 @@ def getAlbumsFromArtist(artistID):
 
     return json.dumps(albums)
 
-@api.route('/1.0/artists/<artistName>/songs') 
-def getSongsFromArtist(artistName, shuffle=None):
-    '''
-    This allows the user to get a list of all available songs by a specific artist
-    INPUT: the specified artist
-    RETURN: all names of artists and their associated information
-    '''
-    shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
+# @api.route('/1.0/artists/<artistName>/songs?shuffle=shuffle') 
+# def getSongsFromArtist(artistName, shuffle=None):
+#     '''
+#     This allows the user to get a list of all available songs by a specific artist
+#     INPUT: the specified artist
+#     RETURN: all names of artists and their associated information
+#     '''
+#     shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
 
-    # create and run query
-    conn = getConnection()
-    curs = conn.cursor()
-    query = ''' SELECT songs.songid, songs.songname, songs.tracknumber, 
-            songs.songlength, songs.songbpm FROM songs
-            JOIN artistssongs ON artistssongs.songid = songs.songid
-            JOIN artists ON artists.artistid = artistssongs.artistid
-            JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
-            JOIN albums ON albums.albumid = artistsalbums.albumid
-            JOIN albumssongs ON albumssongs.albumid=albums.albumid 
-            AND albumssongs.songid=songs.songid
-            WHERE LOWER(artists.artistname) = LOWER(%s)
-            ORDER BY albums.albumname,
-            songs.tracknumber;'''
-    
-    curs.execute(query, (artistName, ))
-    songsTuples = curs.fetchall()
-    songs = []
+#     # create and run query
+#     conn = getConnection()
+#     curs = conn.cursor()
+#     query = ''' SELECT songs.songid, songs.songname, songs.tracknumber, 
+#             songs.songlength, songs.songbpm FROM songs
+#             JOIN artistssongs ON artistssongs.songid = songs.songid
+#             JOIN artists ON artists.artistid = artistssongs.artistid
+#             JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
+#             JOIN albums ON albums.albumid = artistsalbums.albumid
+#             JOIN albumssongs ON albumssongs.albumid=albums.albumid 
+#             AND albumssongs.songid=songs.songid
+#             WHERE LOWER(artists.artistname) = LOWER(%s)
+#             ORDER BY albums.albumname,
+#             songs.tracknumber;'''
+#     curs.execute(query, (artistName, ))
+#     songsTuples = curs.fetchall()
+#     songs = []
 
-    # organize data
-    for row in songsTuples:
-        songs.append({'songID': row[0], 'songName': row[1], 
-                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4]})
-    if shuffle:
-        random.shuffle(songs)
+#     # organize data
+#     for row in songsTuples:
+#         songs.append({'songID': row[0], 'songName': row[1], 
+#                     'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4]})
+#     if shuffle:
+#         random.shuffle(songs)
 
-    curs.close()
-    conn.close()
+#     curs.close()
+#     conn.close()
 
-    return json.dumps(songs)
+#     return json.dumps(songs)
+
+
 
 @api.route('/1.0/artists/<artistName>/<albumName>')
 def getSongsFromAlbumThroughArist(artistName, albumName, shuffle=None):
@@ -240,7 +241,9 @@ def getSongs(shuffle=None):
     INPUT: NONE
     RETURN: all names of songs and their associated information
     '''
-    shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
+    shuffle = flask.request.args.get('shuffle').lower() in ('true', 't')
+    print(shuffle)
+    # pdb.set_trace()
 
     # create and run query
     conn = getConnection()
@@ -264,20 +267,20 @@ def getSongs(shuffle=None):
 
     return json.dumps(songs)
 
-@api.route('/1.0/songs/<songID>')
-def getSong(songID):
-    conn = getConnection()
-    curs = conn.cursor()
-    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm FROM songs
-    WHERE songs.songid = %s'''
-    curs.execute(getSongsQuery, (songID, ))
-    song = curs.fetchone()
-    song = [{'songID': song[0], 'songName': song[1], 
-                'trackNumber': song[2], 'songLength': song[3], 'songBPM': song[4]}]
-    curs.close()
-    conn.close()
+# @api.route('/1.0/songs/<songID>')
+# def getSong(songID):
+#     conn = getConnection()
+#     curs = conn.cursor()
+#     getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm FROM songs
+#     WHERE songs.songid = %s'''
+#     curs.execute(getSongsQuery, (songID, ))
+#     song = curs.fetchone()
+#     song = [{'songID': song[0], 'songName': song[1], 
+#                 'trackNumber': song[2], 'songLength': song[3], 'songBPM': song[4]}]
+#     curs.close()
+#     conn.close()
 
-    return json.dumps(song)
+#     return json.dumps(song)
 
 
 # From Jeff's API code

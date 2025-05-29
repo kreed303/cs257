@@ -1,18 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: auto;
-}
-
 :root {
     /* defining color */
-    /* Sam's Colors*/
-    /* --blue4: rgb(0, 3, 164);
-    --blue3: rgb(32, 32, 186);
-    --blue2:  rgb(83, 83, 197);
-    --blue1: rgb(129, 129, 255); */
-
     --blue1:#def1fb;
     --blue2: #82BBED;
     --blue3: #619bd1;
@@ -22,6 +9,8 @@
     --textColor: black;
     --hoverColor: rgb(92, 156, 87);
 
+    --font: Roboto;
+
     --menuWidth: 150px;
     --siteHeaderHeight: 80px;
     --musicPlayerHeight: 45px;
@@ -29,11 +18,22 @@
     --lineBorder: 2px;
 }
 
-/* h1,h2,h3{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: auto;
+}
+
+body, button {
+    background-color: var(--blue1);
     color: var(--textColor);
-    font-family: Roboto;
-    font-size: 18pt;
-} */
+    overflow-x: auto;
+    color: var(--textColor);
+    font-family: var(--font);
+    font-size: 12pt;
+}
+
 
 h3 {
     font-size: 14pt;
@@ -44,19 +44,9 @@ h2 {
     font-size: 30pt ;
 }
 
-body {
-    background-color: var(--blue1); /* or any valid color */
-    color: var(--textColor);
-    overflow-x: auto;
-}
 
 /* General Things */
-p {
-    color: var(--textColor);
-    font-family: Roboto;
-    font-size: 12pt;
-    font-stretch: semi-expanded;
-}
+
 
 /* div {
     background-color: var(--blue3);
@@ -130,7 +120,6 @@ p {
     margin: auto;
 
     font-stretch: normal;
-    font-family:Arial, Helvetica, sans-serif;
     font-size: 16pt;
     text-decoration: none;
     color: var(--blue4);

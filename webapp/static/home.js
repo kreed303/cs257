@@ -17,13 +17,16 @@ function addArtistsTable () {
 
     .then((response) => response.json())
 
-    .then(function(response) {
-        var changeString = '<table class="musicDataTable">';
-        for (var i = 0; i < 5; i++)
-            changeString += '<tr><td class="musicDataEntry">' + response[i]['artistName']  + '</td></tr>';
-        changeString += "</table>";
+    .then(function(artists) {
+        var artistsHTML = '<table class="musicDataTable">';
+
+        for (var i=0; i<3; i++) {
+            var artist = artists[i]
+            artistsHTML += '<tr class="musicDataEntry"><td> <a href="/songs/' + artist.artistID + '">' + artist.artistName + '</a></td></tr>';
+        }
+        artistsHTML += "</table>";
         var element = document.getElementById('artists');
-        element.innerHTML += changeString;
+        element.innerHTML += artistsHTML;
     })
 
     .catch(function(error) {

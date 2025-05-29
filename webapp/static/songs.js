@@ -2,13 +2,34 @@ import { createMenu, getAPIBaseURL } from './webapp.js';
 
 window.addEventListener("load", initialize);
 
+
 function initialize() {
+    var shuffle = false;
     createMenu();
-    addSongsTable();
+    addSongsTable(shuffle);
+    
+    var shuffleButton = document.getElementById('shuffleButton');
+    if (shuffleButton) {
+        shuffleButton.onclick = shuffleSongs;
+    }
+
+    var playButton = document.getElementById('playButton');
+    if (playButton) {
+        playButton.onclick = orderSongs;
+    }
 }
 
-function addSongsTable() {
-    var URL = getAPIBaseURL() + '/1.0/songs'
+
+function shuffleSongs(){
+    addSongsTable(true);
+}
+
+function orderSongs(){
+    addSongsTable(false);
+}
+function addSongsTable(shuffle) {
+    
+    var URL = getAPIBaseURL() + '/1.0/songs?shuffle=' + shuffle
 
     fetch(URL, {method: 'get'})
 

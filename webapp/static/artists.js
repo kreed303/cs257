@@ -11,7 +11,7 @@ function initialize() {
 function addArtistsTable () {
     var URL = getAPIBaseURL() + '/1.0/artists'
     fetch(URL, {method: 'get'})
-
+    
     .then((response) => response.json())
 
     .then(function(artists) {
