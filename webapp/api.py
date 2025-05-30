@@ -12,7 +12,7 @@ import psycopg2
 import config
 import pdb
 import random
-import pygame
+import pygame # type: ignore
 import time
 
 from helperFunctions import *

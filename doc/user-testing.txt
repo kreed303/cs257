@@ -1,0 +1,37 @@
+User Testing Observations
+Sam & Katelyn (Music App)
+30 May 2025
+
+Things the testers found easy
+- Figuring out the functionality of the in-order and shuffle display buttons
+- Understanding navigation - which buttons will produce what expected info
+- Reading data presented in tables, understanding what it is
+
+
+Things people had trouble with
+- Hard time clicking on the clickable objects because they often required clicking on the text, not just the table td element
+- Getting lost once inside the file tree - knowing that they were under an album under a particular artist
+- Individual song page is hard to read (some extraneous info there, get rid of songID)
+- When viewing a particular album, potential confusion between which name is artist vs. album
+
+
+Other positive comments or observations
+- One user mentioned that they liked the color scheme
+- Buttons and clickable objects are obviously so (color / cursor changes with hover)
+
+
+Other suggestions for improvement
+- Make it clear that the home page is featured artists / albums / songs (not just random ones, or the first in the library)
+- Be able to shuffle songs on home page
+- Add a way to play a particular song (right now clicking on a song only goes to info about that song)
+- Implement some kind of back button
+- Add artist name with the albums list
+- One user thought their mouse felt like it was over on the left too much, suggested centering music content
+- Too much vertical space dedicated to the header?
+- Potentially add a way to page through songs as opposed to scrolling down
+
+Other notes [if any didn't fit the other categories]
+- Make all items in tables clickable (or grayed out to indicate not clickable) - currently albums / artists on songs page aren't
+- Make song length and BPM data make sense to humans (not milliseconds)
+- Freeze menu to page view
+- Add tracknumbers to artist page
