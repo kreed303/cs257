@@ -12,6 +12,8 @@ import psycopg2
 import config
 import pdb
 import random
+import pygame
+import time
 
 from helperFunctions import *
 
@@ -220,6 +222,7 @@ def getAlbumArtist(albumID):
 
     return artistName
 
+
 #
 # -------------------------
 # stuff that has to do with songs
@@ -281,6 +284,14 @@ def getSong(songID):
     conn.close()
 
     return json.dumps(songDict)
+
+@api.route('/1.0/play/<songID>')
+def playSong(songId):
+    pygame.mixer.init()
+    pygame.mixer.music.load(f"musicFiles/{songId}.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        time.sleep(1)
 
 
 # From Jeff's API code
