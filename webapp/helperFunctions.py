@@ -41,13 +41,15 @@ A bunch of Get queries to speed up that process
 
 """        
 
-def _get(request, table, key, input):
+def _get(request, table, key, input, like = False):
     conn = getConnection()
     curs = conn.cursor()
-
-    query = sql.SQL("SELECT {request} FROM {table} WHERE {key} = %s").format(request = sql.Identifier(request.lower()), table = sql.Identifier(table.lower()), key = sql.Identifier(key.lower()))
-
-    curs.execute(query, (input, ))
+    if like:
+        query = sql.SQL("SELECT {request} FROM {table} WHERE LOWER({key}) LIKE LOWER(%s)").format(request = sql.Identifier(request.lower()), table = sql.Identifier(table.lower()), key = sql.Identifier(key.lower()))
+        curs.execute(query, (f"%{input}%", ))
+    else:
+        query = sql.SQL("SELECT {request} FROM {table} WHERE {key} = %s").format(request = sql.Identifier(request.lower()), table = sql.Identifier(table.lower()), key = sql.Identifier(key.lower()))
+        curs.execute(query, (input, ))
     returnValue = curs.fetchone()[0]
 
     curs.close()
@@ -72,13 +74,13 @@ def _getPlaylistID(playlistName):
     '''
     return _get("playlistid", "playlists", "playlistname", playlistName)
 
-def _getSongID(songName):
+def _getSongID(songName, like=False):
     '''
     Helper Function to return songID
     input: songName 
     return: songID
     '''
-    return _get("songid", "songs", "songname", songName)
+    return _get("songid", "songs", "songname", songName, like = like)
 
 
 def _getSongName(songID):

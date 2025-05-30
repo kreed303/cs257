@@ -38,17 +38,6 @@ def artist(artistID) :
     artistName = _getArtistName(artistID)
     return flask.render_template('artist.html', artistID = artistID, artistName = artistName)
 
-@app.route('/artists/<artistID>/<albumID>')
-def albumThruArtist(artistID, albumID): 
-    '''
-    Webpage for displaying an album by a single artist's
-    input: artistID, albumID
-    output: a list of songs on the album by the artist
-    '''
-
-    artistName = _getArtistName(artistID)
-    albumName = _getAlbumName(albumID)
-    return flask.render_template('album.html', albumID = albumID, albumName = albumName)
 
 
 @app.route('/albums')

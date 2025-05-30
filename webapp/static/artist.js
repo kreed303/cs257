@@ -33,7 +33,7 @@ function addArtistAlbums() {
 
         var albumsHTML = '<table class="musicDataTable">'
         for (var i=0; i<albums.length; i++) {
-            albumsHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/albums/'  + albums[i].albumID + '">' + albums[i].albumName + '</a></td></tr>';
+            albumsHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/albums/' + albums[i].albumID + '">' + albums[i].albumName + '</a></td></tr>';
         }
 
         albumsHTML += '</table>';
