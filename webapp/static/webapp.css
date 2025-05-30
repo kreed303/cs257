@@ -227,6 +227,12 @@ h4 {
 
 .musicDataHeader {
     font: 14pt;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
 }
 
 .musicDataEntry { /* Actually href items: <td> items*/
