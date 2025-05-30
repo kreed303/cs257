@@ -282,10 +282,10 @@ def getSong(songID):
 
     curs.close()
     conn.close()
-
+    print(songDict)
     return json.dumps(songDict)
 
-@api.route('/1.0/play/<songID>')
+@api.route('/1.0/play/<songId>')
 def playSong(songId):
     pygame.mixer.init()
     pygame.mixer.music.load(f"musicFiles/{songId}.mp3")
