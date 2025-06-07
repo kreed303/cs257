@@ -23,8 +23,7 @@ function addSongData() {
     .then(function(song) {
         song = song[0]
         var songList = document.getElementById('pageData');
-
-
+        console.log(song)
         var songHTML = '';
         
 
@@ -32,17 +31,15 @@ function addSongData() {
         songHTML += '<h2>' + song[key] + '</h2>';
 
         songHTML += '<table class="musicDataTable">';
-        var key = "tracknumber"
-        songHTML += '<tr><td class="musicDataEntry"> Track Number:    ' + song[key] + '</td></tr>';
 
-        var key = "artistname"
-        songHTML += '<tr><td class="musicDataEntry"> Artist Name:    ' + song[key] + '</td></tr>';
 
-        var key = "albumname"
-        songHTML += '<tr><td class="musicDataEntry"> Album Name:    ' + song[key] + '</td></tr>';
+        songHTML += '<tr><td class="musicDataEntry"> Track Number:    ' + song.tracknumber + '</td></tr>';
 
-        var key = "songlength"
-        songHTML += '<tr><td class="musicDataEntry"> Song Length:    ' + Math.floor(song[key] / 60000) + ":" +  Math.floor((song[key] / 10000) % 60) + '</td></tr>';
+        songHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/artists/' + song.artistid + '">' + 'Artist Name:    ' + song.artistname + '</a></td></tr>'
+
+        songHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/albums/' + song.albumid + '">' + 'Album Name:    ' + song.albumname + '</a></td></tr>'
+
+        songHTML += '<tr><td class="musicDataEntry"> Song Length:    ' + Math.floor(song.songlength / 60000) + ":" +  Math.floor((song.songlength / 10000) % 60) + '</td></tr>';
 
         // for (let i = 0; i < Object.keys(song).length; i++) {
         //     var key = Object.keys(song)[i];

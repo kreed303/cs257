@@ -271,7 +271,7 @@ def getSongs(shuffle=None):
 def getSong(songID):
     conn = getConnection()
     curs = conn.cursor()
-    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
+    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname, albums.albumID, artists.artistID FROM songs
     JOIN albumssongs ON  albumssongs.songid = songs.songid 
     JOIN artistssongs ON songs.songid = artistssongs.songid
     JOIN albums ON albums.albumid = albumssongs.albumid
