@@ -1,43 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Music API Reference</title>
-    </head>
+<head> 
+    <meta charset="UTF-8">
+        <title>Sam & Katelyn's Music Extravaganza</title>
+        <link rel="stylesheet" type="text/css" 
+            href="{{ url_for('static', filename='webapp.css') }}" />
+        <script type="module"
+            src="{{ url_for('static', filename='help.js') }}" ></script>
+</head>
 <body>
-    <h1>
-        API Endpoints <br />
-        Katelyn Reed & Sam Reiter <br />
-      </h1>
-    <p>  
+    <div id="musicPlayer">
+        <h3>--MUSIC PLAYER--</h3>
+    </div>
+
+    <div id="siteHeader">
+        <h2>API Endoints</h2>
+    </div>
+    <div id="menu"></div>
+    <div id="pageContents">
+    <div>
         REQUEST: / <br />
         GET parameters: None <br />
         <br />
         RESPONSE: <br />
-        A welcome message  <br />
-        EXAMPLE: / <br />
-        "Hi Welcome to Sam and Katelyn's makeshift music extravaganza!"
+        The homepage  <br />
         <br />
         
         REQUEST: /help <br />
         GET parameters: none <br />
+
          
-        Response: A message explaining all of the endpoints (this page!) <br />
+        Response: A message explaining all of the endpoints (this page!) 
+        <br /><br />
+
+        REQUEST: /menuHTML <br />
+        GET parameters: None <br />
+        <br />
+        RESPONSE: the HTML to draw the side menu for every page
+        <br />
+    </div>
+  
         
-    </p>
-        <h2>---PAGES RELATED TO ARTISTS--- </h2>
-    <p>   
+    <h2>---PAGES RELATED TO ARTISTS--- </h2> 
         
-        REQUEST: /1.0/artists  <br />
+    <div>
+        REQUEST: api/1.0/artists  <br />
         GET parameters: None  <br />
          <br />
         RESPONSE: A JSON list containing a dictionary representing each artist.  <br />
         Each dictionary contains the artist name and ID. <br />
          <br />
-        EXAMPLE: /1.0/artists <br />
-        [{“artistName”: “ABBA”, “artistID” = 0001}, {“artistName”: “La Bottine 
-        Souriante”, “artistID” = 0100},{“artistName”: “Paul Simon”, “artistID” = 1101}] <br />
+        EXAMPLE: api/1.0/artists <br />
+        [{"artistID": 1, "artistName": "ABBA"}, {"artistID": 2, "artistName": "La Bottine Souriante"}, {"artistID": 3, "artistName": "Paul Simon"}] <br />
         <br />
-        REQUEST: /1.0/artists/&lt;artistName&gt;  <br />
+        REQUEST: api/1.0/artists/&lt;artistID&gt;  <br />
         GET parameters:  <br />
         - artist (Required): the name of the artists selected from the list of 
         artists in the /1.0/artists endpoint  <br />
@@ -45,58 +60,36 @@
         RESPONSE: A json list that contains a dictionary for each album by that artist. <br />
         Each dictionary contains the fields album ID, album name, and album year. <br />
          <br />
-        EXAMPLE: /1.0/artists/La%20Bottine%20Souriante  <br />
-        [{"albumID": 10010, "albumName": "Corial", "albumYear": 2001}, 
-        {"albumID": 11011, "albumName": "En Spectacle", "albumYear": 1996}] <br />
+        EXAMPLE: api/1.0/artists/2 <br />
+        [{"albumID": 4, "albumName": "Cordial", "albumYear": 2001}, {"albumID": 5, "albumName": "En Spectacle", "albumYear": 2006}] <br />
         <br />
-        REQUEST: /1.0/artists/&lt;artistName&gt;/songs?shuffle=shuffle  <br />
+        REQUEST: api/1.0/artists/&lt;artistID&gt;/songs?shuffle=shuffle  <br />
         GET parameters: <br />
         - artist (Required): the name of the artists selected from the list of 
         artists in the /artists endpoint <br />
         - shuffle (Optional, default = false): tells the database to return the list of songs by the artist in a randomized order (based on the tracknumbers)  <br />
          <br />
-        RESPONSE: A JSON list that contains one dictionary for each song by the specified artist. <br />
+        RESPONSE: A JSON list that contains one dictionary for each album by the specified artist. <br />
         If shuffle = true then return this list in a randomized order. <br />
          <br />
-        EXAMPLE: /1.0/artists/Paul%20Simon?shuffle=false <br />
+        EXAMPLE: api/1.0/artists/3?shuffle=false <br />
          <br />
-        [{song1 by Paul Simon}, {song2 by Paul Simon}, ...]<br /> 
-        <br />
-        REQUEST: /1.0/artists/&lt;artistName&gt;/&lt;albumName&gt;?shuffle=shuffle <br />
-        GET parameters: <br />
-        - artist (Required): the name of the artists selected from the list of artists  <br />
-        in the /1.0/artists endpoint <br />
-        - album (required): the name of the specified album by the specified artist from the list of albums on the /1.0/artists/&lt;artist&gt; page  <br />
-        - shuffle (Optional, default = false): tells the database to return the list of songs on the album in a randomized order (based on the Tracknumbers)  <br />
-         <br />
-        RESPONSE: A JSON list which contains a dictionary to represent every song by the specified artist on the specified album. If shuffle = true, then returns this list in a randomized order.  <br />
-         <br />
-        EXAMPLE: /1.0/Paul%20Simon/Kodachrome?  <br />
-        [{“song1 ID”: 0100101, "album": "There Goes Rhymin' Simon [Bonus Tracks]", "length": 
-        "215400", "title": "Kodachrome", "artist": "Paul Simon", "tracknumber": "1", 
-        "date": "2004"}, … (rest of songs on the album in order)] <br />
-        
-</p>
+        [{"albumID": 7, "albumName": "Graceland", "albumYear": 1986}, {"albumID": 6, "albumName": "So Beautiful or So What", "albumYear": 2011}, {"albumID": 8, "albumName": "There Goes Rhymin' Simon [Bonus Tracks]", "albumYear": 2004}]<br /> 
+    </div>
+
     <h2>            
         ---PAGES RELATED TO ALBUMS---
     </h2>
-    <p>
-        REQUEST: /1.0/albums  <br />
+    <div>
+        REQUEST: api/1.0/albums  <br />
         GET parameters: None  <br />
          <br />
         RESPONSE: A JSON list containing a dictionary representing each album. Each dictionary contains the album name and ID. <br />
          <br />
-        EXAMPLE: /albums <br />
-        [{"albumName": "Cordial", "albumID": 01}, {"albumName": "En Spectacle", 
-        "albumID": 0101} {"albumName": "Gold - Greatest Hits", "albumID": 011001}, 
-        {"albumName": "Graceland", "albumID": 011001}, {"albumName": "So Beautiful or 
-        So What", "albumID": 10101}, {"albumName": "The Definitive Collection Disc 1", 
-        "albumID": 10101001}, {"albumName": "The Definitive Collection Disc 2", "albumID"
-        : 1011001}, {"albumName": "There Goes Rhymin' Simon [Bonus Tracks]"", 
-        "albumID": 1011001}] <br />
+        EXAMPLE: api/albums <br />
+        [{"albumID": 1, "albumName": "Gold - Greatest Hits", "albumYear": 1993}, {"albumID": 2, "albumName": "The Definitive Collection Disc 1", "albumYear": 2001}, {"albumID": 3, "albumName": "The Definitive Collection Disc 2", "albumYear": 2001}, {"albumID": 4, "albumName": "Cordial", "albumYear": 2001}, {"albumID": 5, "albumName": "En Spectacle", "albumYear": 2006}, {"albumID": 6, "albumName": "So Beautiful or So What", "albumYear": 2011}, {"albumID": 7, "albumName": "Graceland", "albumYear": 1986}, {"albumID": 8, "albumName": "There Goes Rhymin' Simon [Bonus Tracks]", "albumYear": 2004}] <br />
         <br />
-        REQUEST: /1.0/albums/&lt;albumName&gt;?shuffle=shuffle<br />
-        REDIRECTS TO: /1.0/artists/&lt;artist&gt;/&lt;album&gt;?shuffle=shuffle<br />
+        REQUEST: api/1.0/albums/&lt;albumID&gt;?shuffle=shuffle<br />
         GET parameters: <br />
         - album (Required): the name of the album selected from the list of albums in the /1.0/albums endpoint<br />
         - shuffle (Optional, default = false):  tells the database to return the list of songs on the album in a randomized order (based on the Tracknumbers)<br />
@@ -107,22 +100,33 @@
         The URL redirects based on the album artist that is stored as a parameter
         to the album object (accessible through IDs).<br />
         <br />
-        EXAMPLE: /1.0/albums/The%20Definitive%20Collection%20Disc%202?shuffle=true
-        [{“songID”: 01110,  "album": "The Definitive Collection Disc 2", 
-        "length": "259933", "title": "Angeleyes", "artist": "ABBA", "tracknumber": 
-        "2", "date": "2001"}, … (rest of songs on album in random order)]<br />
-    </p>    
+        EXAMPLE: api/1.0/albums/1?shuffle=false <br />
+        [{"songID": 6, "songName": "Mamma Mia", "trackNumber": 4, "songLength": 213493, "songBPM": 0}, {"songID": 7, "songName": "The Name of the Game", "trackNumber": 17, "songLength": 240000, "songBPM": 0},  … (rest of songs on album in order)]<br />
+    </div>
+      
     <h2>---PAGES RELATED TO SONGS---</h2>       
-    <p>   
-        REQUEST: /1.0/songs<br />
-        GET parameters: None<br />
+    <div>
+        REQUEST: api/1.0/songs<br />
+        GET parameters: <br />
+        -  shuffle (Optional, default = false): tells the database to return the list of songs in a randomized order (based on the songID)
         <br />
         RESPONSE: A JSON list containing a dictionary representing each song. 
         Each dictionary contains entries for the song ID, title, track mumber, 
         length, and BPM.<br />
+ 
         <br />
-        EXAMPLE: /1.0/songs<br />
-        [{song1 with parameters}, {song2 with parameters}, ...]<br />
-    </p>
+        EXAMPLE: api/1.0/songs<br />
+        [{"songID": 70, "songName": "A Bas Les Rideaux (Out with the Lies)", "trackNumber": 10, "songLength": 232493, "songBPM": 0, "artistName": "La Bottine Souriante", "albumName": "Cordial"}, {"songID": 64, "songName": "Aim\u00e9", "trackNumber": 6, "songLength": 221626, "songBPM": 0, "artistName": "La Bottine Souriante", "albumName": "Cordial"},  ... (the rest of the songs)]<br />
+
+
+        REQUEST: api/1.0/songs/&lt;songID&gt<br />
+        GET parameters: None<br />
+        <br />
+        RESPONSE: Responds with all the data about a single song<br />
+        <br />
+        EXAMPLE: api/1.0/songs/1<br />
+        [{"songid": 1, "songname": "Take a Chance on Me", "tracknumber": 3, "songlength": 244466, "songbpm": 0, "artistname": "ABBA", "albumname": "Gold - Greatest Hits"}]<br />
+    </div>
+    </div>
 </body>
 </html>

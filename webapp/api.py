@@ -285,13 +285,7 @@ def getSong(songID):
     print(songDict)
     return json.dumps(songDict)
 
-@api.route('/1.0/play/<songId>')
-def playSong(songId):
-    pygame.mixer.init()
-    pygame.mixer.music.load(f"musicFiles/{songId}.mp3")
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        time.sleep(1)
+
 
 
 # From Jeff's API code

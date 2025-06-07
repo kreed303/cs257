@@ -9,6 +9,9 @@ from helperFunctions import _getSongID, getConnection, _getPlaylistID, _getAlbum
 
 app = flask.Flask(__name__)
 
+
+
+
 @app.route('/api/1.0/artists')
 def getArtists():
     conn = getConnection()
@@ -26,6 +29,14 @@ def getArtists():
     curs.close()
 
     return json.dumps(artists)
+
+@api.route('/1.0/play/<songId>')
+def playSong(songId):
+    pygame.mixer.init()
+    pygame.mixer.music.load(f"musicFiles/{songId}.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        time.sleep(1)
 
 @app.route('/api/1.0/artists/<artist>?shuffle=shuffle')
 def getSongsFromArtist(artist, shuffle=False):

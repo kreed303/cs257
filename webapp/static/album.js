@@ -43,7 +43,7 @@ function addAlbumSongs(shuffle) {
         var songsHTML = '<table class="musicDataTable">';
         for (var i=0; i<songs.length; i++) {
             var song = songs[i]
-            songsHTML += '<tr> <td>' + song.trackNumber + '</td>\
+            songsHTML += '<tr> <td class= "musicDataEntry">' + song.trackNumber + '</td>\
             <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
         }
 

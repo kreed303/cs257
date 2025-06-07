@@ -12,13 +12,12 @@ function initialize() {
     // }
 }
 
-function playSong(){
-    var URL = getAPIBaseURL() + '/1.0/play/' + songID;
-}
+// function playSong(){
+//     var URL = getAPIBaseURL() + '/1.0/play/' + songID;
+// }
 
 function addSongData() {
     var URL = getAPIBaseURL() + '/1.0/songs/' + songID;
-
     fetch(URL, {method: 'get'})
     .then((response) => response.json())
     .then(function(song) {
