@@ -144,13 +144,18 @@ def getAlbums():
     # create and run query
     conn = getConnection()
     curs = conn.cursor()
-    curs.execute("SELECT * FROM albums;")
+    query = '''
+    SELECT albums.albumID, albums.albumName, albums.albumYear, artists.artistName, artists.artistId
+    FROM albums
+    JOIN artistsalbums ON albums.albumID = artistsalbums.albumID
+    JOIN artists ON artistsalbums.artistID = artists.artistID;'''
+    curs.execute(query)
     albumsTuples = curs.fetchall()
     albums = []
 
     # organize data
     for i in albumsTuples:
-        albums.append({'albumID': i[0], 'albumName': i[1], 'albumYear': i[2]})
+        albums.append({'albumID': i[0], 'albumName': i[1], 'albumYear': i[2], 'artistName': i[3], 'artistID':i[4]})
         
     conn.close()
     curs.close()
