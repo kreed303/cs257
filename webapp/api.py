@@ -12,7 +12,7 @@ import psycopg2
 import config
 import pdb
 import random
-import pygame # type: ignore
+# import pygame # type: ignore
 import time
 
 from helperFunctions import *
@@ -289,6 +289,19 @@ def getSong(songID):
     conn.close()
     print(songDict)
     return json.dumps(songDict)
+
+
+@api.route('/1.0/dataConvert')
+def dataConvert(request, table, key, input):
+    '''
+    Endpoint to access the _get function to convert
+    data from the JS files
+    '''
+    
+    request, table, key, input = [flask.request.args.get(i) for i in ('request', 'table', 'key', 'input')]
+
+    return json.dumps(_get(request, table, key, input))
+
 
 
 

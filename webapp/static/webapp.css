@@ -190,6 +190,10 @@ h4 {
 
 }
 
+#artistName {
+    padding-left: 15px;
+}
+
 #pageData {
     background-color: white;
     padding: 10px;
@@ -227,6 +231,7 @@ h4 {
     background-color: var(--blue4);
     color: white;
 }
+
 .musicDataTable {
     border-collapse: collapse;
     float: center;
@@ -242,6 +247,19 @@ h4 {
 
 }
 
+/* Makes entire cell block clickable */
+td > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    /* Padding here instead of in musicDataEntry to make entire cell block in displayed table clickable */
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
 .musicDataEntry { /* Actually href items: <td> items*/
     width: calc(100% - 100px);
 
@@ -251,14 +269,18 @@ h4 {
     border-color: darkslategrey;
     border-bottom-style: solid;
     border-top-style: solid;
-    background-color: var(--blue0);
+    background-color: var(--blue0);    
+
+    border-collapse: separate; /* allows spacing between cells */
+    border-spacing: 10px 0;
+}
+
+/* Padding attribute in <a> elements, so padding for non-href table elements */
+.nonClickableMusicDataEntry{
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 7px;
     padding-bottom: 7px;
-
-    border-collapse: separate; /* allows spacing between cells */
-    border-spacing: 10px 0;
 }
 
 .musicDataEntry:hover{
