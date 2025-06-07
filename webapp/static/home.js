@@ -35,7 +35,7 @@ function addArtistsTable () {
 }
 
 function addSongsTable() {
-    var URL = getAPIBaseURL() + '/1.0/songs'
+    var URL = getAPIBaseURL() + '/1.0/songs?shuffle=true'
 
     fetch(URL, {method: 'get'})
 
@@ -44,10 +44,14 @@ function addSongsTable() {
     .then(function(songs) {
         var songsList = document.getElementById('songs');
 
-        var songsHTML = '<table class="musicDataTable">';
+        var songsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Song Title</th><th class="musicDataHeader">Artist</th><th class="musicDataHeader">Album</th>';
         for (var i=0; i<5; i++) {
             var song = songs[i]
-            songsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td></tr>';
+            
+            const albumName = decodeURIComponent(song.albumName);
+            const albumID = getSongAlbumID('Graceland');
+
+            songsHTML += '<tr> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.artistName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + albumID + '">' + song.albumName + '</a></td></tr>';
         }
 
         songsHTML += '</table>';
@@ -57,6 +61,18 @@ function addSongsTable() {
     .catch(function(error) {
         console.log(error);
     });
+}
+
+async function getSongAlbumID(albumName) {
+    const URL = getAPIBaseURL() + '/1.0/dataConvert?request=albumName&table=albums&key=albumId&input=' + albumName
+
+    console.log(URL);
+            
+    const albumID = await fetch(URL, {method: 'get'});
+
+    console.log(albumID)
+
+    return await albumID.json();
 }
 
 

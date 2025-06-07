@@ -28,7 +28,7 @@ function addSongData() {
         for (let i = 0; i < Object.keys(song).length; i++) {
             var key = Object.keys(song)[i];
             var value = song[key];
-            songHTML += '<tr><td class="musicDataEntry">' + key + ":    " + value + '</td></tr>';
+            songHTML += '<tr><td class="musicDataEntry nonClickableMusicDataEntry">' + key + ":    " + value + '</td></tr>';
             console.log(key, value);
         }
         songHTML += '<table>';
