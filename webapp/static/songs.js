@@ -45,7 +45,7 @@ function addSongsTable(shuffle) {
         }
 
         songsHTML += '</table>';
-        songsList.innerHTML = songsHTML;
+        songsList.innerHTML = songsHTML;    
     })
 
     .catch(function(error) {
