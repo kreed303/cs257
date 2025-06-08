@@ -103,7 +103,7 @@ def getSongsFromArtist(artistId, shuffle=None):
     conn = getConnection()
     curs = conn.cursor()
     query = ''' SELECT songs.songid, songs.songname, songs.tracknumber, 
-            songs.songlength, songs.songbpm, albums.albumname FROM songs
+            songs.songlength, songs.songbpm, albums.albumname, albums.albumid FROM songs
             JOIN artistssongs ON artistssongs.songid = songs.songid
             JOIN artists ON artists.artistid = artistssongs.artistid
             JOIN artistsalbums ON artists.artistid = artistsalbums.artistid
@@ -120,7 +120,8 @@ def getSongsFromArtist(artistId, shuffle=None):
     # organize data
     for row in songsTuples:
         songs.append({'songID': row[0], 'songName': row[1], 
-                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4], 'albumName': row[5]})
+                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4], 'albumName': row[5],
+                    'albumID': row[6]})
     if shuffle:
         random.shuffle(songs)
 
@@ -246,7 +247,7 @@ def getSongs(shuffle=None):
     conn = getConnection()
     curs = conn.cursor()
     getSongsQuery = '''SELECT 
-    songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname FROM songs
+    songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, artists.artistid, albums.albumname, albums.albumid FROM songs
     JOIN albumssongs ON  albumssongs.songid = songs.songid 
     JOIN artistssongs ON songs.songid = artistssongs.songid
     JOIN albums ON albums.albumid = albumssongs.albumid
@@ -257,7 +258,9 @@ def getSongs(shuffle=None):
     # organize songs
     for row in curs:
         songs.append({'songID': row[0], 'songName': row[1], 
-                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4], 'artistName': row[5], 'albumName': row[6]})
+                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4], 'artistName': row[5],
+                    'artistID': row[6], 'albumName': row[7],
+                    'albumID': row[8]})
     if shuffle:
         random.shuffle(songs)
     else: 

@@ -41,7 +41,7 @@ function addSongsTable(shuffle) {
         var songsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Song Title</th><th class="musicDataHeader">Artist</th><th class="musicDataHeader">Album</th>';
         for (var i=0; i<songs.length; i++) { 
             var song = songs[i]
-            songsHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td><td class="musicDataEntry">' + song.artistName+ '</td><td class="musicDataEntry">' + song.albumName+ '</td></tr>';
+            songsHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/artists/' + song.artistID + '">' + song.artistName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/albums/' + song.albumID + '">' + song.albumName + '</a></td></tr>';
         }
 
         songsHTML += '</table>';

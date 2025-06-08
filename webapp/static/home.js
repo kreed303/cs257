@@ -47,11 +47,8 @@ function addSongsTable() {
         var songsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Song Title</th><th class="musicDataHeader">Artist</th><th class="musicDataHeader">Album</th>';
         for (var i=0; i<5; i++) {
             var song = songs[i]
-            
-            const albumName = decodeURIComponent(song.albumName);
-            const albumID = getSongAlbumID('Graceland');
 
-            songsHTML += '<tr> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.artistName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + albumID + '">' + song.albumName + '</a></td></tr>';
+            songsHTML += '<tr> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/artists/' + song.artistID + '">' + song.artistName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/albums/' + song.albumID + '">' + song.albumName + '</a></td></tr>';
         }
 
         songsHTML += '</table>';
@@ -63,19 +60,6 @@ function addSongsTable() {
     });
 }
 
-async function getSongAlbumID(albumName) {
-    const URL = getAPIBaseURL() + '/1.0/dataConvert?request=albumName&table=albums&key=albumId&input=' + albumName
-
-    console.log(URL);
-            
-    const albumID = await fetch(URL, {method: 'get'});
-
-    console.log(albumID)
-
-    return await albumID.json();
-}
-
-
 function addAlbumsTable() {
     var URL = getAPIBaseURL() + '/1.0/albums'
 
@@ -86,11 +70,12 @@ function addAlbumsTable() {
     .then(function(albums) {
         var albumsList = document.getElementById('albums');
 
-        var albumsHTML = '<table class="musicDataTable">';
+        var albumsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Album</th><th class="musicDataHeader">Arist</th>';
         for (var i=0; i<5; i++) {
             var album = albums[i];
             albumsHTML += '<tr><td class="musicDataEntry"> <a class="musicLink" href="/albums/' + album.albumID + '">'
-            + album.albumName + '</a></td></tr>';
+            + album.albumName + '</a></td> <td class="musicDataEntry"> <a class="musicLink" href="/artists/' + album.artistID + '">'
+            + album.artistName + '</a></td></tr>';
         }
 
         albumsHTML += '</table>';

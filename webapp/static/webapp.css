@@ -12,6 +12,7 @@
 
     --font: Roboto;
 
+    /* Defining section sizes */
     --menuWidth: 150px;
     --siteHeaderHeight: 80px;
     --musicPlayerHeight: 45px;
@@ -30,10 +31,8 @@ body, button {
     background-color: white;
     color: var(--textColor);
     overflow-x: auto;
-    color: var(--textColor);
     font-family: var(--font);
     font-size: 12pt;
-    
 }
 
 h1 {
@@ -60,10 +59,6 @@ h4 {
 /* General Things */
 
 
-/* div {
-    background-color: var(--blue3);
-} */
-
 /* Page Headings */
 #musicPlayer {
     position: fixed;
@@ -85,6 +80,7 @@ h4 {
     border-bottom-width: var(--lineBorder);
 }
 
+/* The "Sam & Katelyn's Music Extravaganza" title */
 #siteHeader {
     position: fixed;
     display: flex;
@@ -108,19 +104,20 @@ h4 {
 
 
 /* The Menu */
+
+/* Div element in the page HTML - filler element to be edited */
 #menu {
+    background-color: var(--blue2);
+}
+
+/* Div element in menu.html */
+#menuContents {
     position: fixed;
     margin-top: calc(var(--siteHeaderHeight) + var(--musicPlayerHeight));
-     /* allow flexbox stuff */
     display: flex;
     flex-direction: column;   /* Stack vertically */
-     /* Center items horizontally */
-    align-items: center;     
-
-     /* align items at top of menu */
-    /* justify-content: flex-start; */
-    /* overflow: hidden; */
-    /* padding-top: 3px; */
+    align-items: center;    /* Center items horizontally */
+    padding-top: 5px;
 
     height: calc(100vh - var(--siteHeaderHeight) - var(--musicPlayerHeight)); 
     width: var(--menuWidth);
@@ -133,7 +130,7 @@ h4 {
 
 .menuItems { /* Is actually an href item*/
     display: flex;
-    align-items: center;
+    align-items: top;
     justify-content: center;
 
     width: calc(var(--menuWidth) - 40px);
@@ -162,11 +159,18 @@ h4 {
 }
 
 /* The Page */
+
+/* Displays things like an album title, artist name, song name, etc. */
 #pageHeader {
-    
+    position: fixed;
     display: flex;
+
     height: var(--pageHeaderHeight);
     width: calc(100% - var(--menuWidth));
+    padding: 7px;
+
+    margin-top: calc(var(--siteHeaderHeight) + var(--musicPlayerHeight));
+    margin-left: calc(var(--menuWidth));
 
     background-color: var(--blue1);
     border-bottom-color: var(--borderColor);
@@ -176,16 +180,16 @@ h4 {
     text-align: left;
     align-items: center;
     float: right;
-    padding: 7px;
     padding-left: 20px;
 
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Contains the lists of albums, artists, songs, etc. */
 #pageContents{
     background-color: white;
-    padding-top: calc(var(--siteHeaderHeight) + var(--musicPlayerHeight) + 10px);
-    padding-left: calc(var(--menuWidth) + 25px);
+    padding-top: calc(var(--siteHeaderHeight) + var(--musicPlayerHeight) + var(--pageHeaderHeight) + 10px);
+    padding-left: calc(var(--menuWidth) + 15px);
     padding-bottom: 10px; 
 
 }
@@ -194,11 +198,13 @@ h4 {
     padding-left: 15px;
 }
 
+/* Contained in the pageContents div - element to be filled in HTML files */
 #pageData {
     background-color: white;
     padding: 10px;
 }
 
+/* Div for the pair of buttons */
 .playShuffleButtons {
     background-color: white;
     display: flex;
@@ -208,12 +214,12 @@ h4 {
     padding: 10px;
 }
 
+/* Attributes for the buttons themselves */
 #playButton, #shuffleButton {
     color:black;
     background-color: white;
     border-color: white;
 
-    /* border-radius: 3px; */
     border-width: 1px;
     border-color: darkslategray;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -232,6 +238,7 @@ h4 {
     color: white;
 }
 
+/* Filler table in HTML files for the songs, albums, artists info to display */
 .musicDataTable {
     border-collapse: collapse;
     float: center;
@@ -288,15 +295,13 @@ td > a {
     cursor: pointer;
 }
 
+.nonClickableMusicDataEntry:hover{
+    cursor: default;
+    background-color: var(--blue0);
+}
+
+/* Specifies that href items don't display browser hyperlink defaults */
 .musicLink {
     text-decoration: none;
     color: black;
 }
-
-/* #listOfData {
-
-} */
-
-/* .data {
-
-} */

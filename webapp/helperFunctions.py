@@ -42,6 +42,8 @@ A bunch of Get queries to speed up that process
 """        
 
 def _get(request, table, key, input, like = False):
+    '''Generic get function that takes the specific query parameters and strings them into a correct SQL query'''
+    
     conn = getConnection()
     curs = conn.cursor()
     if like:

@@ -17,7 +17,7 @@ function addAlbumsTable() {
     .then(function(albums) {
         var albumsList = document.getElementById('pageData');
 
-        var albumsHTML = '<table class="musicDataTable">';
+        var albumsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Album</th><th class="musicDataHeader">Artist</th></tr>';
         for (var i=0; i<albums.length; i++) {
             var album = albums[i];
             console.log(album);
