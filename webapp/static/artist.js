@@ -60,11 +60,11 @@ function addArtistSongs(shuffle) {
     .then(function(songs) {
         var songsList = document.getElementById('artistSongs');
 
-        var songsHTML = '<table class="musicDataTable">';
+        var songsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Track</th><th class="musicDataHeader">Song Title</th><th class="musicDataHeader">Album</th></tr>';
         for (var i=0; i<songs.length; i++) {
             var song = songs[i]
             songsHTML += '<tr> <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.trackNumber + '</a> </td>\ <td class="musicDataEntry"> <a class="musicLink" href="/songs/' + song.songID + '">' + song.songName + '</a> </td>\
-            <td class="musicDataEntry">' + song.albumName + '\
+            <td class="musicDataEntry"> <a class="musicLink" href="/albums/' + song.albumID + '">' + song.albumName + '\
             </tr>';
         }
 
