@@ -5,6 +5,7 @@ import sys
 import pdb
 
 def getConnection():
+    '''Returns psycopg2 connection object'''
     try:
         return psycopg2.connect(database=config.database,
                                 user=config.user,
@@ -14,10 +15,10 @@ def getConnection():
         exit()
         
 def parseQuery(query, args = None):
-    """
+    '''
     Query: query in SQL form
     args: a tuple
-    """
+    '''
 
     conn = getConnection()
     curs = conn.cursor()

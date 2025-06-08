@@ -1,3 +1,6 @@
+# Previous versions of some API code that we are hanging onto for now, but are not used in the actual webapp
+
+
 import flask
 import os
 import psycopg2

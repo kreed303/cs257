@@ -3,12 +3,9 @@ import { createMenu, getAPIBaseURL } from './webapp.js';
 window.addEventListener("load", initialize);
 
 function initialize() {
-    
     createMenu();
     addAlbumSongs();
 
-
-    var shuffle = false;
     var shuffleButton = document.getElementById('shuffleButton');
     if (shuffleButton) {
         shuffleButton.onclick = shuffleSongs;
@@ -29,10 +26,7 @@ function orderSongs(){
 }
 
 
-
-
 function addAlbumSongs(shuffle) {
-    // const albumID = document.getElementById('albumID').textContent;
     var URL = getAPIBaseURL() + '/1.0/albums/' + albumID + '?shuffle=' + shuffle;
 
     fetch(URL, {method: 'get'})
@@ -40,6 +34,7 @@ function addAlbumSongs(shuffle) {
     .then(function(songs) {
         var songsList = document.getElementById('pageData');
 
+        // Create tables with apprpriate data and links
         var songsHTML = '<table class="musicDataTable">';
         for (var i=0; i<songs.length; i++) {
             var song = songs[i]

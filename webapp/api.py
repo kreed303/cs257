@@ -1,7 +1,6 @@
 # Music Library API
 # Katelyn Reed & Sam Reiter
 
-
 import os
 import argparse
 import flask # type: ignore
@@ -10,7 +9,6 @@ import csv
 import sys
 import psycopg2
 import config
-import pdb
 import random
 # import pygame # type: ignore
 import time
@@ -28,8 +26,7 @@ api = flask.Blueprint('api', __name__)
 
 @api.route('/1.0/menuHTML')
 def getMenuHTML():
-    # f = open("templates/menu.html", "r")
-    # x = f.read()
+    '''Endpoint for the JS files to access menu.html'''
     return flask.render_template('menu.html')
 
 
@@ -64,6 +61,7 @@ def getArtists():
 
     return json.dumps(artists)
 
+
 @api.route('/1.0/artists/<artistID>')
 def getAlbumsFromArtist(artistID):
     '''
@@ -89,6 +87,7 @@ def getAlbumsFromArtist(artistID):
     albums = sorted(albums, key=lambda x: (x['albumName']))
 
     return json.dumps(albums)
+
 
 @api.route('/1.0/artistssongs/<artistId>') 
 def getSongsFromArtist(artistId, shuffle=None):
@@ -130,6 +129,7 @@ def getSongsFromArtist(artistId, shuffle=None):
 
     return json.dumps(songs)
 
+
 #
 # --------------------------
 # Stuff that has to do with albums
@@ -163,6 +163,7 @@ def getAlbums():
 
     return json.dumps(albums)
 
+
 @api.route('/1.0/albums/<albumID>')
 def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
     '''
@@ -171,6 +172,7 @@ def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
     RETURN: all names of songs and their associated information in a specific album
     '''
 
+    # Get args
     albumName = flask.request.args.get('albumName', default = None)
     shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
 
@@ -210,8 +212,9 @@ def getSongsFromAlbum(albumID, albumName = None, shuffle=None):
 
     return json.dumps(songs)
 
-def getAlbumArtist(albumID):
 
+def getAlbumArtist(albumID):
+    # SQL query
     conn = getConnection()
     curs = conn.cursor()
 
@@ -220,6 +223,7 @@ def getAlbumArtist(albumID):
         JOIN albums ON albums.albumID = artistsalbums.albumID
         WHERE albums.albumid = %s'''
     
+    # Return data
     curs.execute(query, (albumID,))
     artistName = curs.fetchall()[0][0]
 
@@ -241,13 +245,17 @@ def getSongs(shuffle=None):
     INPUT: NONE
     RETURN: all names of songs and their associated information
     '''
-    # shuffle = flask.request.args.get('shuffle').lower() in ('true', 't')
+
+    # Determine shuffle parameter
     shuffle = flask.request.args.get('shuffle', default = 'false').lower() in ('true','t') if shuffle is None else shuffle
-    # create and run query
+   
+    # Create and run query
     conn = getConnection()
     curs = conn.cursor()
     getSongsQuery = '''SELECT 
-    songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, artists.artistid, albums.albumname, albums.albumid FROM songs
+    songs.songid, songs.songname, songs.tracknumber, songs.songlength, 
+    songs.songbpm, artists.artistname, artists.artistid, 
+    albums.albumname, albums.albumid FROM songs
     JOIN albumssongs ON  albumssongs.songid = songs.songid 
     JOIN artistssongs ON songs.songid = artistssongs.songid
     JOIN albums ON albums.albumid = albumssongs.albumid
@@ -258,28 +266,33 @@ def getSongs(shuffle=None):
     # organize songs
     for row in curs:
         songs.append({'songID': row[0], 'songName': row[1], 
-                    'trackNumber': row[2], 'songLength': row[3], 'songBPM': row[4], 'artistName': row[5],
+                    'trackNumber': row[2], 'songLength': row[3], 
+                    'songBPM': row[4], 'artistName': row[5],
                     'artistID': row[6], 'albumName': row[7],
                     'albumID': row[8]})
     if shuffle:
         random.shuffle(songs)
     else: 
         songs = sorted(songs, key=lambda x: (x['songName']))
-    
-
 
     return json.dumps(songs)
 
+
 @api.route('/1.0/songs/<songID>')
 def getSong(songID):
+    # SQL query
     conn = getConnection()
     curs = conn.cursor()
-    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, songs.songlength, songs.songbpm, artists.artistname, albums.albumname, albums.albumID, artists.artistID FROM songs
+    getSongsQuery = '''SELECT songs.songid, songs.songname, songs.tracknumber, 
+    songs.songlength, songs.songbpm, artists.artistname, albums.albumname, 
+    albums.albumID, artists.artistID FROM songs
     JOIN albumssongs ON  albumssongs.songid = songs.songid 
     JOIN artistssongs ON songs.songid = artistssongs.songid
     JOIN albums ON albums.albumid = albumssongs.albumid
     JOIN artists ON artists.artistid = artistssongs.artistid
     WHERE songs.songid = %s'''
+    
+    # Organize data into dictionary
     curs.execute(getSongsQuery, (songID, ))
     song = curs.fetchone()
     songDict = dict()

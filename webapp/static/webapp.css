@@ -290,6 +290,7 @@ td > a {
     padding-bottom: 7px;
 }
 
+/* Hovering properties for music data tables */
 .musicDataEntry:hover{
     background-color: var(--blue1);
     cursor: pointer;

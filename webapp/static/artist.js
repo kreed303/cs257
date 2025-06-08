@@ -7,7 +7,6 @@ function initialize() {
     addArtistAlbums()
     addArtistSongs()
 
-
     var shuffle = false;
     var shuffleButton = document.getElementById('shuffleButton');
     if (shuffleButton) {
@@ -20,17 +19,15 @@ function initialize() {
     }
 }
 
-
 function addArtistAlbums() {
     var URL = getAPIBaseURL() + '/1.0/artists/' + artistID;
 
     fetch(URL, {method: 'get'})
-
     .then((response) => response.json())
-
     .then(function(albums) {
         var albumsList = document.getElementById('artistAlbums');
-
+        
+        // Create tables with apprpriate data and links
         var albumsHTML = '<table class="musicDataTable">'
         for (var i=0; i<albums.length; i++) {
             albumsHTML += '<tr><td class="musicDataEntry"><a class="musicLink" href="/albums/' + albums[i].albumID + '">' + albums[i].albumName + '</a></td></tr>';
@@ -49,7 +46,6 @@ function orderSongs(){
     addArtistSongs(false);
 }
 
-
 function addArtistSongs(shuffle) {
     var URL = getAPIBaseURL() + '/1.0/artistssongs/' + artistID + '?shuffle=' + shuffle;
 
@@ -60,6 +56,7 @@ function addArtistSongs(shuffle) {
     .then(function(songs) {
         var songsList = document.getElementById('artistSongs');
 
+        // Create tables with apprpriate data and links
         var songsHTML = '<table class="musicDataTable"> <tr><th class="musicDataHeader">Track</th><th class="musicDataHeader">Song Title</th><th class="musicDataHeader">Album</th></tr>';
         for (var i=0; i<songs.length; i++) {
             var song = songs[i]

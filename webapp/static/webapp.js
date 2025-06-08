@@ -1,3 +1,5 @@
+// Helper functions imported into our other .js files
+
 export function getAPIBaseURL() {
     var baseURL = window.location.protocol
                     + '//' + window.location.hostname
